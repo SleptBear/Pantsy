@@ -66,14 +66,14 @@ export const createProductThunk = (product) => async (dispatch) => {
 }
 
 export const loadProductThunk = () => async (dispatch) => {
-    const response = await fetch(`/api/??`)
+    const response = await fetch(`/api/products/`)
     const data = await response.json()
     dispatch(loadProduct(data))
     return response
 }
 
 export const singleProductThunk = (id) => async (dispatch) => {
-    const response = await fetch(`/api/${id}`)
+    const response = await fetch(`/api/products/${id}`)
     const data = await response.json()
     dispatch(singleProduct(data))
     return response
@@ -93,13 +93,13 @@ export const editProductThunk = (product) => async (dispatch) => {
     }
 }
 
-export const deleteProductThunk = (product) => async (dispatch) => {
-    const response = await fetch(`/api/??`, {
+export const deleteProductThunk = (id) => async (dispatch) => {
+    const response = await fetch(`/api/product/${id}`, {
         method: 'DELETE'
     })
     if (response.ok) {
         // const data = await response.json()
-        dispatch(deleteProduct(product.id))
+        dispatch(deleteProduct(id))
         return response
     }
 }
