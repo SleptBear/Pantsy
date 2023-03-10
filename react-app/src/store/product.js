@@ -1,8 +1,8 @@
 const NEW_PRODUCT = 'product/newProduct'
-const LOAD_PRODUCT = 'product/loadProduct'
+const LOAD_PRODUCTS = 'product/loadProducts'
 const EDIT_PRODUCT = 'product/editProduct'
 const DELETE_PRODUCT = 'product/deleteProduct'
-const SINGLE_PRODUCT = 'product/singleProduct'
+const LOAD_ONE_PRODUCT = 'product/loadOneProduct'
 const ADD_IMAGE = 'product/addImage'
 
 const createProduct = (product) => ({
@@ -11,7 +11,7 @@ const createProduct = (product) => ({
 })
 
 const loadProduct = (products) => ({
-    type: LOAD_PRODUCT,
+    type: LOAD_PRODUCTS,
     payload: products
 })
 
@@ -26,7 +26,7 @@ const deleteProduct = (id) => ({
 })
 
 const singleProduct = (product) => ({
-    type: SINGLE_PRODUCT,
+    type: LOAD_ONE_PRODUCT,
     payload: product
 })
 
@@ -109,7 +109,7 @@ const initialState = {allProducts: {}, singleProduct: {}}
 export const productsReducer = (state, action) => {
     let newState;
     switch(action.type){
-        case LOAD_PRODUCT:
+        case LOAD_PRODUCTS:
             newState = {...state}
             let allProductsCopy = {}
             action.payload.Products.forEach(product => {
@@ -117,24 +117,24 @@ export const productsReducer = (state, action) => {
             })
             newState.allProducts = allProductsCopy
             return newState
-        case ADD_SPOTS:
+        case NEW_PRODUCT:
             newState = {...state}
             let newStateCopy = {...newState.allProducts}
             newStateCopy[action.payload.id] = action.payload
             newState.allProducts = newStateCopy
             return newState
-        case LOAD_ONE_SPOT:
+        case LOAD_ONE_PRODUCT:
             newState = {...state}
             newState.singleProduct = action.payload
             return newState
-        case EDIT_SPOTS:
+        case EDIT_PRODUCT:
             return {...state,
                 singleSpot: {
                     ...state.singleProduct,
                     ...action.payload
                 }
             }
-        case DELETE_SPOTS:
+        case DELETE_PRODUCT:
             newState={...state}
             let productsCopy = {...newState.allProducts}
             delete productsCopy[action.id]
@@ -152,3 +152,5 @@ export const productsReducer = (state, action) => {
             return state;
     }
 }
+
+export default productsReducer
