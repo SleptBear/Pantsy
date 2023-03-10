@@ -13,10 +13,12 @@ class Product(db.Model):
     name = db.Column(db.String(50), nullable=False)
     description = db.Column(db.String(1000), nullable=False)
     price = db.Column(db.Float, nullable=False)
-    seller = db.Column(db.String(50), nullable=False)
+    seller = db.Column(db.String(50), ForeignKey("users.id"), nullable=False)
     category = db.Column(db.String(50), nullable=False)
     color = db.Column(db.String(25), nullable=False)
     size = db.Column(db.String(25), nullable=False)
+    # user_id = db.Column(db.Integer, ForeignKey("users.id"))
+    users = db.relationship("User", back_populates="product")
 
     def to_dict(self):
         return {
