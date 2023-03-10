@@ -1,8 +1,9 @@
-const NEW_PRODUCT = 'product/NEW_PRODUCT'
-const LOAD_PRODUCT = 'product/LOAD_PRODUCT'
-const EDIT_PRODUCT = 'product/EDIT_PRODUCT'
-const DELETE_PRODUCT = 'product/DELETE_PRODUCT'
-const SINGLE_PRODUCT = 'product/SINGLE_PRODUCT'
+const NEW_PRODUCT = 'product/newProduct'
+const LOAD_PRODUCT = 'product/loadProduct'
+const EDIT_PRODUCT = 'product/editProduct'
+const DELETE_PRODUCT = 'product/deleteProduct'
+const SINGLE_PRODUCT = 'product/singleProduct'
+const ADD_IMAGE = 'product/addImage'
 
 const createProduct = (product) => ({
     type: NEW_PRODUCT,
@@ -29,6 +30,10 @@ const singleProduct = (product) => ({
     payload: product
 })
 
+const addImages = (product) => ({
+    type: ADD_IMAGE,
+    payload: product
+})
 // Thunks
 
 export const createProductThunk = (product) => async (dispatch) => {
@@ -37,10 +42,25 @@ export const createProductThunk = (product) => async (dispatch) => {
         body: JSON.stringify(product)
     })
 
-    if(response.ok){
-        const data = await response.json()
-        dispatch(createProduct(data))
-        return response
+       if(response.ok){
+
+        const productData = await response.json()
+
+        const res = await fetch(`/api/??`, {
+            method: 'POST',
+            body: JSON.stringify({
+                url: product.productImage,
+                preview: true
+            })
+        })
+        if(res.ok){
+
+            const imageData = await res.json()
+
+            const combinedData = {previewImage: imageData.url, ...productData}
+            dispatch(createProduct(combinedData))
+            return combinedData
+        }
 
     }
 }
@@ -51,6 +71,14 @@ export const loadProductThunk = () => async (dispatch) => {
     dispatch(loadProduct(data))
     return response
 }
+
+export const singleProductThunk = (id) => async (dispatch) => {
+    const response = await fetch(`/api/${id}`)
+    const data = await response.json()
+    dispatch(singleProduct(data))
+    return response
+}
+
 
 export const editProductThunk = (product) => async (dispatch) => {
     const response = await fetch(`/api/??`, {
@@ -81,6 +109,46 @@ const initialState = {allProducts: {}, singleProduct: {}}
 export const productsReducer = (state, action) => {
     let newState;
     switch(action.type){
+        case LOAD_PRODUCT:
+            newState = {...state}
+            let allProductsCopy = {}
+            action.payload.Products.forEach(product => {
+                allProductsCopy[product.id] = product
+            })
+            newState.allProducts = allProductsCopy
+            return newState
+        case ADD_SPOTS:
+            newState = {...state}
+            let newStateCopy = {...newState.allProducts}
+            newStateCopy[action.payload.id] = action.payload
+            newState.allProducts = newStateCopy
+            return newState
+        case LOAD_ONE_SPOT:
+            newState = {...state}
+            newState.singleProduct = action.payload
+            return newState
+        case EDIT_SPOTS:
+            return {...state,
+                singleSpot: {
+                    ...state.singleProduct,
+                    ...action.payload
+                }
+            }
+        case DELETE_SPOTS:
+            newState={...state}
+            let productsCopy = {...newState.allProducts}
+            delete productsCopy[action.id]
+            newState.allProducts = productsCopy
+            newState.singleProduct = {}
 
+            return newState
+        case ADD_IMAGE:
+            newState = {...state}
+            const newProductImage = {...state.singleProduct}
+            newProductImage[action.payload.singleProduct] = action.payload.singleProduct
+            newState.products = newProductImage
+            return newState
+        default:
+            return state;
     }
 }
