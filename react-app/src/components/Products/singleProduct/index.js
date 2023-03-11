@@ -20,7 +20,7 @@ function Product () {
     return (
         <div className="mainProductDetail">
             <div>
-                    <p>product name: {productDetail.name}, product price:{productDetail.price}, Seller Name: {productDetail.seller}</p>
+                    <p>product name: {productDetail.name}, product price:{productDetail.price}, Seller Name: </p>
             </div>
             <div>
                 <p> dropdown for size and color,  SIZE: {productDetail.size}  COLOR: {productDetail.color}</p>
