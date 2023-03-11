@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify
-from app.models import Product, db
+from app.models import Product, db, ProductImages
 
 productImages_routes = Blueprint('productImages', __name__)
 
@@ -7,7 +7,7 @@ productImages_routes = Blueprint('productImages', __name__)
 @productImages_routes.route('/')
 def allImages():
     images = ProductImages.query.all()
-    return {'productImages': [images.to_dict() for image in images]}
+    return {'productImages': [image.to_dict() for image in images]}
 
 @productImages_routes.route('/<int:id>')
 def imagesById(id):
