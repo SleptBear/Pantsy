@@ -112,7 +112,7 @@ export const productsReducer = (state = initialState, action) => {
         case LOAD_PRODUCTS:
             newState = {...state}
             let allProductsCopy = {}
-            action.payload.Products.forEach(product => {
+            action.payload.products.forEach(product => {
                 allProductsCopy[product.id] = product
             })
             newState.allProducts = allProductsCopy
