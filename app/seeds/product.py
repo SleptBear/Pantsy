@@ -24,8 +24,8 @@ def seed_products():
 
 def undo_products():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.products RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.product RESTART IDENTITY CASCADE;")
     else:
-        db.session.execute(text("DELETE FROM products"))
+        db.session.execute(text("DELETE FROM product"))
 
     db.session.commit()
