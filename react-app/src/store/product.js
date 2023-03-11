@@ -75,6 +75,7 @@ export const loadProductThunk = () => async (dispatch) => {
 export const singleProductThunk = (id) => async (dispatch) => {
     const response = await fetch(`/api/products/${id}`)
     const data = await response.json()
+    console.log("THUNK", id)
     dispatch(singleProduct(data))
     return response
 }
@@ -125,6 +126,7 @@ export const productsReducer = (state = initialState, action) => {
             return newState
         case LOAD_ONE_PRODUCT:
             newState = {...state}
+            console.log("Action", action)
             newState.singleProduct = action.payload
             return newState
         case EDIT_PRODUCT:

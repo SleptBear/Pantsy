@@ -9,7 +9,7 @@ function AllProducts() {
     const dispatch = useDispatch()
     const products = useSelector(state => state.productsReducer.allProducts)
     const productsArr = Object.values(products)
-    console.log("productsArr", productsArr)
+    // console.log("productsArr", productsArr)
 
     useEffect(() => {
         dispatch(loadProductThunk())
