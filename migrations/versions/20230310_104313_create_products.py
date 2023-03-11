@@ -27,7 +27,7 @@ def upgrade():
     sa.Column('name', sa.String(length=50), nullable=False),
     sa.Column('description', sa.String(length=1000), nullable=False),
     sa.Column('price', sa.Float(), nullable=False),
-    sa.Column('seller', sa.String(length=50), nullable=False),
+    sa.Column('seller', sa.Integer(), nullable=False),
     sa.Column('category', sa.String(length=50), nullable=False),
     sa.Column('color', sa.String(length=25), nullable=False),
     sa.Column('size', sa.String(length=25), nullable=False),
