@@ -14,14 +14,15 @@ def allProducts():
 def singleProduct(id):
     product = Product.query.get(id)
     pd = product.to_dict()
-    # print('SELLER', product.users.to_dict())
+    user = product.users.to_dict()
+    print('SELLER', product.users.to_dict())
     # print('IMAGES', product.productImages[0].to_dict())
     productImages = product.productImages
     pdImages = {'productImages': [productImages.to_dict() for productImages in productImages]}
-    # return product.to_dict()
-    return pd.update({
-        'productImages': [pdImages.productImages]
-    })
+    pdUser = {'seller': user}
+    pd.update(pdUser)
+    pd.update(pdImages)
+    return pd
 
 # @product_routes.route('/', methods=['POST'])
 # def createProduct(id):
