@@ -4,16 +4,16 @@ from sqlalchemy.schema import Column, ForeignKey
 from sqlalchemy.types import Integer, String, Float
 
 class ProductImages(db.Model):
-    __tablename__="images"
+    __tablename__="productImages"
 
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    image = db.Column(db.String(50), nullable=False)
+    image = db.Column(db.String, nullable=False)
 
-    product = db.relationship("Product", back_populates="images")
     product_id = db.Column(db.Integer, ForeignKey("product.id", name="fk_images_product"), nullable=False)
+    product = db.relationship("Product", back_populates="productImages",)
 
     def to_dict(self):
         return {
