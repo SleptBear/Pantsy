@@ -29,9 +29,9 @@ def singleProduct(id):
 # Creates a product
 @product_routes.route('/', methods=['POST'])
 def createProduct():
-    data = request.get_json()
+    data = request.get_json() # retrieves JSON data that was sent in POST request from client
     form = ProductForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
+    form['csrf_token'].data = request.cookies['csrf_token'] # makes a csrf_token in form object
     if form.validate_on_submit():
         new_product = Product(
             name = data["name"],
@@ -42,9 +42,9 @@ def createProduct():
             color = data["color"],
             size = data["size"]
         )
-        print(new_product.to_dict())
-        db.session.add(new_product)
-        db.session.commit()
+        print(new_product.to_dict()) # for debugging purposes
+        db.session.add(new_product) # adds to database session
+        db.session.commit() # commits changes to database
 
         return new_product.to_dict()
     else:
