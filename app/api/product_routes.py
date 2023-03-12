@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 from app.models import Product, db
 from app.forms import ProductForm
+# from app.api.auth_routes import authenticate
 
 product_routes = Blueprint('products', __name__)
 
@@ -26,11 +27,30 @@ def singleProduct(id):
     pd.update(pdImages)
     return pd
 
+@product_routes.route('/<int:id>', methods=['GET', 'POST'])
+def updateProduct(id):
+    data = request.get_json()
+    form = ProductForm()
+    form['csrf_token'].data = request.cookies['csrf_token'] # makes a csrf_token in form object
+    updated_product = Product(
+            name = data["name"],
+            description = data["description"],
+            price = str(data["price"]),
+            seller = data["seller"],
+            category = data["category"],
+            color = data["color"],
+            size = data["size"]
+        )
+    pass
+
 # Creates a product
+# @authenticate
 @product_routes.route('/', methods=['POST'])
 def createProduct():
     data = request.get_json() # retrieves JSON data that was sent in POST request from client
     form = ProductForm()
+    print("DATA from request", data)
+    print("request", request)
     form['csrf_token'].data = request.cookies['csrf_token'] # makes a csrf_token in form object
     if form.validate_on_submit():
         new_product = Product(
