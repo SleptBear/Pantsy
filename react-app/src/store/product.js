@@ -75,7 +75,7 @@ export const loadProductThunk = () => async (dispatch) => {
 export const singleProductThunk = (id) => async (dispatch) => {
     const response = await fetch(`/api/products/${id}`)
     const data = await response.json()
-    console.log("THUNK", id)
+    
     dispatch(singleProduct(data))
     return response
 }

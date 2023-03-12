@@ -9,12 +9,15 @@ function AllProducts() {
     const dispatch = useDispatch()
     const products = useSelector(state => state.productsReducer.allProducts)
     const productsArr = Object.values(products)
-    // console.log("productsArr", productsArr)
+    console.log("productsArr", products)
 
     useEffect(() => {
         dispatch(loadProductThunk())
     }, [dispatch])
 
+    if(!productsArr) {
+        return null
+    }
     return (
         <div>
             {/* <h1>TEST RENDER ALL LISTINGS</h1> */}
