@@ -13,7 +13,7 @@ class ProductImages(db.Model):
     image = db.Column(db.String, nullable=False)
 
     product_id = db.Column(db.Integer, ForeignKey("product.id", name="fk_images_product"), nullable=False)
-    product = db.relationship("Product", back_populates="productImages",)
+    # product = db.relationship("Product", back_populates="productImages",)
 
     def to_dict(self):
         return {
