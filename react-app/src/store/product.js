@@ -1,4 +1,4 @@
-import { all } from "mathjs"
+
 
 const NEW_PRODUCT = 'product/newProduct'
 const LOAD_PRODUCTS = 'product/loadProducts'
@@ -39,7 +39,8 @@ const addImages = (product) => ({
 // Thunks
 
 export const createProductThunk = (product) => async (dispatch) => {
-    const response = await fetch(`/api/??`, {
+    console.log("THUNK", product)
+    const response = await fetch(`/api/products/`, {
         method: 'POST',
         body: JSON.stringify(product)
     })
@@ -47,22 +48,22 @@ export const createProductThunk = (product) => async (dispatch) => {
        if(response.ok){
 
         const productData = await response.json()
+        return response
+        // const res = await fetch(`/api/productImages/`, {
+        //     method: 'POST',
+        //     body: JSON.stringify({
+        //         url: product.productImage,
+        //         preview: true
+        //     })
+        // })
+        // if(res.ok){
 
-        const res = await fetch(`/api/??`, {
-            method: 'POST',
-            body: JSON.stringify({
-                url: product.productImage,
-                preview: true
-            })
-        })
-        if(res.ok){
+        //     const imageData = await res.json()
 
-            const imageData = await res.json()
-
-            const combinedData = {previewImage: imageData.url, ...productData}
-            dispatch(createProduct(combinedData))
-            return combinedData
-        }
+        //     const combinedData = {previewImage: imageData.url, ...productData}
+        //     dispatch(createProduct(combinedData))
+        //     return combinedData
+        // }
 
     }
 }

@@ -7,7 +7,6 @@ import { singleProductThunk } from "../../../store/product";
 function Product () {
     const dispatch = useDispatch()
     const id = useParams()
-    const idValues = Object.values(id)
     const productDetail = useSelector(state => state.productsReducer.singleProduct)
 
 
