@@ -16,12 +16,12 @@ def singleProduct(id):
     pd = product.to_dict()
     user = product.users.to_dict()
     print('SELLER', product.users.to_dict())
-    # print('IMAGES', product.productImages[0].to_dict())
-    # productImages = product.productImages
-    # pdImages = {'productImages': [productImages.to_dict() for productImages in productImages]}
+    print('IMAGES', product.productImages[0].to_dict())
+    productImages = product.productImages
+    pdImages = {'productImages': [productImages.to_dict() for productImages in productImages]}
     pdUser = {'seller': user}
     pd.update(pdUser)
-    # pd.update(pdImages)
+    pd.update(pdImages)
     return pd
 
 # @product_routes.route('/', methods=['POST'])
