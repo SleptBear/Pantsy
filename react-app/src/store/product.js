@@ -1,3 +1,5 @@
+import { all } from "mathjs"
+
 const NEW_PRODUCT = 'product/newProduct'
 const LOAD_PRODUCTS = 'product/loadProducts'
 const EDIT_PRODUCT = 'product/editProduct'
@@ -75,7 +77,7 @@ export const loadProductThunk = () => async (dispatch) => {
 export const singleProductThunk = (id) => async (dispatch) => {
     const response = await fetch(`/api/products/${id}`)
     const data = await response.json()
-    
+
     dispatch(singleProduct(data))
     return response
 }
@@ -117,6 +119,7 @@ export const productsReducer = (state = initialState, action) => {
                 allProductsCopy[product.id] = product
             })
             newState.allProducts = allProductsCopy
+            console.log("allproductscopy", allProductsCopy)
             return newState
         case NEW_PRODUCT:
             newState = {...state}

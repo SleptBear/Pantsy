@@ -10,7 +10,18 @@ product_routes = Blueprint('products', __name__)
 @product_routes.route('/')
 def allProducts():
     products = Product.query.all()
-    return {'products': [product.to_dict() for product in products]}
+    allProducts = []
+    for product in products:
+        pd = product.to_dict()
+
+        pdImages = {'productImages': [productImages.to_dict() for productImages in product.productImages]}
+        print("LIST COMP", pdImages)
+        pd.update(pdImages)
+        print("PD", pd)
+        allProducts.append(pd)
+    print("ALLPRODUCTS", allProducts)
+    # return {'products': [product.to_dict() for product in products]}
+    return {'products': allProducts}
 
 # Gets the product by id
 @product_routes.route('/<int:id>')

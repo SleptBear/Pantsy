@@ -23,7 +23,8 @@ def createProductImage():
     if form.validate_on_submit():
         new_productImage = ProductImages(
             image = data["image"],
-            product_id = data["product_id"]
+            product_id = data["product_id"],
+            previewImage= data['previewImage']
         )
         print(new_productImage.to_dict())
         db.session.add(new_productImage)

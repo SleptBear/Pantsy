@@ -31,5 +31,6 @@ class Product(db.Model):
             'seller': self.seller,
             'category': self.category,
             'color': self.color,
-            'size': self.size,
+            'size': self.size
+
         }
