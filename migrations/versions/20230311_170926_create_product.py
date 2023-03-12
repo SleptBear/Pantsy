@@ -1,8 +1,8 @@
 """create product
 
-Revision ID: 3db5c2e1e756
+Revision ID: 93ff6c01c5ad
 Revises: ffdc0a98111c
-Create Date: 2023-03-11 16:43:43.195294
+Create Date: 2023-03-11 17:09:26.185458
 
 """
 from alembic import op
@@ -12,9 +12,8 @@ import os
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
-
 # revision identifiers, used by Alembic.
-revision = '3db5c2e1e756'
+revision = '93ff6c01c5ad'
 down_revision = 'ffdc0a98111c'
 branch_labels = None
 depends_on = None
