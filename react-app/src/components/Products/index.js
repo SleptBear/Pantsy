@@ -27,15 +27,14 @@ function AllProducts() {
                         <NavLink to={`/products/${id}`}>
 
                         <div className="productDetails">
-                        <p>{name},{size}, {price}, {category}</p>
-                        {console.log("PRODUCTIMAGE", productImages)}
-                        {productImages.forEach(pic => {
-                            return <img src={pic.image} alt="image not found"></img>
-                            console.log("IMAGE", pic.image)
 
+                        {productImages.map(pic => {
+                            console.log("IMAGE", pic.image)
+                            return <img className='preview-image'src={pic.image} alt="image not found"></img>
 
                         })}
                         </div>
+                        <p>{name},{size}, {price}, {category}</p>
                         </NavLink>
 
                     </div>
