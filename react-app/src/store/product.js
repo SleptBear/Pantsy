@@ -1,5 +1,3 @@
-import { all } from "mathjs"
-
 const NEW_PRODUCT = 'product/newProduct'
 const LOAD_PRODUCTS = 'product/loadProducts'
 const EDIT_PRODUCT = 'product/editProduct'
