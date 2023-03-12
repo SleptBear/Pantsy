@@ -12,7 +12,7 @@ class ProductImages(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     image = db.Column(db.String, nullable=False)
 
-    product_id = db.Column(db.Integer, db.ForeignKey("product.id", name="fk_images_product"), nullable=False)
+    product_id = db.Column(db.Integer, db.ForeignKey("product.id"), nullable=False)
     # product = db.relationship("Product", back_populates="productImages",)
 
     def to_dict(self):
