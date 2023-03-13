@@ -44,7 +44,7 @@ const AddProduct = () => {
         e.preventDefault()
 
         dispatch(createProductThunk({ProductData, imgData}))
-        history.push("/")
+        .then(() => history.push("/"))
         // .catch(async (res) => {
         //     const data = await res.json();
         //     console.log("data from api", data)
