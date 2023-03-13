@@ -12,16 +12,17 @@ class Review(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(User.id), nullable=False)
-    product_id = db.relationship("Product", back_populates="product", cascade='all, delete')
+    product_id = db.Column(db.Integer, db.ForeignKey(Product.id), nullable=False)
     detail = db.Column(db.String(255), nullable=False)
     rating = db.Column(db.Integer, nullable=False)
     created_at = db.Column(db.DATETIME)
+    # product_id = db.relationship("Product", back_populates="reviews", cascade='all, delete')
 
     def to_dict(self):
         return {
             'id': self.id,
-            'description': self.user_id,
+            'user_id': self.user_id,
             'detail': self.detail,
             'rating': self.rating,
-            'created_at': self.created_at,
+            'created_at': self.created_at
         }
