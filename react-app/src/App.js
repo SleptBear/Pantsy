@@ -7,6 +7,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import AllProducts from "./components/Products";
 import Product from "./components/Products/singleProduct";
+import AddProduct from "./components/addProduct";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,8 +30,12 @@ function App() {
           <Route exact path='/'>
             <AllProducts />
           </Route>
-          <Route path ='/products/:id' >
+          <Route exact path ='/products/:id' >
             <Product />
+          </Route>
+          <Route exact path='/new' >
+            <AddProduct />
+
           </Route>
         </Switch>
       )}
