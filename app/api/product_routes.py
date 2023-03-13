@@ -33,9 +33,11 @@ def singleProduct(id):
     print('IMAGES', product.productImages[0].to_dict())
     productImages = product.productImages
     pdImages = {'productImages': [productImages.to_dict() for productImages in productImages]}
+    pdReviews = {'reviews': [reviews.to_dict() for reviews in product.reviews]}
     pdUser = {'seller': user}
     pd.update(pdUser)
     pd.update(pdImages)
+    pd.update(pdReviews)
     return pd
 
 @product_routes.route('/<int:id>', methods=['GET', 'POST'])
