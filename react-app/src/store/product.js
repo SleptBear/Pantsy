@@ -1,6 +1,3 @@
-import Product from "../components/Products/singleProduct"
-
-
 const NEW_PRODUCT = 'product/newProduct'
 const LOAD_PRODUCTS = 'product/loadProducts'
 const EDIT_PRODUCT = 'product/editProduct'
@@ -65,7 +62,7 @@ export const createProductThunk = (product) => async (dispatch) => {
                 product_id: ProductData.id
             })
         })
-       
+
         if(res.ok){
             const resData = await res.json()
             ProductData.productImages = [resData]
