@@ -14,7 +14,7 @@ class Product(db.Model):
     name = db.Column(db.String(50), nullable=False)
     description = db.Column(db.String(1000), nullable=False)
     price = db.Column(db.Float(), nullable=False)
-    seller = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('product.id')), nullable=False)
+    seller = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     category = db.Column(db.String(50), nullable=False)
     color = db.Column(db.String(25), nullable=False)
     size = db.Column(db.String(25), nullable=False)
