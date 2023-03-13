@@ -1,3 +1,6 @@
+import Product from "../components/Products/singleProduct"
+
+
 const NEW_PRODUCT = 'product/newProduct'
 const LOAD_PRODUCTS = 'product/loadProducts'
 const EDIT_PRODUCT = 'product/editProduct'
@@ -37,29 +40,39 @@ const addImages = (product) => ({
 // Thunks
 
 export const createProductThunk = (product) => async (dispatch) => {
-    const response = await fetch(`/api/??`, {
+    console.log("THUNK", product)
+    console.log("imgData", product.imgData)
+    const response = await fetch(`/api/products/`, {
         method: 'POST',
-        body: JSON.stringify(product)
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(product.ProductData)
     })
-
-       if(response.ok){
-
-        const productData = await response.json()
-
-        const res = await fetch(`/api/??`, {
+    let ProductData;
+    if(response.ok){
+        ProductData = await response.json()
+        // const productData = await response.json()
+        // console.log("PRODUCTDATA", productData)
+        const res = await fetch(`/api/productImages/`, {
             method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
             body: JSON.stringify({
-                url: product.productImage,
-                preview: true
+                image: product.imgData.image,
+                previewImage: product.imgData.preview,
+                product_id: ProductData.id
             })
         })
+       
         if(res.ok){
+            const resData = await res.json()
+            ProductData.productImages = [resData]
+            console.log("PRODUCTDATA", ProductData)
 
-            const imageData = await res.json()
-
-            const combinedData = {previewImage: imageData.url, ...productData}
-            dispatch(createProduct(combinedData))
-            return combinedData
+            dispatch(createProduct(ProductData))
+            return
         }
 
     }
@@ -75,7 +88,7 @@ export const loadProductThunk = () => async (dispatch) => {
 export const singleProductThunk = (id) => async (dispatch) => {
     const response = await fetch(`/api/products/${id}`)
     const data = await response.json()
-    
+
     dispatch(singleProduct(data))
     return response
 }
@@ -117,6 +130,7 @@ export const productsReducer = (state = initialState, action) => {
                 allProductsCopy[product.id] = product
             })
             newState.allProducts = allProductsCopy
+            console.log("allproductscopy", allProductsCopy)
             return newState
         case NEW_PRODUCT:
             newState = {...state}
