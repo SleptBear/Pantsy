@@ -20,7 +20,7 @@ class Product(db.Model):
     size = db.Column(db.String(25), nullable=False)
     # user_id = db.Column(db.Integer, ForeignKey("users.id"))
     users = db.relationship("User", back_populates="product")
-    productImages = db.relationship("ProductImages", back_populates="product")
+    productImages = db.relationship("ProductImages", back_populates="product", cascade='all, delete')
 
     def to_dict(self):
         return {
@@ -31,5 +31,6 @@ class Product(db.Model):
             'seller': self.seller,
             'category': self.category,
             'color': self.color,
-            'size': self.size,
+            'size': self.size
+
         }
