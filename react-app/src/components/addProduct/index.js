@@ -13,14 +13,38 @@ const AddProduct = () => {
     const [color, setColor] = useState('')
     const [size, setSize] = useState('')
     const [image, setImage] = useState('')
+    const [errors, setErrors] = useState([]);
 
 
     const dispatch = useDispatch()
 
+    const ProductData = {
+        name,
+        description,
+        price,
+        category,
+        color,
+        size,
+        seller: user?.id
+    };
+
+    const imgData = {
+        image,
+        preview: true
+    }
+
+
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        return dispatch(createProductThunk({name, description, price, category, color, size, image, seller: user.id}))
+        dispatch(createProductThunk({ProductData, imgData}))
+        .catch(async (res) => {
+            const data = await res.json();
+            console.log("data from api", data)
+            if (data && data.errors) setErrors(data.errors)
+            console.log('ERRORS', errors)
+          });
+        return
     }
 
     return(

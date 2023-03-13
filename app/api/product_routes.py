@@ -67,7 +67,7 @@ def createProduct():
         new_product = Product(
             name = data["name"],
             description = data["description"],
-            price = str(data["price"]),
+            price = data["price"],
             seller = data["seller"],
             category = data["category"],
             color = data["color"],
@@ -79,7 +79,7 @@ def createProduct():
 
         return new_product.to_dict()
     else:
-        return "Bad Data"
+        return form.errors
 
 # Delete a product by id
 @product_routes.route('/<int:id>', methods=['DELETE'])

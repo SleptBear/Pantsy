@@ -38,17 +38,22 @@ const addImages = (product) => ({
 })
 // Thunks
 
-export const createProductThunk = (product) => async (dispatch) => {
-    console.log("THUNK", product)
-    const response = await fetch(`/api/products/`, {
+export const createProductThunk = (productData, imgData) => async (dispatch) => {
+    console.log("THUNK", productData, imgData)
+    const res = await fetch(`/api/products/`, {
         method: 'POST',
-        body: JSON.stringify(product)
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(productData)
     })
+console.log(res)
+    if(res.ok){
 
-       if(response.ok){
+        const productData = await res.json()
+        console.log("return from product creation post", productData)
 
-        const productData = await response.json()
-        return response
+        return res
         // const res = await fetch(`/api/productImages/`, {
         //     method: 'POST',
         //     body: JSON.stringify({
@@ -66,6 +71,7 @@ export const createProductThunk = (product) => async (dispatch) => {
         // }
 
     }
+    return
 }
 
 export const loadProductThunk = () => async (dispatch) => {
