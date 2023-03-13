@@ -46,7 +46,6 @@ def updateProduct(id):
     data = request.get_json()
     # print("DATA", data)
     if product:
-            print("PRODUCTNAME", product.price)
             product.name = data["name"]
             product.description = data["description"]
             product.price = str(data["price"])
@@ -56,7 +55,7 @@ def updateProduct(id):
             db.session.commit()
             return product.to_dict()
     else:
-        return {"error: Product"}
+        return {"error: Product Does not Exist"}
 
 # Creates a product
 # @authenticate
