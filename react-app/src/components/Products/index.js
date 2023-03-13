@@ -7,15 +7,17 @@ import './Products.css'
 
 function AllProducts() {
     const dispatch = useDispatch()
+
     const products = useSelector(state => state.productsReducer.allProducts)
     const productsArr = Object.values(products || [])
+    
     // console.log("productsArr", products)
 
     useEffect(() => {
         dispatch(loadProductThunk())
     }, [dispatch])
 
-    if(!productsArr[0]) {
+    if(!productsArr) {
         return null
     }
 
@@ -41,6 +43,7 @@ function AllProducts() {
                     </div>
                 )
             })}
+
             <Switch>
                 <Route path="/products/:id">
                     <Product products={productsArr}/>

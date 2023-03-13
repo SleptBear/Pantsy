@@ -12,13 +12,14 @@ const AddProduct = () => {
     const [category, setCategory] = useState('asd')
     const [color, setColor] = useState('asd')
     const [size, setSize] = useState('asd')
-    const [image, setImage] = useState('asd')
+    const [image, setImage] = useState('')
     const [errors, setErrors] = useState([]);
-
 
     const dispatch = useDispatch()
     const history = useHistory()
     const price = parseInt(stringprice)
+
+
 
     const ProductData = {
         name,
@@ -35,6 +36,9 @@ const AddProduct = () => {
         preview: true
     }
 
+    if(!user) {
+       return <h4>User not logged in</h4>
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -52,6 +56,7 @@ const AddProduct = () => {
 
     return(
         <div>
+
             <form className="addproductform" onSubmit={handleSubmit}>
                 <h1>Add a Product</h1>
             <label>

@@ -91,21 +91,28 @@ export const singleProductThunk = (id) => async (dispatch) => {
 }
 
 
-export const editProductThunk = (product) => async (dispatch) => {
-    const response = await fetch(`/api/??`, {
+export const editProductThunk = (currentProductID, editedProduct) => async (dispatch) => {
+    console.log('CURRENT PRODUCT ID', currentProductID)
+    console.log("EDIT PRODUCT", editedProduct)
+    const response = await fetch(`/api/products/${currentProductID}`, {
         method:'PUT',
-        body: JSON.stringify(product)
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(editedProduct)
     })
-
+    console.log("RESOK", response)
     if (response.ok){
         const data = await response.json()
+        console.log("DATA", data)
         dispatch(editProduct(data))
         return data
     }
 }
 
 export const deleteProductThunk = (id) => async (dispatch) => {
-    const response = await fetch(`/api/product/${id}`, {
+    console.log("ID", id)
+    const response = await fetch(`/api/products/${id}`, {
         method: 'DELETE'
     })
     if (response.ok) {
@@ -142,7 +149,7 @@ export const productsReducer = (state = initialState, action) => {
             return newState
         case EDIT_PRODUCT:
             return {...state,
-                singleSpot: {
+                singleProduct: {
                     ...state.singleProduct,
                     ...action.payload
                 }
