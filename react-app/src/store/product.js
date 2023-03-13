@@ -65,7 +65,7 @@ export const createProductThunk = (product) => async (dispatch) => {
                 product_id: ProductData.id
             })
         })
-       
+
         if(res.ok){
             const resData = await res.json()
             ProductData.productImages = [resData]
@@ -108,7 +108,8 @@ export const editProductThunk = (product) => async (dispatch) => {
 }
 
 export const deleteProductThunk = (id) => async (dispatch) => {
-    const response = await fetch(`/api/product/${id}`, {
+    console.log("ID", id)
+    const response = await fetch(`/api/products/${id}`, {
         method: 'DELETE'
     })
     if (response.ok) {

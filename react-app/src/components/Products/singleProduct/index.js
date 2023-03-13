@@ -2,10 +2,11 @@ import { useEffect } from "react";
 import { useParams, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
 import './singleProduct.css'
-import { singleProductThunk } from "../../../store/product";
+import { singleProductThunk, deleteProductThunk } from "../../../store/product";
 
 function Product () {
     const dispatch = useDispatch()
+    const history = useHistory()
     const id = useParams()
     const productDetail = useSelector(state => state.productsReducer.singleProduct)
 
@@ -47,6 +48,12 @@ function Product () {
                  return <img src={image.image} alt="image not found"></img>
                 })}
                 <p> dropdown for size and color,  SIZE: {productDetail.size}  COLOR: {productDetail.color}</p>
+            </div>
+            <div>
+            <button className="deletebutton"
+                        onClick={() => dispatch(deleteProductThunk(id.id)).then(() => history.push("/"))}>
+                            Delete Item
+                        </button>
             </div>
         </div>
     )
