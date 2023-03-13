@@ -4,9 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import './singleProduct.css'
 import { singleProductThunk } from "../../../store/product";
 import EditProduct from "../editProduct";
+import { useModal } from "../../../context/Modal"
+import OpenModalButton from "../../OpenModalButton"
 
 function Product () {
     const dispatch = useDispatch()
+    const { closeModal } = useModal()
     const id = useParams()
     const productDetail = useSelector(state => state.productsReducer.singleProduct)
 
@@ -49,7 +52,10 @@ function Product () {
                 })}
                 <p> dropdown for size and color,  SIZE: {productDetail.size}  COLOR: {productDetail.color}</p>
             </div>
-            <button><EditProduct></EditProduct></button>
+            <OpenModalButton
+            modalComponent={<EditProduct/>}
+            buttonText={"Edit Product"}
+            />
         </div>
     )
 }

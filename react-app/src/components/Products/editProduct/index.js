@@ -1,26 +1,27 @@
 import { useEffect, useState } from 'react'
 import {useDispatch, useSelector} from "react-redux"
-import { NavLink, Switch, Route } from 'react-router-dom'
+import { NavLink, Switch, Route, useHistory } from 'react-router-dom'
 import { editProductThunk } from '../../../store/product'
+import { useModal } from "../../../context/Modal"
 // import { editProductThunk } from '../../store/product'
 
 
 const EditProduct = () => {
     const user = useSelector(state => state.session.user)
     const stateProduct = useSelector(state => state.productsReducer.singleProduct)
-    // console.log("USERSELECTOR", user)
-    console.log(stateProduct)
-    const [name, setName] = useState('asd')
-    const [description, setDescription] = useState('asd')
-    const [stringprice, setstringPrice] = useState(123)
-    const [category, setCategory] = useState('asd')
-    const [color, setColor] = useState('asd')
-    const [size, setSize] = useState('asd')
+    const [name, setName] = useState(stateProduct.name)
+    const [description, setDescription] = useState(stateProduct.description)
+    const [stringPrice, setStringPrice] = useState(stateProduct.price)
+    const [category, setCategory] = useState(stateProduct.category)
+    const [color, setColor] = useState(stateProduct.color)
+    const [size, setSize] = useState(stateProduct.size)
     const [errors, setErrors] = useState([]);
 
     const dispatch = useDispatch()
+    const history = useHistory()
+    const {closeModal} = useModal()
 
-    const price = parseInt(stringprice)
+    const price = parseInt(stringPrice)
     const ProductData = {
         name,
         description,
@@ -33,7 +34,9 @@ const EditProduct = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        dispatch(editProductThunk(ProductData))
+        dispatch(editProductThunk(stateProduct.id, ProductData))
+        .then(() => closeModal())
+        // .history.push(`/products/${stateProduct.id}`)
 
         // .catch(async (res) => {
         //     const data = await res.json();
@@ -81,11 +84,11 @@ const EditProduct = () => {
         Price
     <input className="price-form"
     type="text"
-    value={stringprice}
+    value={stringPrice}
     placeholder="Price"
     maxLength={50}
     onChange={(e) => {
-        setstringPrice(e.target.value)
+        setStringPrice(e.target.value)
     }}
     required
 
