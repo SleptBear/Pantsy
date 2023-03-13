@@ -38,21 +38,24 @@ def singleProduct(id):
     pd.update(pdImages)
     return pd
 
-@product_routes.route('/<int:id>', methods=['GET', 'POST'])
+
+#EDIT PRODUCT 
+@product_routes.route('/<int:id>', methods=['PUT'])
 def updateProduct(id):
+    product = Product.query.get(id)
     data = request.get_json()
-    form = ProductForm()
-    form['csrf_token'].data = request.cookies['csrf_token'] # makes a csrf_token in form object
-    updated_product = Product(
-            name = data["name"],
-            description = data["description"],
-            price = str(data["price"]),
-            seller = data["seller"],
-            category = data["category"],
-            color = data["color"],
-            size = data["size"]
-        )
-    pass
+    # print("DATA", data)
+    if product:
+            product.name = data["name"]
+            product.description = data["description"]
+            product.price = str(data["price"])
+            product.category = data["category"]
+            product.color = data["color"]
+            product.size = data["size"]
+            db.session.commit()
+            return product.to_dict()
+    else:
+        return {"error: Product Does not Exist"}
 
 # Creates a product
 # @authenticate
