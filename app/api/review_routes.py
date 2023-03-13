@@ -59,7 +59,7 @@ def createReview():
 
 
 
-# delete review by product id
+# delete review by review id
 @review_routes.route('/<int:id>', methods=['DELETE'])
 def deleteReview(id):
     review = Review.query.get(id)
