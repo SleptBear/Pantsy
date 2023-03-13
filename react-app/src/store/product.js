@@ -1,3 +1,4 @@
+import Product from "../components/Products/singleProduct"
 
 
 const NEW_PRODUCT = 'product/newProduct'
@@ -38,40 +39,43 @@ const addImages = (product) => ({
 })
 // Thunks
 
-export const createProductThunk = (productData, imgData) => async (dispatch) => {
-    console.log("THUNK", productData, imgData)
-    const res = await fetch(`/api/products/`, {
+export const createProductThunk = (product) => async (dispatch) => {
+    console.log("THUNK", product)
+    console.log("imgData", product.imgData)
+    const response = await fetch(`/api/products/`, {
         method: 'POST',
         headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "application/json"
         },
-        body: JSON.stringify(productData)
+        body: JSON.stringify(product.ProductData)
     })
-console.log(res)
-    if(res.ok){
+    let ProductData;
+    if(response.ok){
+        ProductData = await response.json()
+        // const productData = await response.json()
+        // console.log("PRODUCTDATA", productData)
+        const res = await fetch(`/api/productImages/`, {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                image: product.imgData.image,
+                previewImage: product.imgData.preview,
+                product_id: ProductData.id
+            })
+        })
+       
+        if(res.ok){
+            const resData = await res.json()
+            ProductData.productImages = [resData]
+            console.log("PRODUCTDATA", ProductData)
 
-        const productData = await res.json()
-        console.log("return from product creation post", productData)
-
-        return res
-        // const res = await fetch(`/api/productImages/`, {
-        //     method: 'POST',
-        //     body: JSON.stringify({
-        //         url: product.productImage,
-        //         preview: true
-        //     })
-        // })
-        // if(res.ok){
-
-        //     const imageData = await res.json()
-
-        //     const combinedData = {previewImage: imageData.url, ...productData}
-        //     dispatch(createProduct(combinedData))
-        //     return combinedData
-        // }
+            dispatch(createProduct(ProductData))
+            return
+        }
 
     }
-    return
 }
 
 export const loadProductThunk = () => async (dispatch) => {

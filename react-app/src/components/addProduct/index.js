@@ -1,22 +1,24 @@
 import { useEffect, useState } from 'react'
 import {useDispatch, useSelector} from "react-redux"
-import { NavLink, Switch, Route } from 'react-router-dom'
+import { NavLink, Switch, Route, useHistory } from 'react-router-dom'
 import { createProductThunk } from '../../store/product'
 
 const AddProduct = () => {
     const user = useSelector(state => state.session.user)
-    console.log("USERSELECTOR", user)
-    const [name, setName] = useState('')
-    const [description, setDescription] = useState('')
-    const [price, setPrice] = useState('')
-    const [category, setCategory] = useState('')
-    const [color, setColor] = useState('')
-    const [size, setSize] = useState('')
-    const [image, setImage] = useState('')
+    // console.log("USERSELECTOR", user)
+    const [name, setName] = useState('asd')
+    const [description, setDescription] = useState('asd')
+    const [stringprice, setstringPrice] = useState(123)
+    const [category, setCategory] = useState('asd')
+    const [color, setColor] = useState('asd')
+    const [size, setSize] = useState('asd')
+    const [image, setImage] = useState('asd')
     const [errors, setErrors] = useState([]);
 
 
     const dispatch = useDispatch()
+    const history = useHistory()
+    const price = parseInt(stringprice)
 
     const ProductData = {
         name,
@@ -38,12 +40,13 @@ const AddProduct = () => {
         e.preventDefault()
 
         dispatch(createProductThunk({ProductData, imgData}))
-        .catch(async (res) => {
-            const data = await res.json();
-            console.log("data from api", data)
-            if (data && data.errors) setErrors(data.errors)
-            console.log('ERRORS', errors)
-          });
+        history.push("/")
+        // .catch(async (res) => {
+        //     const data = await res.json();
+        //     console.log("data from api", data)
+        //     if (data && data.errors) setErrors(data.errors)
+        //     console.log('ERRORS', errors)
+        //   });
         return
     }
 
@@ -83,11 +86,11 @@ const AddProduct = () => {
                 Price
             <input className="price-form"
             type="text"
-            value={price}
+            value={stringprice}
             placeholder="Price"
             maxLength={50}
             onChange={(e) => {
-                setPrice(e.target.value)
+                setstringPrice(e.target.value)
             }}
             required
 
