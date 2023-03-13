@@ -3,6 +3,7 @@ import { useParams, useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
 import './singleProduct.css'
 import { singleProductThunk } from "../../../store/product";
+import EditProduct from "../editProduct";
 
 function Product () {
     const dispatch = useDispatch()
@@ -48,6 +49,7 @@ function Product () {
                 })}
                 <p> dropdown for size and color,  SIZE: {productDetail.size}  COLOR: {productDetail.color}</p>
             </div>
+            <button><EditProduct></EditProduct></button>
         </div>
     )
 }
