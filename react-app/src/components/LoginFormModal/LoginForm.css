@@ -14,8 +14,8 @@ form {
     margin-top: 20px;
 }
 
-ul {
-    /* display: flex; */
+.loginformerrors {
+    display: flex;
     flex-direction: column;
     width: 100%;
 }

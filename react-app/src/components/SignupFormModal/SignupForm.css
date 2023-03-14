@@ -5,14 +5,14 @@
     align-items: center;
 }
 
-form {
+.form {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
 }
 
-ul {
-    /* display: flex; */
+.signuperrors {
+    display: flex;
     flex-direction: column;
     width: 100%;
 }

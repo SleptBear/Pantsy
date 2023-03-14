@@ -7,7 +7,7 @@
 }
 
 .Navbar {
-  position: relative;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -20,6 +20,7 @@
 
 .add-button {
 
+  /* border: 1px solid black; */
 
   display: flex;
   justify-content: flex-end;
