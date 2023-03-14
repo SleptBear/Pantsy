@@ -14,7 +14,7 @@ def allProducts():
     for product in products:
         pd = product.to_dict()
 
-        pdImages = {'productImages': [productImages.to_dict() for productImages in product.productImages]}
+        pdImages = {'productImages': [productimages.to_dict() for productimages in product.productimages]}
         print("LIST COMP", pdImages)
         pd.update(pdImages)
         print("PD", pd)
@@ -30,9 +30,9 @@ def singleProduct(id):
     pd = product.to_dict()
     user = product.users.to_dict()
     print('SELLER', product.users.to_dict())
-    print('IMAGES', product.productImages[0].to_dict())
-    productImages = product.productImages
-    pdImages = {'productImages': [productImages.to_dict() for productImages in productImages]}
+    print('IMAGES', product.productimages[0].to_dict())
+    productimages = product.productimages
+    pdImages = {'productImages': [productimages.to_dict() for productimages in productimages]}
     pdReviews = {'reviews': [reviews.to_dict() for reviews in product.reviews]}
     pdUser = {'seller': user}
     pd.update(pdUser)
@@ -41,7 +41,7 @@ def singleProduct(id):
     return pd
 
 
-#EDIT PRODUCT 
+#EDIT PRODUCT
 @product_routes.route('/<int:id>', methods=['PUT'])
 def updateProduct(id):
     product = Product.query.get(id)
