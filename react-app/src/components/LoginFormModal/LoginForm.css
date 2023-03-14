@@ -1,0 +1,115 @@
+.login {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+ul {
+    /* display: flex; */
+    flex-direction: column;
+    width: 100%;
+}
+
+.form-label2 {
+    width: 100%;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.submit-button {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    /* width: 100%; */
+    text-align: center;
+}
+
+.submit-button:hover {
+    background-color: #3e8e41;
+}
+
+.DemoUserButton {
+    border-radius: 2px red solid;
+    background-color: transparent;
+    color: #666;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    font-size: 14px;
+    /* width: 100%; */
+    text-align: center;
+    border-radius: 5px;
+}
+
+
+.login-modal {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+.login-modal > .DemoUserButton:hover {
+    background-color: #f2f2f2;
+}
+
+.login-modal > form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.login-modal > form > ul {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.login-modal > form > label {
+    width: 100%;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.error-message {
+    text-align: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .error-text {
+    color: red;
+    font-weight: bold;
+  }
