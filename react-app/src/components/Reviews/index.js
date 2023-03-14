@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import {useDispatch, useSelector} from "react-redux"
 import { NavLink, Switch, Route, useParams } from 'react-router-dom'
-import { readReviewThunk, addReviewThunk } from '../../store/reviews'
+import { readReviewThunk, addReviewThunk, deleteReviewThunk } from '../../store/reviews'
 
 export const Reviews = () => {
     const dispatch = useDispatch()
@@ -15,7 +15,7 @@ export const Reviews = () => {
     const userId = user?.id
     console.log("USERID", userId)
     const reviews = Object.values(reviewsObj)
-    // console.log("REVIEWS", reviews)
+    console.log("REVIEWS", reviews)
 
     useEffect(() => {
         dispatch(readReviewThunk(ID))
@@ -39,6 +39,9 @@ export const Reviews = () => {
                 return <div>
                     <p>Review: {review}</p>
                     <p>Rating: {rating}</p>
+                    <button className="delete button" onClick={() => dispatch(deleteReviewThunk(id)).then(() => {
+                        dispatch(readReviewThunk(ID))
+                    })}>Delete</button>
                     </div>
             })}
             <div>

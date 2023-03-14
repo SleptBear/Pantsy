@@ -53,8 +53,8 @@ export const readReviewThunk = (productID) => async (dispatch) => {
 
 
 
-export const deleteReviewThunk = (productID) => async (dispatch) => {
-    const response = await fetch(`/api/products/${productID}`, {
+export const deleteReviewThunk = (id) => async (dispatch) => {
+    const response = await fetch(`/api/reviews/${id}`, {
         method: 'DELETE',
         headers: {
             "Content-Type": "application/json"
