@@ -1,5 +1,21 @@
 .preview-image{
     display: flex;
-    max-width: 150px;
-    max-height: 150px;
+    width: 150px;
+    height: 150px;
+}
+
+.products-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color:aliceblue;
+    /* border: 1px solid black; */
+    /* margin-top: 15px; */
+
+}
+
+.productDetails {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* border: 1px solid black; */
 }

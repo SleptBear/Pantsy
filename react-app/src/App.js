@@ -7,7 +7,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import AllProducts from "./components/Products";
 import Product from "./components/Products/singleProduct";
-import AddProduct from "./components/addProduct";
+import AddProduct from "../src/components/Products/addProduct";
 
 function App() {
   const dispatch = useDispatch();
