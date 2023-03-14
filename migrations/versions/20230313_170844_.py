@@ -42,7 +42,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('product_id', sa.Integer(), nullable=False),
-    sa.Column('detail', sa.String(length=255), nullable=False),
+    sa.Column('review', sa.String(length=255), nullable=False),
     sa.Column('rating', sa.Integer(), nullable=False),
     sa.Column('created_at', sa.String(), nullable=False),
     sa.ForeignKeyConstraint(['product_id'], ['product.id'], ),

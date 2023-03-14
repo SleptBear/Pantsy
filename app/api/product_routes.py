@@ -1,6 +1,8 @@
 from flask import Blueprint, jsonify, request
-from app.models import Product, db
+from app.models import Product, db, Review
 from app.forms import ProductForm
+from app.forms import ReviewForm
+import datetime
 # from app.api.auth_routes import authenticate
 
 product_routes = Blueprint('products', __name__)
@@ -97,3 +99,27 @@ def removeProduct(id):
     db.session.commit()
 
     return {"Product successfully Deleted": id}
+
+
+@product_routes.route('/<int:id>/reviews', methods=['POST'])
+def createReview(id):
+    date = datetime.datetime.now()
+    print("DATE", date)
+    data = request.get_json()
+    form = ReviewForm()
+    form['csrf_token'].data = request.cookies['csrf_token'] # makes a csrf_token in form object
+    if form.validate_on_submit():
+        new_review = Review(
+            review = data["review"],
+            rating = data["rating"],
+            product_id = data["product_id"],
+            user_id = data["user_id"],
+            created_at = date
+        )
+        print(new_review.to_dict())
+        db.session.add(new_review)
+        db.session.commit()
+
+        return new_review.to_dict()
+    else:
+        return "Bad data, try again", 404

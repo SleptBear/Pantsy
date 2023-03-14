@@ -6,6 +6,7 @@ import { singleProductThunk, deleteProductThunk } from "../../../store/product";
 import EditProduct from "../editProduct";
 import { useModal } from "../../../context/Modal"
 import OpenModalButton from "../../OpenModalButton"
+import { Reviews } from "../../Reviews";
 
 function Product () {
     const dispatch = useDispatch()
@@ -62,6 +63,9 @@ function Product () {
             modalComponent={<EditProduct/>}
             buttonText={"Edit Product"}
             />
+            <div>
+                <Reviews />
+            </div>
         </div>
     )
 }
