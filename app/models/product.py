@@ -19,7 +19,7 @@ class Product(db.Model):
     color = db.Column(db.String(25), nullable=False)
     size = db.Column(db.String(25), nullable=False)
     users = db.relationship("User", back_populates="product")
-    productImages = db.relationship("ProductImages", back_populates="product", cascade='all, delete')
+    productimages = db.relationship("ProductImages", back_populates="product", cascade='all, delete')
     reviews = db.relationship("Review", back_populates="product", cascade='all, delete')
 
     def to_dict(self):
