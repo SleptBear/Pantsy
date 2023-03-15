@@ -1,9 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from sqlalchemy.orm import relationship
-from sqlalchemy.schema import Column, ForeignKey
-from sqlalchemy.types import Integer, String, Float
-from app.models import User
 from app.models.shopping_cart import cartJoined
+from app.models.order import orderJoined
 
 class Product(db.Model):
     __tablename__="product"
@@ -25,6 +23,7 @@ class Product(db.Model):
     productimages = db.relationship("ProductImages", back_populates="product", cascade='all, delete')
     reviews = db.relationship("Review", back_populates="product", cascade='all, delete')
     cartJoined = db.relationship("Cart", back_populates="products", secondary=cartJoined)
+    orderJoined = db.relationship("Order", back_populates="products", secondary=orderJoined)
 
     def to_dict(self):
         return {

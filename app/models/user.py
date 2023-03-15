@@ -1,9 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-from sqlalchemy.orm import relationship
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-from sqlalchemy.schema import Column, ForeignKey
-
+from app.models.order import orderJoined
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -15,10 +13,9 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
-    # product_id = db.Column(db.Integer, ForeignKey("products.id"))
     product = db.relationship("Product", back_populates="users")
     reviews = db.relationship("Review", back_populates="user")
-    # session = db.relationship("Session", back_populates="user")
+    order = db.relationship("Order", back_populates="user", secondary=orderJoined)
 
     @property
     def password(self):
