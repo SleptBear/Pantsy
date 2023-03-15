@@ -8,7 +8,7 @@ orderJoined = db.Table(
     db.Model.metadata,
     db.Column("product_id", db.ForeignKey(add_prefix_for_prod("product.id")), primary_key=True),
     db.Column("order_id", db.ForeignKey(add_prefix_for_prod("order.id")), primary_key=True),
-    db.Column("user_id", db.ForeignKey(add_prefix_for_prod("users.id")), primary_key=True)
+    # db.Column("user_id", db.ForeignKey(add_prefix_for_prod("users.id")), primary_key=True)
 )
 
 class Order(db.Model):

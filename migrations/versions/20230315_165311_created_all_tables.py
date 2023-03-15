@@ -1,8 +1,8 @@
-"""empty message
+"""created all tables
 
-Revision ID: 0cae78461f10
+Revision ID: 29fb8819d0c3
 Revises: 
-Create Date: 2023-03-15 16:25:20.626103
+Create Date: 2023-03-15 16:53:11.614418
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '0cae78461f10'
+revision = '29fb8819d0c3'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -62,11 +62,9 @@ def upgrade():
     op.create_table('orderjoined',
     sa.Column('product_id', sa.Integer(), nullable=False),
     sa.Column('order_id', sa.Integer(), nullable=False),
-    sa.Column('user_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['order_id'], ['order.id'], ),
     sa.ForeignKeyConstraint(['product_id'], ['product.id'], ),
-    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
-    sa.PrimaryKeyConstraint('product_id', 'order_id', 'user_id')
+    sa.PrimaryKeyConstraint('product_id', 'order_id')
     )
     op.create_table('productimages',
     sa.Column('id', sa.Integer(), nullable=False),

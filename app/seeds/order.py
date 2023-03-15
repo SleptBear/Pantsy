@@ -20,16 +20,6 @@ def seed_order():
     db.session.add(order3)
     db.session.commit()
 
-    for order in [order1, order2, order3]:
-        for product in order.product:
-            orderjoined = orderJoined(
-                user_id = order.user_id,
-                product_id = product.id,
-                order_id = order.id
-            )
-            db.session.add(orderjoined)
-            db.session.commit()
-
     print("Cart items seeded successfully!")
 
 def undo_order():
