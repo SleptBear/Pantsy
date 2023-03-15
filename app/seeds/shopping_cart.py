@@ -1,18 +1,26 @@
-from app.models import db, Product, environment, SCHEMA, Cart
+from app.models import db, Product, environment, SCHEMA, Cart, cartJoined
 from sqlalchemy.sql import text
+import datetime
+from random import choice
 
-def seed_shopping_cart():
-    product1 = Cart(name='Product 1', description='A great product', price=99.99, seller=1, category='Clothing', color='Red', size='M')
-    product2 = Cart(name='Product 2', description='Another great product', price=149.99, seller=2, category='Electronics', color='Black', size='L')
+def seed_cart():
+    products = Product.query.all()
+    products_list = list(products)
+    print("product", products_list)
+     # create some sample cart items
+    cart1 = Cart(user_id=1, products=[choice(products)])
 
-    db.session.add_all([product1, product2])
+    # add the cart items to the database
+    db.session.add(cart1)
     db.session.commit()
 
+    print("Cart items seeded successfully!")
 
-def undo_shopping_cart():
+
+def undo_cart():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.product RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.cartItem RESTART IDENTITY CASCADE;")
     else:
-        db.session.execute(text("DELETE FROM product"))
+        db.session.execute(text("DELETE FROM cartItem"))
 
     db.session.commit()
