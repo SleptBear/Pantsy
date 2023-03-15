@@ -18,7 +18,8 @@ class User(db.Model, UserMixin):
     # product_id = db.Column(db.Integer, ForeignKey("products.id"))
     product = db.relationship("Product", back_populates="users")
     reviews = db.relationship("Review", back_populates="user")
-    
+    # session = db.relationship("Session", back_populates="user")
+
     @property
     def password(self):
         return self.hashed_password
