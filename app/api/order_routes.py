@@ -4,8 +4,7 @@ from sqlalchemy.orm import joinedload, session
 import datetime
 
 order_routes = Blueprint('orders', __name__)
-
-@order_routes.route('/')
+@order_routes.route('')
 def allOrders():
     orders = db.session.query(Order).options(joinedload(Order.products))
     print("QUERY DATA!!!!", orders)
@@ -22,17 +21,19 @@ def allOrders():
         result.append(order_object)
 
     return {"orders": result}
-
-@order_routes.route('/<int:id>')
+# refactor to take userID from request body
+@order_routes.route('/')
 def usersOrders(id):
-    orders = db.session.query(Order).filter(Order.user_id == id).options(joinedload(Order.products))
-    print("QUERY DATA!!!!", orders)
+    body_data = request.get_json()
+    # orders = db.session.query(Order).filter(Order.user_id == id).options(joinedload(Order.products))
+    orders = db.session.query(Order).filter(Order.user_id == body_data['user_id']).options(joinedload(Order.products))
+    # print("QUERY DATA!!!!", orders)
     result = []
     for order in orders:
-        print(order.date)
+        # print(order.date)
         date = order.date
         order_object = order.to_dict()
-        print(order_object)
+        # print(order_object)
         products = {"products": [product.to_dict() for product in order.products]}
         order_object.update(products)
         # order_object.update(date)
@@ -65,7 +66,7 @@ def createOrder():
 
     return new_order.to_dict()
 
-
+# refactor or make sure front end body can send orderId
 @order_routes.route('/<int:id>', methods=['DELETE'])
 def removeOrder(id):
     order = Order.query.get(id)
