@@ -30,6 +30,32 @@ def createCart(id):
 
     return new_cart.to_dict()
 
+@cart_routes.route('/<int:id>', methods=["PUT"])
+def editCart(id):
+    body_data = request.get_json()
+    product = Product.query.get(body_data["product_id"])
+    print("PRODUCT!!!!!", product)
+
+    carts = db.session.query(Cart).filter(Cart.user_id == body_data["user_id"]).options(joinedload(Cart.products))
+    print("CARTS!!!!", carts)
+    result = []
+    for cart in carts:
+        print("FOR LOOP CART!!!!", cart)
+        cart_object = cart.to_dict()
+        print("CART OBJECT!!!!", cart_object)
+        products = {"products": [product.to_dict() for product in cart.products]}
+        print("Products!!!", products)
+        print("BEFORE?????", products["products"])
+        products['products'].append(product.to_dict())
+        print("AFTER?????", products["products"])
+        cart.products = products.products
+        # db.session.commit()
+        return cart.to_dict()
+
+    return []
+
+
+
 @cart_routes.route('/<int:id>', methods=['DELETE'])
 def deleteCart(id):
     cart = Cart.query.get(id)
