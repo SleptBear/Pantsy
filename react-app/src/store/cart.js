@@ -104,12 +104,7 @@ export const cartReducer = (state = initialState, action) => {
 
         case LOAD_CART:
             newState = { ...state}
-
-            let cartCopy = {}
-            action.payload.cart.forEach(item => {
-                cartCopy = item
-            })
-            newState.Cart = cartCopy
+            newState.Cart = action.payload
             return newState
 
         case UPDATE_CART:

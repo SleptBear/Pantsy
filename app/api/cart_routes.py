@@ -18,24 +18,27 @@ def readCart(id):
 
     for cart in carts:
         # print(cart.to_dict())
-        prod = []
+        allProducts = []
         cart_object = cart.to_dict()
         products = {"products": [product.to_dict() for product in cart.products]}
-        print("CART", cart.products[0].productimages)
-        for images in cart.products:
-            print("IMAGES", images.productimages[0].to_dict())
-        # images = {ProductImages.query.filter(ProductImages.product_id == products["products"]).all()}
-        # print("IMAGES!!!!!!!!!!!!!!!!!!!!", images.to_dict())
-        # imglist = [image.to_dict() for image in images]
-        # print("IMGLIST", imglist)
-        # products["product_images"] = imglist
-        # prod.append(products)
-        # cart_object["prod"] = products
+        # print("CART", cart.products[0].productimages)
+        for product in cart.products:
+            for image in product.productimages:
 
-        cart_object.update(products)
-        result.append(cart_object)
+                productObj = product.to_dict()
 
-    return {"cart": result}
+                productObj["productimages"] = []
+                productObj["productimages"].append(image.to_dict())
+
+                cart_object.update(productObj)
+
+            result.append(cart_object)
+
+    fullresult = {
+        "products": result
+    }
+    print("FULLRESULT", fullresult)
+    return fullresult
 
 # discuss if we want cart to be created on user creation or on user add to cart
 @cart_routes.route('/', methods=['POST'])
@@ -80,3 +83,35 @@ def deleteCart(id):
     db.session.commit()
 
     return {"Cart submitted": id}
+
+@cart_routes.route('/<int:id>', methods =['POST'])
+def addItemToCart(id):
+    body_data = request.get_json()
+
+    # Retrieve the cart object from the database
+    cart = Cart.query.get(id)
+
+    # Check if the cart exists
+    if not cart:
+        return {"error": "Cart not found"}, 404
+
+    # Retrieve the product object from the database
+    product = Product.query.get(body_data['product_id'])
+
+    # Check if the product exists
+    if not product:
+        return {"error": "Product not found"}, 404
+
+    # Check if the product is already in the cart
+    for item in cart.products:
+        if item.id == product.id:
+            item.quantity += body_data['quantity']
+            db.session.commit()
+            return {"success": "Quantity updated"}
+
+    # If the product is not already in the cart, add it
+    cart.products.append(product)
+    cart.products[-1].quantity = body_data['quantity']
+    db.session.commit()
+
+    return {"success": "Product added to cart"}

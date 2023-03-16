@@ -2,15 +2,19 @@ import { useEffect, useState } from 'react'
 import {useDispatch, useSelector} from "react-redux"
 import { NavLink, Switch, Route, useHistory } from 'react-router-dom'
 import { deleteCartThunk, loadCartThunk } from '../../store/cart'
+import "./cart.css"
 
 const Cart = () => {
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
-    const products = useSelector(state => state.cartReducer.Cart.products)
-    console.log("products", products)
+    const products = useSelector(state => state.cartReducer.Cart)
     useEffect(() => {
         dispatch(loadCartThunk(user.id))
     }, [dispatch])
+
+    // const productsArr = Object.values(products) || []
+    console.log("Products", products)
+    // console.log("productsArr", productsArr)
 
     if(!products) {
         return <h1>You have no items in your cart</h1>
@@ -18,16 +22,20 @@ const Cart = () => {
     return (
         <div>
             <h1>TEST</h1>
-            {products.map(({id, name, price, size, color}) => {
+            {products.products?.map(({id, name, price, size, color, productimages}) => {
                 return <div>
                     <h1>Item</h1>
                     <p>{name}</p>
                     <p>{price}</p>
                     <p>{size}</p>
                     <p>{color}</p>
-                    {/* <button onClick={dispatch(deleteCartThunk(id))}>Delete</button> */}
+                    {productimages?.map(image => {
+
+                        return <img className="cart-image"src={image.image} alt="no image"></img>
+                    })}
                 </div>
             })}
+            {/* <button onClick={dispatch(deleteCartThunk(id))}>Delete</button> */}
         </div>
     )
 }
