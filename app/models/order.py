@@ -10,6 +10,8 @@ orderJoined = db.Table(
     db.Column("order_id", db.ForeignKey(add_prefix_for_prod("order.id")), primary_key=True),
     # db.Column("user_id", db.ForeignKey(add_prefix_for_prod("users.id")), primary_key=True)
 )
+if environment == "production":
+    orderJoined.schema = SCHEMA
 
 class Order(db.Model):
     __tablename__ = "order"
