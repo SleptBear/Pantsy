@@ -9,6 +9,7 @@ import AllProducts from "./components/Products";
 import Product from "./components/Products/singleProduct";
 import AddProduct from "../src/components/Products/addProduct";
 import Cart from "./components/Cart"
+import Order from "./components/Order";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,6 +40,9 @@ function App() {
           </Route>
           <Route exact path='/cart'>
             <Cart />
+          </Route>
+          <Route exact path='/orders'>
+            <Order />
           </Route>
 
         </Switch>
