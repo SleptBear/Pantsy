@@ -25,17 +25,22 @@ const updateCart = (cart) => ({
 
 // THUNKS
 
-export const addToCartThunk = (cartId, item) => async (dispatch) => {
-    const response = await fetch(`/api/cart/${cartId}`, {
+export const addToCartThunk = (data) => async (dispatch) => {
+    const response = await fetch(`/api/cart/`, {
         method: 'POST',
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(item)
+        body: JSON.stringify(data)
     })
+    if(response.ok) {
+        const data = await response.json()
+        dispatch(addToCart(data))
+    }
+    return response
 }
 
-export const deleteCartThunk = (item) => async (dispatch) => {
+export const deleteCartThunk = (id) => async (dispatch) => {
     const response = await fetch (`/api/cart/`, {
         method: 'DELETE',
         headers: {
@@ -45,22 +50,25 @@ export const deleteCartThunk = (item) => async (dispatch) => {
 
     if (response.ok) {
         const data = await response.json()
-        dispatch(deleteCart(data))
+        dispatch(deleteCart(id))
         return data
     }
 }
 
-export const loadCartThunk = (cart) => async (dispatch) => {
-    const response = await fetch (``)
+export const loadCartThunk = (id) => async (dispatch) => {
+    const response = await fetch (`/api/cart/${id}`)
+    const data = await response.json()
+    dispatch(loadCart(data))
+    return data
 }
 
-export const updateCartThunk = (cartID, editedCart) => async (dispatch) => {
-    const response = await fetch (`api/cart/${cartID}`, {
+export const updateCartThunk = (editedCart) => async (dispatch) => {
+    const response = await fetch (`api/cart/`, {
         method:'PUT',
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify( editedCart)
+        body: JSON.stringify(editedCart)
     })
 
     if (response.ok){
@@ -82,15 +90,36 @@ export const cartReducer = (state = initialState, action) => {
     switch(action.type){
         case ADD_CART:
             newState = {...state}
-            let newStateCopy = {...newState}
+            let newStateCopy = {...newState.Cart}
+            newStateCopy[action.payload.id] = action.payload
+            newState.Cart = newStateCopy
+            return newState
 
         case DELETE_CART:
             newState= {...state}
+            let cartCopy1 = {...newState.Cart}
+            delete cartCopy1[action.payload.id]
+            newState.Cart = cartCopy1
+            return newState
 
         case LOAD_CART:
             newState = { ...state}
 
-        case UPDATE_CART: 
+            let cartCopy = {}
+            action.payload.cart.forEach(item => {
+                cartCopy = item
+            })
+            newState.Cart = cartCopy
+            return newState
+
+        case UPDATE_CART:
+            return {...state,
+                Cart: {
+                    ...state.Cart,
+                    ...action.payload
+
+                }
+            }
 
         default:
             return state;

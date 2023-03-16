@@ -1,20 +1,37 @@
 from flask import Blueprint, jsonify, request
-from app.models import db, Product, cartJoined, User, Cart
+from app.models import db, Product, cartJoined, User, Cart, ProductImages
 from sqlalchemy.orm import joinedload, session
 
 
 cart_routes = Blueprint('cart', __name__)
 
-@cart_routes.route('/')
-def readCart():
-    body_data = request.get_json()
-    carts = db.session.query(Cart).filter(Cart.user_id == body_data["user_id"]).options(joinedload(Cart.products))
+@cart_routes.route('/<int:id>')
+def readCart(id):
+    # body_data = request.get_json()
+    carts = db.session.query(Cart).filter(Cart.user_id == id).all()
+    # carts = Cart.query.filter(Cart.user_id == id).all()
+    # products = Product.query.all()
+    # print("products", products.productimages)
     # print("QUERY DATA!!!!", carts)
+
     result = []
+
     for cart in carts:
         # print(cart.to_dict())
+        prod = []
         cart_object = cart.to_dict()
         products = {"products": [product.to_dict() for product in cart.products]}
+        print("CART", cart.products[0].productimages)
+        for images in cart.products:
+            print("IMAGES", images.productimages[0].to_dict())
+        # images = {ProductImages.query.filter(ProductImages.product_id == products["products"]).all()}
+        # print("IMAGES!!!!!!!!!!!!!!!!!!!!", images.to_dict())
+        # imglist = [image.to_dict() for image in images]
+        # print("IMGLIST", imglist)
+        # products["product_images"] = imglist
+        # prod.append(products)
+        # cart_object["prod"] = products
+
         cart_object.update(products)
         result.append(cart_object)
 
