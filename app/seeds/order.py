@@ -20,7 +20,7 @@ def seed_order():
     db.session.add(order3)
     db.session.commit()
 
-    print("Cart items seeded successfully!")
+    print("Order items seeded successfully!")
 
 def undo_order():
     if environment == "production":
