@@ -1,20 +1,20 @@
-const ADD_ORDER = 'cart/addCart'
-const LOAD_ORDER = 'cart/loadCart'
-const DELETE_ORDER = 'cart/deleteCart'
+const ADD_ORDER = 'order/addOrder'
+const LOAD_ORDER = 'order/loadOrder'
+const DELETE_ORDER = 'order/deleteOrder'
 
 const addOrder = (item) => ({
     type: ADD_ORDER,
     payload: item
 })
 
-const loadOrder = (cart) => ({
+const loadOrder = (order) => ({
     type:LOAD_ORDER,
-    payload: cart
+    payload: order
 })
 
-const deleteOrder = (cart) => ({
+const deleteOrder = (order) => ({
     type: DELETE_ORDER,
-    payload: cart
+    payload: order
 })
 
 
@@ -38,20 +38,17 @@ export const addOrderThunk = (cartId, item) => async (dispatch) => {
 
 
 export const loadOrderThunk = (id) => async (dispatch) => {
-    console.log('id', id)
-    const response = await fetch (`api/orders/${id}`, {
-        method: 'GET',
-        headers: {
-            "Content-Type": "application/json"
-        }
-    })
+    console.log('ID', id)
+    const response = await fetch(`/api/orders/${id}`)
+    console.log('RES', response)
     const data = await response.json()
+    console.log('data', data)
     dispatch(loadOrder(data))
     return data
 }
 
 export const deleteOrderThunk = (id) => async (dispatch) => {
-    const response = await fetch (`api/orders/`, {
+    const response = await fetch (`/api/orders/`, {
         method: 'GET',
         headers: {
             "Content-Type": "application/json"
@@ -86,12 +83,9 @@ export const orderReducer = (state = initialState, action) => {
 
         case LOAD_ORDER:
             newState = { ...state}
-
-            let orderCopy = {}
-            action.payload.order.forEach(order => {
-                orderCopy = order
-            });
-            newState.Order = orderCopy
+            // console.log('ACTION', action.payload)
+            newState.Order = action.payload
+            // console.log('NEWSTATE', newState.Order)
             return newState
 
 

@@ -21,7 +21,7 @@ const Cart = () => {
     }
     return (
         <div>
-            <h1>TEST</h1>
+            <h1>My Cart</h1>
             {products.products?.map(({id, name, price, size, color, productimages}) => {
                 return <div>
                     <h1>Item</h1>

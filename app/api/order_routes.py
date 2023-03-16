@@ -23,21 +23,17 @@ def allOrders():
     return {"orders": result}
 # refactor to take userID from request body
 
-@order_routes.route('/')
-def usersOrders():
-    body_data = request.get_json()
-    # orders = db.session.query(Order).filter(Order.user_id == id).options(joinedload(Order.products))
-    orders = db.session.query(Order).filter(Order.user_id == body_data['user_id']).options(joinedload(Order.products))
+@order_routes.route('/<int:id>')
+def usersOrders(id):
+    orders = db.session.query(Order).filter(Order.user_id == id).all()
+    # orders = db.session.query(Order).filter(Order.user_id == body_data['user_id']).options(joinedload(Order.products))
     # print("QUERY DATA!!!!", orders)
     result = []
     for order in orders:
-        # print(order.date)
-        date = order.date
         order_object = order.to_dict()
         # print(order_object)
         products = {"products": [product.to_dict() for product in order.products]}
         order_object.update(products)
-        # order_object.update(date)
         order_object['date'] = order.date
         result.append(order_object)
 
