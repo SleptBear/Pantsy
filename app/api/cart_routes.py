@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request
 from app.models import db, Product, cartJoined, User, Cart
 from sqlalchemy.orm import joinedload, session
 
+
 cart_routes = Blueprint('cart', __name__)
 
 @cart_routes.route('/<int:id>')
@@ -19,7 +20,15 @@ def readCart(id):
     return {"cart": result}
 
 
+@cart_routes.route('/<int:id>', methods=['POST'])
+def createCart(id):
+    new_cart = Cart(
+        user_id = id
+    )
+    db.session.add(new_cart)
+    db.session.commit()
 
+    return new_cart.to_dict()
 
 @cart_routes.route('/<int:id>', methods=['DELETE'])
 def deleteCart(id):
