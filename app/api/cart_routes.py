@@ -43,16 +43,11 @@ def editCart(id):
         print("FOR LOOP CART!!!!", cart)
         cart_object = cart.to_dict()
         print("CART OBJECT!!!!", cart_object)
-        products = {"products": [product.to_dict() for product in cart.products]}
-        print("Products!!!", products)
-        print("BEFORE?????", products["products"])
-        products['products'].append(product.to_dict())
-        print("AFTER?????", products["products"])
-        cart.products = products.products
-        # db.session.commit()
-        return cart.to_dict()
+        cart.products.append(product)
+        db.session.commit()  # save updates to the current cart
+        result.append(cart.to_dict())
 
-    return []
+    return result
 
 
 
