@@ -22,7 +22,32 @@ def allOrders():
 
     return {"orders": result}
 
-# @order_routes.route('/<int:id>')
-# def oneOrder(id):
-#     order = Order.query.get(id)
-#     od = order.to_dict()
+@order_routes.route('/<int:id>')
+def usersOrders(id):
+    orders = db.session.query(Order).filter(Order.user_id == id).options(joinedload(Order.products))
+    print("QUERY DATA!!!!", orders)
+    result = []
+    for order in orders:
+        print(order.date)
+        date = order.date
+        order_object = order.to_dict()
+        print(order_object)
+        products = {"products": [product.to_dict() for product in order.products]}
+        order_object.update(products)
+        # order_object.update(date)
+        order_object['date'] = order.date
+        result.append(order_object)
+
+    return {"orders": result}
+
+
+
+@order_routes.route('/<int:id>', methods=['DELETE'])
+def removeOrder(id):
+    order = Order.query.get(id)
+    if not order:
+        return ("order does not exist"), 404
+    db.session.delete(order)
+    db.session.commit()
+
+    return {"Order successfully Canceled": id}
