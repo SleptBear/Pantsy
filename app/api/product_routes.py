@@ -44,6 +44,8 @@ def singleProduct(id):
 
 
 #EDIT PRODUCT
+# should be able to take product id from params OR request body
+# discuss if we need form validations here or not
 @product_routes.route('/<int:id>', methods=['PUT'])
 def updateProduct(id):
     product = Product.query.get(id)
@@ -67,8 +69,8 @@ def updateProduct(id):
 def createProduct():
     data = request.get_json() # retrieves JSON data that was sent in POST request from client
     form = ProductForm()
-    print("DATA from request", data)
-    print("request", request)
+    # print("DATA from request", data)
+    # print("request", request)
     form['csrf_token'].data = request.cookies['csrf_token'] # makes a csrf_token in form object
     if form.validate_on_submit():
         new_product = Product(
@@ -80,7 +82,7 @@ def createProduct():
             color = data["color"],
             size = data["size"]
         )
-        print(new_product.to_dict()) # for debugging purposes
+        # print(new_product.to_dict()) # for debugging purposes
         db.session.add(new_product) # adds to database session
         db.session.commit() # commits changes to database
 
