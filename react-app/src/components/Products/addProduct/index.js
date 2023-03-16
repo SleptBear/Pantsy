@@ -6,12 +6,12 @@ import { createProductThunk } from '../../../store/product'
 const AddProduct = () => {
     const user = useSelector(state => state.session.user)
     // console.log("USERSELECTOR", user)
-    const [name, setName] = useState('asd')
-    const [description, setDescription] = useState('asd')
-    const [stringprice, setstringPrice] = useState(123)
-    const [category, setCategory] = useState('asd')
-    const [color, setColor] = useState('asd')
-    const [size, setSize] = useState('asd')
+    const [name, setName] = useState('')
+    const [description, setDescription] = useState('')
+    const [stringprice, setstringPrice] = useState()
+    const [category, setCategory] = useState('')
+    const [color, setColor] = useState('')
+    const [size, setSize] = useState('')
     const [image, setImage] = useState('')
     const [errors, setErrors] = useState([]);
 
