@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import AllProducts from "./components/Products";
 import Product from "./components/Products/singleProduct";
 import AddProduct from "../src/components/Products/addProduct";
+import Cart from "./components/Cart"
 
 function App() {
   const dispatch = useDispatch();
@@ -35,8 +36,11 @@ function App() {
           </Route>
           <Route exact path='/new' >
             <AddProduct />
-
           </Route>
+          <Route exact path='/cart'>
+            <Cart />
+          </Route>
+
         </Switch>
       )}
     </>

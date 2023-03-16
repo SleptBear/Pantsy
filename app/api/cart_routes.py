@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from app.models import db, Product, cartJoined, User, Cart
+from app.models import db, Product, cartJoined, User, Cart, ProductImages
 from sqlalchemy.orm import joinedload, session
 from flask_login import login_required
 
@@ -11,15 +11,32 @@ cart_routes = Blueprint('cart', __name__)
 def readCart(id):
     carts = db.session.query(Cart).filter(Cart.user_id == id).options(joinedload(Cart.products))
     # print("QUERY DATA!!!!", carts)
+
     result = []
+
     for cart in carts:
         # print(cart.to_dict())
+        allProducts = []
         cart_object = cart.to_dict()
         products = {"products": [product.to_dict() for product in cart.products]}
-        cart_object.update(products)
-        result.append(cart_object)
+        # print("CART", cart.products[0].productimages)
+        for product in cart.products:
+            for image in product.productimages:
 
-    return {"cart": result}
+                productObj = product.to_dict()
+
+                productObj["productimages"] = []
+                productObj["productimages"].append(image.to_dict())
+
+                cart_object.update(productObj)
+
+            result.append(cart_object)
+
+    fullresult = {
+        "products": result
+    }
+    print("FULLRESULT", fullresult)
+    return fullresult
 
 # discuss if we want cart to be created on user creation or on user add to cart
 @cart_routes.route('/', methods=['POST'])
@@ -66,3 +83,35 @@ def deleteCart(id):
     db.session.commit()
 
     return {"Cart submitted": id}
+
+@cart_routes.route('/<int:id>', methods =['POST'])
+def addItemToCart(id):
+    body_data = request.get_json()
+
+    # Retrieve the cart object from the database
+    cart = Cart.query.get(id)
+
+    # Check if the cart exists
+    if not cart:
+        return {"error": "Cart not found"}, 404
+
+    # Retrieve the product object from the database
+    product = Product.query.get(body_data['product_id'])
+
+    # Check if the product exists
+    if not product:
+        return {"error": "Product not found"}, 404
+
+    # Check if the product is already in the cart
+    for item in cart.products:
+        if item.id == product.id:
+            item.quantity += body_data['quantity']
+            db.session.commit()
+            return {"success": "Quantity updated"}
+
+    # If the product is not already in the cart, add it
+    cart.products.append(product)
+    cart.products[-1].quantity = body_data['quantity']
+    db.session.commit()
+
+    return {"success": "Product added to cart"}
