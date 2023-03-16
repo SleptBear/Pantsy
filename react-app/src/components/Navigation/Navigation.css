@@ -5,3 +5,34 @@
 .hidden {
   display: none;
 }
+
+.Navbar {
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* border: 1px solid black; */
+  height: 100px;
+  width: 100%;
+  margin-top: -0.05%;
+
+}
+
+.add-button {
+
+  /* border: 1px solid black; */
+
+  display: flex;
+  justify-content: flex-end;
+  width: 700%;
+
+}
+
+.home-button {
+  display: flex;
+  color: transparent;
+  background-image: url(./ezgif.com-resize.gif);
+  height: 100px;
+  width: 100px;
+
+}

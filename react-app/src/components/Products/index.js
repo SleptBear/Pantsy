@@ -10,7 +10,7 @@ function AllProducts() {
 
     const products = useSelector(state => state.productsReducer.allProducts)
     const productsArr = Object.values(products || [])
-    
+
     // console.log("productsArr", products)
 
     useEffect(() => {
@@ -22,7 +22,7 @@ function AllProducts() {
     }
 
     return (
-        <div>
+        <div className="products-container">
             {/* <h1>TEST RENDER ALL LISTINGS</h1> */}
             {productsArr?.map(({id, name, size, price, category, productImages}) => {
                 return (
@@ -32,12 +32,15 @@ function AllProducts() {
                         <div className="productDetails">
 
                         {productImages?.map(pic => {
-                            console.log("IMAGE", pic.image)
-                            return <img className='preview-image'src={pic?.image} alt="image not found"></img>
+                            return <div>
+
+                                <img className='preview-image'src={pic?.image} alt="image not found"></img>
+                                <p className="productDetails">{name},{size}, {price}, {category}</p>
+                            </div>
+
 
                         })}
                         </div>
-                        <p>{name},{size}, {price}, {category}</p>
                         </NavLink>
 
                     </div>

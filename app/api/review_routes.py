@@ -43,7 +43,7 @@ def createReview():
     form['csrf_token'].data = request.cookies['csrf_token'] # makes a csrf_token in form object
     if form.validate_on_submit():
         new_review = Review(
-            detail = data["detail"],
+            review = data["review"],
             rating = data["rating"],
             product_id = data["product_id"],
             user_id = data["user_id"],

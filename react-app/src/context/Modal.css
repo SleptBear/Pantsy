@@ -1,6 +1,6 @@
 #modal {
   position: fixed;
-  top: 0;
+  top: 60px;
   right: 0;
   left: 0;
   bottom: 0;
@@ -21,4 +21,15 @@
 #modal-content {
   position: absolute;
   background-color:white;
+  width: 576px;
+  padding: 2em ;
+  max-height: 80%;
+  overflow-x: hidden;
+  border-radius: 10px;
+}
+
+@media screen and (max-width:750px){
+  #modal-content{
+    width:90%;
+  }
 }

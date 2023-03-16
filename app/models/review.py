@@ -13,7 +13,7 @@ class Review(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     product_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('product.id')), nullable=False)
-    detail = db.Column(db.String(255), nullable=False)
+    review = db.Column(db.String(255), nullable=False)
     rating = db.Column(db.Integer, nullable=False)
     created_at = db.Column(db.String(), nullable=False)
     product = db.relationship("Product", back_populates="reviews")
@@ -23,7 +23,7 @@ class Review(db.Model):
         return {
             'id': self.id,
             'user_id': self.user_id,
-            'detail': self.detail,
+            'review': self.review,
             'rating': self.rating,
             'created_at': self.created_at
         }

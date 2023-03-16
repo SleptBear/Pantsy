@@ -5,15 +5,15 @@ import datetime
 
 def seed_reviews():
     demo1 = Review(
-        user_id=1, product_id=1, detail='TEST 1', rating=4,
+        user_id=1, product_id=1, review='TEST REVIEW 1', rating=4,
         created_at=datetime.datetime.now()
     )
     demo2 = Review(
-        user_id=2, product_id=2, detail='TEST 2', rating=2,
+        user_id=2, product_id=2, review='TEST REVIEW 2', rating=2,
         created_at=datetime.datetime.now()
     )
     demo3 = Review(
-        user_id=3, product_id=3, detail='TEST 3', rating=5,
+        user_id=3, product_id=3, review='TEST REVIEW 3', rating=5,
         created_at=datetime.datetime.now()
     )
     db.session.add(demo1)
