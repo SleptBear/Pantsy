@@ -34,12 +34,12 @@ def readCart(id):
 
             result.append(cart_object)
 
-    fullresult = {"cart": {
+    fullresult = {
         "products": result
-    }}
+    }
     print("FULLRESULT", fullresult)
     return fullresult
-    
+
 # discuss if we want cart to be created on user creation or on user add to cart
 @cart_routes.route('/', methods=['POST'])
 def createCart():

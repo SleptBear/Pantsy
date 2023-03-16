@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import {useDispatch, useSelector} from "react-redux"
 import { NavLink, Switch, Route, useHistory } from 'react-router-dom'
 import { deleteCartThunk, loadCartThunk } from '../../store/cart'
+import "./cart.css"
 
 const Cart = () => {
     const dispatch = useDispatch()
@@ -21,7 +22,7 @@ const Cart = () => {
     return (
         <div>
             <h1>TEST</h1>
-            {/* {productsArr?.map(({id, name, price, size, color, productimages}) => {
+            {products.products?.map(({id, name, price, size, color, productimages}) => {
                 return <div>
                     <h1>Item</h1>
                     <p>{name}</p>
@@ -29,10 +30,11 @@ const Cart = () => {
                     <p>{size}</p>
                     <p>{color}</p>
                     {productimages?.map(image => {
-                        <img src={image} alt="no image"></img>
+
+                        return <img className="cart-image"src={image.image} alt="no image"></img>
                     })}
                 </div>
-            })} */}
+            })}
             {/* <button onClick={dispatch(deleteCartThunk(id))}>Delete</button> */}
         </div>
     )
