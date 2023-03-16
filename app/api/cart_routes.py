@@ -5,9 +5,10 @@ from sqlalchemy.orm import joinedload, session
 
 cart_routes = Blueprint('cart', __name__)
 
-@cart_routes.route('/<int:id>')
-def readCart(id):
-    carts = db.session.query(Cart).filter(Cart.user_id == id).options(joinedload(Cart.products))
+@cart_routes.route('/')
+def readCart():
+    body_data = request.get_json()
+    carts = db.session.query(Cart).filter(Cart.user_id == body_data["user_id"]).options(joinedload(Cart.products))
     # print("QUERY DATA!!!!", carts)
     result = []
     for cart in carts:
