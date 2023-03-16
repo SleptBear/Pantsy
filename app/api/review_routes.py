@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request
 from app.models import Review, db, Product
 from app.forms import ReviewForm
 import datetime
+from flask_login import login_required
 review_routes = Blueprint('reviews', __name__)
 
 
@@ -35,6 +36,7 @@ def allReviews():
 
 # create a review
 @review_routes.route('/', methods=['POST'])
+@login_required
 def createReview():
     date = datetime.datetime.now()
     print("DATE", date)
@@ -61,6 +63,7 @@ def createReview():
 
 # delete review by review id
 @review_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
 def deleteReview(id):
     review = Review.query.get(id)
     if not review:
