@@ -12,6 +12,8 @@ cartJoined = db.Table(
     db.Column("product_id", db.ForeignKey(add_prefix_for_prod("product.id")), primary_key=True),
     db.Column("cart_id", db.ForeignKey(add_prefix_for_prod("cart.id")), primary_key=True),
 )
+if environment == "production":
+    cartJoined.schema = SCHEMA
 
 class Cart(db.Model):
     __tablename__ = "cart"
