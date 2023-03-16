@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 from app.models import Order, db, Product, orderJoined, User
 from sqlalchemy.orm import joinedload, session
+import datetime
 
 order_routes = Blueprint('orders', __name__)
 
@@ -40,6 +41,29 @@ def usersOrders(id):
 
     return {"orders": result}
 
+@order_routes.route('/', methods=['POST'])
+def createOrder():
+    body_data = request.get_json()
+    product_ids = body_data["product_ids"]
+
+    new_order = Order(
+        user_id = body_data["user_id"],
+        date = datetime.datetime.now()
+    )
+    # order_obj = new_order.to_dict()
+    # products = {"products": [Product.query.get(id) for id in product_ids]}
+    # order_obj.update(products)
+    new_order.products = [Product.query.get(id) for id in product_ids]
+
+
+    print("NEW ORDER", new_order)
+    # print("NEW ORDER", order_obj['products'])
+    print("NEW ORDER", new_order.products)
+
+    db.session.add(new_order)
+    db.session.commit()
+
+    return new_order.to_dict()
 
 
 @order_routes.route('/<int:id>', methods=['DELETE'])
