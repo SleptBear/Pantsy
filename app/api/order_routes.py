@@ -18,7 +18,7 @@ def allOrders():
         products = {"products": [product.to_dict() for product in order.products]}
         order_object.update(products)
         # order_object.update(date)
-        order_object['date'] = order.date
+        # order_object['date'] = order.date
         result.append(order_object)
 
     return {"orders": result}
