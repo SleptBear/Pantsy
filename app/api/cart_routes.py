@@ -1,11 +1,12 @@
 from flask import Blueprint, jsonify, request
 from app.models import db, Product, cartJoined, User, Cart, ProductImages
 from sqlalchemy.orm import joinedload, session
-from flask_login import current_user
+from flask_login import login_required, current_user
 
 cart_routes = Blueprint('cart', __name__)
 
 @cart_routes.route('/<int:id>')
+# @login_required
 def readCart(id):
     carts = db.session.query(Cart).filter(Cart.user_id == id).all()
     result = []
@@ -41,6 +42,7 @@ def createCart():
     return new_cart.to_dict()
 
 @cart_routes.route('/', methods=["PUT"])
+@login_required
 def editCart():
     body_data = request.get_json()
     product = Product.query.get(body_data["product_id"])
