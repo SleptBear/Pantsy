@@ -38,11 +38,8 @@ export const addOrderThunk = (cartId, item) => async (dispatch) => {
 
 
 export const loadOrderThunk = (id) => async (dispatch) => {
-    console.log('ID', id)
     const response = await fetch(`/api/orders/${id}`)
-    console.log('RES', response)
     const data = await response.json()
-    console.log('data', data)
     dispatch(loadOrder(data))
     return data
 }
@@ -67,7 +64,7 @@ export const deleteOrderThunk = (id) => async (dispatch) => {
 //initial state
 
 let initialState = {
-    Order:{},
+    Order:[],
 }
 // Reducer
 
@@ -82,13 +79,15 @@ export const orderReducer = (state = initialState, action) => {
             return newState
 
         case LOAD_ORDER:
-            newState = { ...state}
+            // newState = { ...state}
             // console.log('ACTION', action.payload)
-            newState.Order = action.payload
+            // newState.Order = action.payload
             // console.log('NEWSTATE', newState.Order)
-            return newState
-
-
+            // return newState
+            return {
+                ...state,
+                orders: action.payload.orders,
+            }
         default:
             return state;
     }

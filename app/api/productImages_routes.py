@@ -1,6 +1,8 @@
 from flask import Blueprint, jsonify, request
 from app.models import Product, db, ProductImages
 from app.forms import ProductImagesForm
+from flask_login import login_required
+
 productImages_routes = Blueprint('productImages', __name__)
 
 
@@ -16,6 +18,7 @@ def imagesById(id):
     return images.to_dict()
 
 @productImages_routes.route('/', methods=['POST'])
+@login_required
 def createProductImage():
     data = request.get_json()
     form = ProductImagesForm()

@@ -1,17 +1,15 @@
 from flask import Blueprint, jsonify, request
 from app.models import db, Product, cartJoined, User, Cart, ProductImages
 from sqlalchemy.orm import joinedload, session
+from flask_login import login_required
 
 
 cart_routes = Blueprint('cart', __name__)
 
 @cart_routes.route('/<int:id>')
+@login_required
 def readCart(id):
-    # body_data = request.get_json()
-    carts = db.session.query(Cart).filter(Cart.user_id == id).all()
-    # carts = Cart.query.filter(Cart.user_id == id).all()
-    # products = Product.query.all()
-    # print("products", products.productimages)
+    carts = db.session.query(Cart).filter(Cart.user_id == id).options(joinedload(Cart.products))
     # print("QUERY DATA!!!!", carts)
 
     result = []
@@ -53,6 +51,7 @@ def createCart():
     return new_cart.to_dict()
 
 @cart_routes.route('/', methods=["PUT"])
+@login_required
 def editCart():
     body_data = request.get_json()
     product = Product.query.get(body_data["product_id"])
@@ -74,6 +73,7 @@ def editCart():
 
 # want to refactor to take userID from body and search carts for that user id, then delete
 @cart_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
 def deleteCart(id):
     body_data = request.get_json()
     cart = Cart.query.get(id)

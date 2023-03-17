@@ -30,5 +30,6 @@ class Order(db.Model):
     def to_dict(self):
         return {
             'id': self.id,
-            "user_id": self.user_id
+            "user_id": self.user_id,
+            "date": self.date
         }
