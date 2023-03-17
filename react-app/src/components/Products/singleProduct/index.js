@@ -14,6 +14,7 @@ function Product () {
     const { closeModal } = useModal()
     const id = useParams()
     const productDetail = useSelector(state => state.productsReducer.singleProduct)
+    const user = useSelector(state => state.session.user)
     const history = useHistory()
 
     useEffect(() => {
@@ -37,7 +38,7 @@ function Product () {
 
             <div>
                 <button
-                onClick={() => dispatch(addToCartThunk(id.id))}
+                onClick={() => dispatch(addToCartThunk( user.id,id.id))}
 
                 > ADD TO CART </button>
             </div>

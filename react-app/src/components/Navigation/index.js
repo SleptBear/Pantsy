@@ -17,6 +17,9 @@ function Navigation({ isLoaded }){
 				<li>
 				<NavLink className="add-button"exact to='/new'>Add an Item</NavLink>
 			</li>
+			<li>
+				<NavLink className="cart-button"exact to='/cart'>Cart</NavLink>
+			</li>
 			{isLoaded && (
 				<li>
 					<ProfileButton className="profile-button" user={sessionUser} />
