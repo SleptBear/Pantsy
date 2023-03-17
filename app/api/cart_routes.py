@@ -99,20 +99,30 @@ def editCart():
 @cart_routes.route('/<int:id>', methods=['DELETE'])
 def deleteCartItem(id):
     body_data = request.get_json()
-    carts = Cart.query.filter(Cart.id == id).all()
-    for cart in carts:
-        cart_obj = cart.to_dict()
-        cart_obj['products'] = []
-        for product in cart.products:
-            if product.id == body_data:
-                continue
-            product_obj = product.to_dict()
-            imagearray = [image.to_dict() for image in product.productimages]
-            product_obj['productimages'] = imagearray
-            cart_obj['products'].append(product_obj)
-        # left_overs = [product.to_dict() for product in cart.products if product.id == body_data]
-        print("AFTER===========>", cart_obj)
-        db.session.commit()
+    cart = Cart.query.get(id)
+    if not cart:
+        return {'message': 'Cart not found'}, 404
+
+    for product in cart.products:
+        if product.id == body_data:
+            cart.products.remove(product)
+
+    db.session.commit()
+
+    # carts = Cart.query.filter(Cart.id == id).all()
+    # for cart in carts:
+    cart_obj = cart.to_dict()
+    cart_obj['products'] = []
+    for product in cart.products:
+        if product.id == body_data:
+            continue
+        product_obj = product.to_dict()
+        imagearray = [image.to_dict() for image in product.productimages]
+        product_obj['productimages'] = imagearray
+        cart_obj['products'].append(product_obj)
+    # left_overs = [product.to_dict() for product in cart.products if product.id == body_data]
+    # print("AFTER===========>", cart_obj)
+    # db.session.commit()
     return cart_obj
 
 
