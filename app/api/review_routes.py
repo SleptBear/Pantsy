@@ -2,13 +2,15 @@ from flask import Blueprint, jsonify, request
 from app.models import Review, db, Product
 from app.forms import ReviewForm
 import datetime
-from flask_login import login_required
+from flask_login import login_required, current_user
 review_routes = Blueprint('reviews', __name__)
 
 
 # get all reviews, mainly for testing
 @review_routes.route('/')
 def allReviews():
+    print("REQUEST!!!!!", request.get_json())
+    print("LOOOOOOOOOOK!!!!!!!", current_user.id, current_user.email, current_user.username )
     reviews = Review.query.all()
     reviewList = []
     for review in reviews:
@@ -35,13 +37,18 @@ def allReviews():
 
 
 # create a review
-@review_routes.route('/', methods=['POST'])
+@review_routes.route('/<int:id>', methods=['POST'])
 @login_required
-def createReview():
+def createReview(id):
     date = datetime.datetime.now()
     print("DATE", date)
     data = request.get_json()
     form = ReviewForm()
+    reviews = Review.query.all()
+    for review in reviews:
+        print(review.to_dict())
+
+
     form['csrf_token'].data = request.cookies['csrf_token'] # makes a csrf_token in form object
     if form.validate_on_submit():
         new_review = Review(
