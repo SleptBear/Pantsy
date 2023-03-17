@@ -46,14 +46,17 @@ def create_order():
     body_data = request.get_json()
     query_cart = db.session.query(Cart).filter(Cart.user_id == body_data["user_id"]).options(joinedload(Cart.products))
     carts = query_cart.all()
-    result = []
-
+    if not carts:
+        return {'message': 'Order not found'}, 404
+    result_order = []
     for cart in carts:
-        allProducts = []
+        cart_obj = cart.to_dict()
+        cart_obj['products'] = []
         for product in cart.products:
-            productObj = product.to_dict()
-            productObj["price"] = product.price
-            allProducts.append(productObj)
+            product_obj = product.to_dict()
+            print('PROD', product_obj)
+            product_obj["price"] = product.price
+            cart_obj['products'].append(product_obj)
 
         new_order = Order(
             user_id = body_data["user_id"],
@@ -62,14 +65,13 @@ def create_order():
         db.session.add(new_order)
         db.session.commit()
 
-        cartObj = cart.to_dict()
-        cartObj.update({"products": allProducts})
-        orderObj = new_order.to_dict()
-        orderObj.update(cartObj)
-        result.append(orderObj)
+        order_obj = new_order.to_dict()
+        order_obj.update(cart_obj)
+        result_order.append(order_obj)
 
-    full_result = {"products": result}
-    return full_result
+    # Return the response
+    return {"orders": result_order}
+
 
 
 
@@ -85,3 +87,38 @@ def removeOrder():
     db.session.commit()
 
     return {"Order successfully Canceled": id}
+
+
+
+
+# @login_required
+# @order_routes.route('/', methods=['POST'])
+# def create_order():
+#     body_data = request.get_json()
+#     query_cart = db.session.query(Cart).filter(Cart.user_id == body_data["user_id"]).options(joinedload(Cart.products))
+#     carts = query_cart.all()
+#     if not carts:
+#         return {'message': 'Order not found'}, 404
+#     result_order = []
+#     for cart in carts:
+#         cart_obj = cart.to_dict()
+#         cart_obj['products'] = []
+#         for product in cart.products:
+#             product_obj = product.to_dict()
+#             print('PROD', product_obj)
+#             product_obj["price"] = product.price
+#             cart_obj['products'].append(product_obj)
+
+#         new_order = Order(
+#             user_id = body_data["user_id"],
+#             date = datetime.datetime.now()
+#         )
+#         db.session.add(new_order)
+#         db.session.commit()
+
+#         order_obj = new_order.to_dict()
+#         order_obj.update(cart_obj)
+#         result_order.append(order_obj)
+
+#     # Return the response
+#     return {"orders": result_order}

@@ -1,5 +1,5 @@
 const ADD_CART = 'cart/addCart'
-const DELETE_CART = 'cart/deleteCart'
+const DELETE_CART_ITEM = 'cart/deleteCart'
 const LOAD_CART = 'cart/loadCart'
 const UPDATE_CART = 'cart/updateCart'
 
@@ -9,7 +9,7 @@ const addToCart = (item) => ({
 })
 
 const deleteCart = (item) => ({
-    type: DELETE_CART,
+    type: DELETE_CART_ITEM,
     payload: item
 })
 
@@ -25,13 +25,13 @@ const updateCart = (cart) => ({
 
 // THUNKS
 
-export const addToCartThunk = (data) => async (dispatch) => {
-    const response = await fetch(`/api/cart/`, {
+export const addToCartThunk = (cartId, productId) => async (dispatch) => {
+    const response = await fetch(`/api/cart/${cartId}/product/${productId}`, {
         method: 'POST',
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify({ cart_id: cartId, product_id: productId })
     })
     if(response.ok) {
         const data = await response.json()
@@ -40,17 +40,20 @@ export const addToCartThunk = (data) => async (dispatch) => {
     return response
 }
 
-export const deleteCartThunk = (id) => async (dispatch) => {
-    const response = await fetch (`/api/cart/`, {
+export const deleteCartThunk = (userId,productid) => async (dispatch) => {
+    // console.log("USERID", userId)
+    // console.log("PRODUCTID", productid)
+    const response = await fetch (`/api/cart/${userId}`, {
         method: 'DELETE',
         headers: {
             "Content-Type": "application/json"
         },
+        body: JSON.stringify(productid)
     })
-
+    console.log("RESPONSE", response)
     if (response.ok) {
         const data = await response.json()
-        dispatch(deleteCart(id))
+        dispatch(deleteCart(data))
         return data
     }
 }
@@ -95,16 +98,24 @@ export const cartReducer = (state = initialState, action) => {
             newState.Cart = newStateCopy
             return newState
 
-        case DELETE_CART:
+        case DELETE_CART_ITEM:
             newState= {...state}
-            let cartCopy1 = {...newState.Cart}
-            delete cartCopy1[action.payload.id]
-            newState.Cart = cartCopy1
+            // let cartCopy = {...newState}
+            // console.log("ACTION.Payload", action.payload)
+            // console.log("CARTCOPY", cartCopy.Cart.products)
+            newState.Cart = action.payload
             return newState
 
         case LOAD_CART:
             newState = { ...state}
-            newState.Cart = action.payload
+            // console.log("NEW STATE", newState)
+            // console.log("ACTION", action.payload)
+            action.payload.products.forEach(items => {
+                newState.Cart = items
+            })
+            // newState.Cart = action.payload.products
+            // console.log("ITEMS", newState)
+            // console.log("CART", newState.Cart[0].products)
             return newState
 
         case UPDATE_CART:
