@@ -6,7 +6,7 @@ import { loadOrderThunk } from '../../store/order';
 const Order = () => {
     const dispatch = useDispatch();
     const user = useSelector((state) => state.session.user);
-    const orders = useSelector((state) => state.orderReducer);
+    const orders = useSelector((state) => state.orderReducer.orders);
     console.log('ORDERs-------------------------', orders)
 
     useEffect(() => {
@@ -23,17 +23,15 @@ const Order = () => {
     return (
       <div>
         <h1>Orders</h1>
-          {/* {orders.map((order) => (
+          {orders.map((order) => (
           <tr key={order.id}>
-            {console.log('IN LOOP----------',order)}
             <td>Order Date: {order.date}</td>
             {order.products.map((prod) => (
               <td key={prod.id}>Order Price: {Number(prod.price)}</td>
             ))}
           </tr>
-        ))} */}
-          {/* <td>Total Spent so far:</td>
-          <td>{totalPrice}</td> */}
+        ))}
+          <td>Total Spent so far:</td>
       </div>
     );
   };

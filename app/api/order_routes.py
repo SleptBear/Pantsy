@@ -35,14 +35,15 @@ def usersOrders(id):
 @login_required
 @order_routes.route('/', methods=['POST'])
 def create_order():
-    body_data = request.get_json()
-    query_cart = db.session.query(Cart).filter(Cart.user_id == body_data["user_id"]).options(joinedload(Cart.products))
+    # body_data = request.get_json()
+    
+    query_cart = db.session.query(Cart).filter(Cart.user_id == current_user.id).options(joinedload(Cart.products))
     carts = query_cart.all()
     if not carts:
         return {'message': 'Order not found'}, 404
     products_arr = []
     new_order = Order(
-        user_id = body_data["user_id"],
+        user_id = current_user.id,
         date = datetime.datetime.now()
     )
     for cart in carts:

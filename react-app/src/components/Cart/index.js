@@ -1,13 +1,16 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { NavLink, Switch, Route, useHistory } from 'react-router-dom'
-import { deleteCartThunk, loadCartThunk } from '../../store/cart'
+import { clearCartThunk, deleteCartThunk, loadCartThunk } from '../../store/cart'
+import { addOrderThunk } from '../../store/order'
 import "./cart.css"
 
 const Cart = () => {
   const dispatch = useDispatch()
   const user = useSelector(state => state.session.user)
   const products = useSelector(state => state.cartReducer.Cart)
+  const cartId = useSelector(state => state.cartReducer.Cart)
+//   console.log("CART ID", cartId)
   const [cartItemCount, setCartItemCount] = useState(0)
   const [totalPrice, setTotalPrice] = useState(0.00)
   const history = useHistory()
@@ -43,6 +46,16 @@ const Cart = () => {
     setTotalPrice(prevPrice => prevPrice - itemPrice)
   }
 
+  const handleCheckout = async () => {
+    try {
+      await dispatch(addOrderThunk(user.id));
+      await dispatch(clearCartThunk(cartId.id))
+      await history.push("/orders");
+    } catch (error) {
+      console.log('Error during checkout:', error);
+    }
+  };
+
   return (
     <div>
       <h1>Cart ({cartItemCount})</h1>
@@ -63,7 +76,9 @@ const Cart = () => {
         <p>Total: ${totalPrice.toFixed(2)}</p>
       </div>
       <div>
-        <button> CheckOut</button>
+      <div>
+      <button onClick={handleCheckout}>CheckOut</button>
+    </div>
       </div>
     </div>
   )

@@ -20,6 +20,9 @@ function Navigation({ isLoaded }){
 			<li>
 				<NavLink className="cart-button"exact to='/cart'>Cart</NavLink>
 			</li>
+			<li>
+				<NavLink className="order-button"exact to='/orders'>Orders</NavLink>
+			</li>
 			{isLoaded && (
 				<li>
 					<ProfileButton className="profile-button" user={sessionUser} />

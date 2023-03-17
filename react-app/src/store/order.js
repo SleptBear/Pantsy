@@ -20,13 +20,13 @@ const deleteOrder = (order) => ({
 
 // THUNKS
 
-export const addOrderThunk = (order) => async (dispatch) => {
+export const addOrderThunk = (user_id) => async (dispatch) => {
     const response = await fetch(`/api/orders/`, {
         method: 'POST',
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(order)
+        body: JSON.stringify(user_id)
     })
 
     if (response.ok) {

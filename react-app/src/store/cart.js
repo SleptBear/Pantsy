@@ -1,7 +1,7 @@
 const ADD_CART = 'cart/addCart'
 const DELETE_CART_ITEM = 'cart/deleteCart'
 const LOAD_CART = 'cart/loadCart'
-const UPDATE_CART = 'cart/updateCart'
+const CLEAR_CART = 'cart/updateCart'
 
 const addToCart = (item) => ({
     type: ADD_CART,
@@ -18,8 +18,8 @@ const loadCart = (cart) => ({
     payload: cart
 })
 
-const updateCart = (cart) => ({
-    type: UPDATE_CART,
+const clearCart = (cart) => ({
+    type: CLEAR_CART,
     payload: cart
 })
 
@@ -65,18 +65,18 @@ export const loadCartThunk = (id) => async (dispatch) => {
     return data
 }
 
-export const updateCartThunk = (editedCart) => async (dispatch) => {
-    const response = await fetch (`api/cart/`, {
+export const clearCartThunk = (cartId) => async (dispatch) => {
+    const response = await fetch (`api/cart/deletecart`, {
         method:'PUT',
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(editedCart)
+        body: JSON.stringify(cartId)
     })
 
     if (response.ok){
         const data = await response.json()
-        dispatch(updateCart(data))
+        dispatch(clearCart(data))
         return data
     }
 }
@@ -113,17 +113,14 @@ export const cartReducer = (state = initialState, action) => {
             action.payload.products.forEach(items => {
                 newState.Cart = items
             })
-            // newState.Cart = action.payload.products
-            // console.log("ITEMS", newState)
-            // console.log("CART", newState.Cart[0].products)
+        
             return newState
 
-        case UPDATE_CART:
+        case CLEAR_CART:
             return {...state,
                 Cart: {
                     ...state.Cart,
                     ...action.payload
-
                 }
             }
 
