@@ -2,6 +2,12 @@ const ADD_CART = 'cart/addCart'
 const DELETE_CART_ITEM = 'cart/deleteCart'
 const LOAD_CART = 'cart/loadCart'
 const CLEAR_CART = 'cart/updateCart'
+const CREATE_CART = 'cart/createCart'
+
+const createCart = (cart) => ({
+    type: CREATE_CART,
+    payload: cart
+})
 
 const addToCart = (item) => ({
     type: ADD_CART,
@@ -25,6 +31,24 @@ const clearCart = (cart) => ({
 
 // THUNKS
 
+export const createCartThunk = (userId) => async (dispatch) => {
+    const response = await fetch(`/api/cart/`, {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(userId)
+    })
+    console.log("RESPONSE ======>", response)
+    if (response.ok) {
+        const data = await response.json()
+        console.log("DATA=======>", data)
+        dispatch(createCart(data))
+    }
+
+    return response
+}
+
 export const addToCartThunk = (cartId, productId) => async (dispatch) => {
     const response = await fetch(`/api/cart/${cartId}/product/${productId}`, {
         method: 'POST',
@@ -33,6 +57,22 @@ export const addToCartThunk = (cartId, productId) => async (dispatch) => {
         },
         body: JSON.stringify({ cart_id: cartId, product_id: productId })
     })
+    // if(!response.ok) {
+        // dispatch(createCart(cartId))
+        // const response2 = await fetch(`/api/cart/${cartId}/product/${productId}`, {
+        //     method: 'POST',
+        //     headers: {
+        //         "Content-Type": "application/json"
+        //     },
+        //     body: JSON.stringify({ cart_id: cartId, product_id: productId })
+        // })
+        // if(response2.ok) {
+        //     const data2 = await response2.json()
+        //     dispatch(addToCart(data2))
+        //     return response2
+        // }
+    // }
+
     if(response.ok) {
         const data = await response.json()
         dispatch(addToCart(data))
@@ -113,7 +153,7 @@ export const cartReducer = (state = initialState, action) => {
             action.payload.products.forEach(items => {
                 newState.Cart = items
             })
-        
+
             return newState
 
         case CLEAR_CART:
@@ -123,6 +163,12 @@ export const cartReducer = (state = initialState, action) => {
                     ...action.payload
                 }
             }
+        case CREATE_CART:
+            newState = {...state}
+            let newStateCopy2 = {...newState.Cart}
+            newStateCopy2[action.payload.id] = action.payload
+            newState.Cart = newStateCopy2
+            return newState
 
         default:
             return state;

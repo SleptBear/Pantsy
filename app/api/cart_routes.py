@@ -32,9 +32,10 @@ def readCart(id):
 # discuss if we want cart to be created on user creation or on user add to cart
 @cart_routes.route('/', methods=['POST'])
 def createCart():
+    user = current_user
     body_data = request.get_json()
     new_cart = Cart(
-        user_id = body_data['user_id']
+        user_id = user.id
     )
     db.session.add(new_cart)
     db.session.commit()

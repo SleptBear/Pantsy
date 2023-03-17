@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { signUp } from "../../store/session";
+import { createCartThunk } from "../../store/cart";
 import './SignupForm.css';
 
 function SignupFormPage() {
@@ -13,7 +14,10 @@ function SignupFormPage() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
-  if (sessionUser) return <Redirect to="/" />;
+  if (sessionUser) {
+    // dispatch(createCartThunk(sessionUser.id));
+    return <Redirect to="/" />;
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,10 +26,11 @@ function SignupFormPage() {
         if (data) {
           setErrors(data)
         }
-    } else {
+      } else {
         setErrors(['Confirm Password field must be the same as the Password field']);
-    }
+      }
   };
+
 
   return (
     <>
