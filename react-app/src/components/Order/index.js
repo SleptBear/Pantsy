@@ -9,8 +9,10 @@ const Order = () => {
     const orders = useSelector((state) => state.orderReducer.orders);
 
     useEffect(() => {
-      dispatch(loadOrderThunk(user.id));
-    }, [dispatch, user.id]);
+      if (user && user.id) {
+        dispatch(loadOrderThunk(user.id));
+      }
+    }, [dispatch, user]);
 
     if (!orders || orders.length === 0) {
       return <h1>You have no orders</h1>;

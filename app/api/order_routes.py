@@ -24,7 +24,7 @@ def allOrders():
     return {"orders": result}
 # refactor to take userID from request body
 @order_routes.route('/<int:id>')
-# @login_required
+@login_required
 def usersOrders(id):
     orders = db.session.query(Order).filter(Order.user_id == id).options(joinedload(Order.products))
     # orders = db.session.query(Order).filter(Order.user_id == body_data['user_id']).options(joinedload(Order.products))
@@ -41,10 +41,11 @@ def usersOrders(id):
     return {"orders": result}
 
 @order_routes.route('/', methods=['POST'])
-# @login_required
+@login_required
 def createOrder():
-    body_data = request.get_json()
-    product_ids = body_data["product_ids"]
+    body_data = request.get_json(),
+    print("BODY------", body_data)
+    # product_ids = body_data["product_ids"]
 
     new_order = Order(
         user_id = body_data["user_id"],
