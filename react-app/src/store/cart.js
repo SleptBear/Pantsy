@@ -41,8 +41,8 @@ export const addToCartThunk = (cartId, productId) => async (dispatch) => {
 }
 
 export const deleteCartThunk = (userId,productid) => async (dispatch) => {
-    console.log("USERID", userId)
-    console.log("PRODUCTID", productid)
+    // console.log("USERID", userId)
+    // console.log("PRODUCTID", productid)
     const response = await fetch (`/api/cart/${userId}`, {
         method: 'DELETE',
         headers: {
@@ -114,7 +114,7 @@ export const cartReducer = (state = initialState, action) => {
                 newState.Cart = items
             })
             // newState.Cart = action.payload.products
-            console.log("ITEMS", newState)
+            // console.log("ITEMS", newState)
             // console.log("CART", newState.Cart[0].products)
             return newState
 

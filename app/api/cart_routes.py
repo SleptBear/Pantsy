@@ -25,7 +25,7 @@ def readCart(id):
     fullresult = {
         "products": result
     }
-    print("FULLRESULT", fullresult)
+    # print("FULLRESULT", fullresult)
     return fullresult
 
 # discuss if we want cart to be created on user creation or on user add to cart
@@ -61,27 +61,59 @@ def editCart():
 
 
 # want to refactor to take userID from body and search carts for that user id, then delete
+# @cart_routes.route('/<int:id>', methods=['DELETE'])
+# def deleteCartItem(id):
+#     body_data = request.get_json()
+#     # print("BODY_DATA-------------", body_data)
+#     carts = Cart.query.filter(Cart.id == id).all()
+#     left_overs = []
+#     for cart in carts:
+#         print("CART===================>", cart.to_dict())
+#         cart_obj = cart.to_dict()
+#         cart_obj['products'] = []
+#         # cart.products.remove(product)
+#         for product in cart.products:
+#             # if product.id == body_data:
+#             #     continue
+#             print("BODY DATA ============>", body_data)
+#             product_obj = product.to_dict()
+#             imagearray = [image.to_dict() for image in product.productimages]
+#             product_obj['productimages'] = imagearray
+#             cart_obj['products'].append(product_obj)
+#             print("AFTER UPDATE===========>", cart_obj)
+#                 # print("PRODUCT====================>", product.to_dict())
+#                 # print("PRODUCTImages====================>", product.productimages)
+#                 # print("ImagesARRAY====================>", imagearray)
+
+#                 # print("IMAGE???????", product.productimages)
+#                 # left_overs = [product.to_dict() for product in cart.products]
+#                 # left_overs = cart.products
+#                 # db.session.commit()
+#                 # cart_obj['products'] = left_overs
+#                 # print("CART!!!!!!", cart_obj)
+#                 # print("LEFT OVERS!!!", left_overs)
+
+#             return cart_obj
+
+#     return {"cart": id}
 @cart_routes.route('/<int:id>', methods=['DELETE'])
 def deleteCartItem(id):
     body_data = request.get_json()
-    # print("BODY_DATA", body_data)
     carts = Cart.query.filter(Cart.id == id).all()
-    left_overs = []
     for cart in carts:
+        cart_obj = cart.to_dict()
+        cart_obj['products'] = []
         for product in cart.products:
-            # print("PRODUCT", product.to_dict())
             if product.id == body_data:
-                cart.products.remove(product)
-                cart_obj = cart.to_dict()
-                left_overs = [product.to_dict() for product in cart.products]
-                # left_overs = cart.products
-                db.session.commit()
-                cart_obj['products'] = left_overs
-                # print("CART!!!!!!", cart_obj)
-                # print("LEFT OVERS!!!", left_overs)
-                return cart_obj
-
-    return {"cart": id}
+                continue
+            product_obj = product.to_dict()
+            imagearray = [image.to_dict() for image in product.productimages]
+            product_obj['productimages'] = imagearray
+            cart_obj['products'].append(product_obj)
+        # left_overs = [product.to_dict() for product in cart.products if product.id == body_data]
+        print("AFTER===========>", cart_obj)
+        db.session.commit()
+    return cart_obj
 
 
 @cart_routes.route('/<int:cart_id>/product/<int:product_id>', methods=['POST'])
