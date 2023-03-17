@@ -64,16 +64,22 @@ def editCart():
 @cart_routes.route('/<int:id>', methods=['DELETE'])
 def deleteCartItem(id):
     body_data = request.get_json()
-    print("BODY_DATA", body_data)
+    # print("BODY_DATA", body_data)
     carts = Cart.query.filter(Cart.id == id).all()
+    left_overs = []
     for cart in carts:
         for product in cart.products:
-            print("PRODUCT", product.to_dict())
+            # print("PRODUCT", product.to_dict())
             if product.id == body_data:
                 cart.products.remove(product)
+                cart_obj = cart.to_dict()
+                left_overs = [product.to_dict() for product in cart.products]
+                # left_overs = cart.products
                 db.session.commit()
-                print("CART!!!!!!", cart.products[0].to_dict())
-                # return {"Cart submitted": cart}
+                cart_obj['products'] = left_overs
+                # print("CART!!!!!!", cart_obj)
+                # print("LEFT OVERS!!!", left_overs)
+                return cart_obj
 
     return {"cart": id}
 

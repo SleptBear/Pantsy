@@ -100,11 +100,10 @@ export const cartReducer = (state = initialState, action) => {
 
         case DELETE_CART_ITEM:
             newState= {...state}
-            let cartCopy = {...newState}
-            console.log("ACTION.Payload", action.payload.cart)
-            console.log("CARTCOPY", cartCopy.Cart.products)
-            delete cartCopy.Cart[action.payload.cart]
-            newState.Cart = cartCopy
+            // let cartCopy = {...newState}
+            // console.log("ACTION.Payload", action.payload)
+            // console.log("CARTCOPY", cartCopy.Cart.products)
+            newState.Cart = action.payload
             return newState
 
         case LOAD_CART:
