@@ -63,12 +63,10 @@ export const deleteOrderThunk = (id) => async (dispatch) => {
 
 //initial state
 
-let initialState = {
-    Order:[],
-}
+
 // Reducer
 
-export const orderReducer = (state = initialState, action) => {
+export const orderReducer = (state = {}, action) => {
     let newState;
     switch(action.type){
         case ADD_ORDER:
