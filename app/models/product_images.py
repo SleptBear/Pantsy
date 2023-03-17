@@ -20,5 +20,6 @@ class ProductImages(db.Model):
         return {
             'id': self.id,
             'image': self.image,
-            'previewImage': self.previewImage
+            'previewImage': self.previewImage,
+            'product_id': self.product_id
         }

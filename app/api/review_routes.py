@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request
 from app.models import Review, db, Product
 from app.forms import ReviewForm
 import datetime
+from flask_login import login_required, current_user
 review_routes = Blueprint('reviews', __name__)
 
 
@@ -35,6 +36,7 @@ def allReviews():
 
 # create a review
 @review_routes.route('/', methods=['POST'])
+@login_required
 def createReview():
     date = datetime.datetime.now()
     print("DATE", date)
@@ -58,9 +60,31 @@ def createReview():
         return "Bad data, try again", 404
 
 
+@review_routes.route('/<int:id>', methods=['PUT'])
+def editReview(id):
+    date = datetime.datetime.now()
+    data = request.get_json()
+    form = ReviewForm()
+    review = Review.query.filter_by(id=id, user_id=current_user.id).first_or_404()
+    if form.validate_on_submit():
+        review.review = data["review"]
+        review.rating = data["rating"]
+        review.product_id = data["product_id"]
+        review.user_id = data["user_id"]
+        review.created_at = date
+
+        db.session.commit()
+
+        return review.to_dict()
+    else:
+        return "Bad data, try again", 404
+
+
+
 
 # delete review by review id
 @review_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
 def deleteReview(id):
     review = Review.query.get(id)
     if not review:

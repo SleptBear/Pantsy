@@ -3,6 +3,7 @@ from app.models import Product, db, Review
 from app.forms import ProductForm
 from app.forms import ReviewForm
 import datetime
+from flask_login import login_required
 # from app.api.auth_routes import authenticate
 
 product_routes = Blueprint('products', __name__)
@@ -47,6 +48,7 @@ def singleProduct(id):
 # should be able to take product id from params OR request body
 # discuss if we need form validations here or not
 @product_routes.route('/<int:id>', methods=['PUT'])
+# @login_required
 def updateProduct(id):
     product = Product.query.get(id)
     data = request.get_json()
@@ -66,6 +68,7 @@ def updateProduct(id):
 # Creates a product
 # @authenticate
 @product_routes.route('/', methods=['POST'])
+@login_required
 def createProduct():
     data = request.get_json() # retrieves JSON data that was sent in POST request from client
     form = ProductForm()
@@ -92,6 +95,7 @@ def createProduct():
 
 # Delete a product by id
 @product_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
 def removeProduct(id):
     product = Product.query.get(id)
     if not product:
@@ -104,6 +108,7 @@ def removeProduct(id):
 
 
 @product_routes.route('/<int:id>/reviews', methods=['POST'])
+@login_required
 def createReview(id):
     date = datetime.datetime.now()
     print("DATE", date)
