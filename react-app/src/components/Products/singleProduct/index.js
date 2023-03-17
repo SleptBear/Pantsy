@@ -7,6 +7,7 @@ import EditProduct from "../editProduct";
 import { useModal } from "../../../context/Modal"
 import OpenModalButton from "../../OpenModalButton"
 import { Reviews } from "../../Reviews";
+import { addToCartThunk } from "../../../store/cart";
 
 function Product () {
     const dispatch = useDispatch()
@@ -35,7 +36,10 @@ function Product () {
             </div>
 
             <div>
-                <button> ADD TO CART </button>
+                <button
+                onClick={() => dispatch(addToCartThunk(id.id))}
+
+                > ADD TO CART </button>
             </div>
             <div>
                 <h3>product description: {productDetail.description}</h3>

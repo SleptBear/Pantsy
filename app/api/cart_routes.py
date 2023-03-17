@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from app.models import db, Product, cartJoined, User, Cart, ProductImages
 from sqlalchemy.orm import joinedload, session
-
+from flask_login import current_user
 
 cart_routes = Blueprint('cart', __name__)
 
@@ -76,42 +76,38 @@ def editCart():
 @cart_routes.route('/<int:id>', methods=['DELETE'])
 def deleteCart(id):
     body_data = request.get_json()
-    cart = Cart.query.get(id)
-    if not cart:
-        return ("cart does not exist"), 404
-    db.session.delete(cart)
-    db.session.commit()
+    print("BODY_DATA", body_data)
+    carts = Cart.query.filter(Cart.id == id).all()
+    for cart in carts:
+        for product in cart.products:
+            if product.id == body_data:
+                print("product", product.id)
+                db.session.delete(product)
+                db.session.commit()
+
+
 
     return {"Cart submitted": id}
 
 @cart_routes.route('/<int:id>', methods =['POST'])
 def addItemToCart(id):
-    body_data = request.get_json()
+    cart = Cart.query.get(current_user.id)
 
-    # Retrieve the cart object from the database
-    cart = Cart.query.get(id)
-
-    # Check if the cart exists
     if not cart:
         return {"error": "Cart not found"}, 404
 
-    # Retrieve the product object from the database
-    product = Product.query.get(body_data['product_id'])
+    product = Product.query.get(id)
 
-    # Check if the product exists
+
     if not product:
         return {"error": "Product not found"}, 404
 
-    # Check if the product is already in the cart
-    for item in cart.products:
-        if item.id == product.id:
-            item.quantity += body_data['quantity']
-            db.session.commit()
-            return {"success": "Quantity updated"}
+    print("CART BEFORE", cart.products)
 
-    # If the product is not already in the cart, add it
     cart.products.append(product)
-    cart.products[-1].quantity = body_data['quantity']
+    print("CART AFTER", cart.products)
+
+    # db.session.add(cart)
     db.session.commit()
 
     return {"success": "Product added to cart"}
