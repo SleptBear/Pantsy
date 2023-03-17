@@ -1,6 +1,7 @@
 const ADD_REVIEW = 'reviews/addReview'
 const READ_REVIEW = 'reviews/readReview'
 const DELETE_REVIEW = 'reviews/deleteReview'
+const EDIT_REVIEWS = 'reviews/editReviews' // editing/update a review
 
 
 const addReview = (review) => ({
@@ -12,6 +13,12 @@ const readReview = (reviews) => ({
     type: READ_REVIEW,
     payload: reviews
 })
+
+export const updateReview = (reviews) => ({
+    type: EDIT_REVIEWS,
+    payload: reviews
+})
+
 
 
 const deleteReview = (reviewId) => ({
@@ -50,6 +57,18 @@ export const readReviewThunk = (productID) => async (dispatch) => {
     dispatch(readReview(reviews))
 }
 
+export const editReviewThunk = (review) => async (dispatch) => {
+    const response = await fetch(`/api/reviews/${review.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(review)
+    })
+    if (response.ok) {
+        const data = await response.json()
+        dispatch(updateReview(data))
+        return data
+    }
+}
 
 
 
@@ -94,6 +113,11 @@ export const reviewsReducer = (state = initialState, action) => {
             newStateCopy[action.payload.id] = action.payload
             newState.allProducts = newStateCopy
             return newState
+
+        case EDIT_REVIEWS:
+            const updatedReviews = { ...state.reviews }
+            updatedReviews[action.payload.id] = action.payload
+            return { ...state, reviews: updatedReviews }
         case DELETE_REVIEW:
             newState = {...state}
             let reviewCopy = {...newState.ProductReviews}

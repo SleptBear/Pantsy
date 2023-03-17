@@ -7,7 +7,7 @@ from flask_login import login_required
 cart_routes = Blueprint('cart', __name__)
 
 @cart_routes.route('/<int:id>')
-@login_required
+# @login_required
 def readCart(id):
     carts = db.session.query(Cart).filter(Cart.user_id == id).options(joinedload(Cart.products))
     # print("QUERY DATA!!!!", carts)

@@ -1,8 +1,8 @@
 from flask import Blueprint, jsonify, request
-from app.models import Order, db, Product, orderJoined, User
+from app.models import Order, db, Product, orderJoined, User, Cart
 from sqlalchemy.orm import joinedload, session
 import datetime
-from flask_login import login_required
+from flask_login import login_required, current_user
 
 order_routes = Blueprint('orders', __name__)
 @order_routes.route('/allOrders')
@@ -40,31 +40,38 @@ def usersOrders(id):
 
     return {"orders": result}
 
-@order_routes.route('/', methods=['POST'])
 @login_required
-def createOrder():
-    body_data = request.get_json(),
-    print("BODY------", body_data)
-    # product_ids = body_data["product_ids"]
+@order_routes.route('/', methods=['POST'])
+def create_order():
+    body_data = request.get_json()
+    query_cart = db.session.query(Cart).filter(Cart.user_id == body_data["user_id"]).options(joinedload(Cart.products))
+    carts = query_cart.all()
+    result = []
 
-    new_order = Order(
-        user_id = body_data["user_id"],
-        date = datetime.datetime.now()
-    )
-    # order_obj = new_order.to_dict()
-    # products = {"products": [Product.query.get(id) for id in product_ids]}
-    # order_obj.update(products)
-    new_order.products = [Product.query.get(id) for id in product_ids]
+    for cart in carts:
+        allProducts = []
+        for product in cart.products:
+            productObj = product.to_dict()
+            productObj["price"] = product.price
+            allProducts.append(productObj)
+
+        new_order = Order(
+            user_id = body_data["user_id"],
+            date = datetime.datetime.now()
+        )
+        db.session.add(new_order)
+        db.session.commit()
+
+        cartObj = cart.to_dict()
+        cartObj.update({"products": allProducts})
+        orderObj = new_order.to_dict()
+        orderObj.update(cartObj)
+        result.append(orderObj)
+
+    full_result = {"products": result}
+    return full_result
 
 
-    print("NEW ORDER", new_order)
-    # print("NEW ORDER", order_obj['products'])
-    print("NEW ORDER", new_order.products)
-
-    db.session.add(new_order)
-    db.session.commit()
-
-    return new_order.to_dict()
 
 # refactor or make sure front end body can send orderId
 @order_routes.route('/', methods=['DELETE'])
