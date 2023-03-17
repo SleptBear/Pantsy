@@ -1,5 +1,5 @@
 const ADD_CART = 'cart/addCart'
-const DELETE_CART = 'cart/deleteCart'
+const DELETE_CART_ITEM = 'cart/deleteCart'
 const LOAD_CART = 'cart/loadCart'
 const UPDATE_CART = 'cart/updateCart'
 
@@ -9,7 +9,7 @@ const addToCart = (item) => ({
 })
 
 const deleteCart = (item) => ({
-    type: DELETE_CART,
+    type: DELETE_CART_ITEM,
     payload: item
 })
 
@@ -53,7 +53,7 @@ export const deleteCartThunk = (userId,productid) => async (dispatch) => {
     console.log("RESPONSE", response)
     if (response.ok) {
         const data = await response.json()
-        dispatch(deleteCart(productid))
+        dispatch(deleteCart(data))
         return data
     }
 }
@@ -98,17 +98,19 @@ export const cartReducer = (state = initialState, action) => {
             newState.Cart = newStateCopy
             return newState
 
-        case DELETE_CART:
+        case DELETE_CART_ITEM:
             newState= {...state}
-            let cartCopy1 = {...newState.Cart}
-            delete cartCopy1[action.payload.id]
-            newState.Cart = cartCopy1
+            let cartCopy = {...newState}
+            console.log("ACTION.Payload", action.payload.cart)
+            console.log("CARTCOPY", cartCopy.Cart.products)
+            delete cartCopy.Cart[action.payload.cart]
+            newState.Cart = cartCopy
             return newState
 
         case LOAD_CART:
             newState = { ...state}
             // console.log("NEW STATE", newState)
-            console.log("ACTION", action.payload) 
+            // console.log("ACTION", action.payload)
             action.payload.products.forEach(items => {
                 newState.Cart = items
             })
