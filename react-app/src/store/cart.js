@@ -25,13 +25,13 @@ const updateCart = (cart) => ({
 
 // THUNKS
 
-export const addToCartThunk = (id) => async (dispatch) => {
-    const response = await fetch(`/api/cart/${id}`, {
+export const addToCartThunk = (cartId, productId) => async (dispatch) => {
+    const response = await fetch(`/api/cart/${cartId}/product/${productId}`, {
         method: 'POST',
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(id)
+        body: JSON.stringify({ cart_id: cartId, product_id: productId })
     })
     if(response.ok) {
         const data = await response.json()
@@ -107,7 +107,14 @@ export const cartReducer = (state = initialState, action) => {
 
         case LOAD_CART:
             newState = { ...state}
-            newState.Cart = action.payload
+            // console.log("NEW STATE", newState)
+            console.log("ACTION", action.payload) 
+            action.payload.products.forEach(items => {
+                newState.Cart = items
+            })
+            // newState.Cart = action.payload.products
+            console.log("ITEMS", newState)
+            // console.log("CART", newState.Cart[0].products)
             return newState
 
         case UPDATE_CART:
