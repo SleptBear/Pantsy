@@ -154,19 +154,31 @@ def addItemToCart(cart_id, product_id):
 
     return {"success": "Product added to cart"}
 
-@cart_routes.route('/deletecart')
-def clearCart(id):
-    body_data = request.get_json()
-    print("BODY_DATA", body_data)
-    carts = Cart.query.filter(Cart.id == id).all()
+# @cart_routes.route('/deletecart', methods=['PUT'])
+# def clearCart():
+#     user_id = current_user.id
+#     print("BODY_DATA", user_id)
+#     carts = Cart.query.filter(Cart.id == user_id).all()
+#     for cart in carts:
+#         if user_id == 'all':  # if user_id is 'all', delete all products from the cart
+#             cart.products.clear()  # remove all products from the cart
+#         else:
+#             for product in cart.products:
+#                 if product.id == user_id:
+#                     print("product", product.id)
+#                     cart.products.remove(product)  # remove the product from the cart
+#         db.session.commit()
+
+#     return {"Cart submitted": user_id}
+
+@cart_routes.route('/deletecart', methods=['PUT'])
+def clearCart():
+    user_id = current_user.id
+    cart_id = request.get_json()
+    # print("BODY_DATA", user_id)
+    carts = Cart.query.filter(Cart.id == cart_id).all()
     for cart in carts:
-        if body_data == 'all':  # if body_data is 'all', delete all products from the cart
-            cart.products.clear()  # remove all products from the cart
-        else:
-            for product in cart.products:
-                if product.id == body_data:
-                    print("product", product.id)
-                    cart.products.remove(product)  # remove the product from the cart
+        cart.products.clear()  # remove all products from the cart
         db.session.commit()
 
-    return {"Cart submitted": id}
+    return {"Cart Cleared": user_id}
