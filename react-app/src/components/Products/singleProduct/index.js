@@ -42,10 +42,7 @@ function Product () {
                 > ADD TO CART </button>
             </div>
             <div>
-                <button
-                onClick={() => dispatch(createCartThunk(user.id))}
-
-                > Cart Create Test </button>
+               
             </div>
             <div>
                 <h3>product description: {productDetail.description}</h3>
