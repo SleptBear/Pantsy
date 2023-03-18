@@ -17,12 +17,12 @@ function Footer () {
                     <a href='https://www.linkedin.com/in/leandro-figueiredo-b1202a168' target='_blank'>LinkedIn</a>
                 </div>
                 <div className='dev'>
-                    <div>Sameh Fazil</div>
+                    <div>Sameh Fazli</div>
                     <a href='https://github.com/sfazli96' target='_blank'>GitHub</a>
                     <a href='https://www.linkedin.com/in/sameh-fazli/' target='_blank'>LinkedIn</a>
                 </div>
                 <div className='dev'>
-                    <div>Sameh Fazil</div>
+                    <div>Vian Khachatourian</div>
                     <a href='https://github.com/Vian-K' target='_blank'>GitHub</a>
                     <a href='https://www.linkedin.com/in/viankhachatourian/' target='_blank'>LinkedIn</a>
                 </div>
