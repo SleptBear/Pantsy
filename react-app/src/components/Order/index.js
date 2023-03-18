@@ -15,6 +15,10 @@ const Order = () => {
       }
     }, [dispatch, user]);
 
+    if (!user) {
+      return <h1>Login or Create an account</h1>
+    }
+
     if (!orders || orders.length === 0) {
       return <h1>You have no orders</h1>;
     }
@@ -23,15 +27,18 @@ const Order = () => {
     return (
       <div>
         <h1>Orders</h1>
+        <div className='Orders-Container'>
+          {console.log("orders", orders)}
           {orders.map((order) => (
-          <tr key={order.id}>
-            <td>Order Date: {order.date}</td>
+            <div key={order.id}>
+            <div>Order Date: {order.date}</div>
             {order.products.map((prod) => (
-              <td key={prod.id}>Order Price: {Number(prod.price)}</td>
-            ))}
-          </tr>
+              <div key={prod.id}>Order Price: {Number(prod.price)}</div>
+              ))}
+          </div>
         ))}
-          <td>Total Spent so far:</td>
+
+        </div>
       </div>
     );
   };
