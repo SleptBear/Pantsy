@@ -53,51 +53,69 @@ export const Reviews = () => {
 
     return (
         <div>
-            <h2>Reviews</h2>
-            {reviews.map(({ id, review, rating, user_id }) => {
-                return (
-                    <div key={id}>
-                        <p>Review: {review}</p>
-                        <p>Rating: {rating}</p>
-                        {user_id === userId && (
-                            <button className="delete button" onClick={() => dispatch(deleteReviewThunk(id)).then(() => {
-                                dispatch(readReviewThunk(ID))
-                            })}>Delete</button>
-                        )}
-                    </div>
-                )
-            })}
-            <div>
-                <form className="reviewsform" onSubmit={handleSubmit} noValidate>
-                    <ul className="ul">
-                        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                    </ul>
-                    <textarea className="reviewtextbox"
-                        type='textbox'
-                        defaultValue="Post a review here!"
-                        onFocus={(e) => {
-                            if (e.target.defaultValue === "Post a review here!") {
-                                setReviews("")
-                            }
-                        }}
-                        value={review}
-                        maxLength={255}
-                        onChange={(e) => {
-                            setReviews(e.target.value)
-                        }}
-                        required
-                    ></textarea>
-                    <select className="rating" value={rating} onChange={(e) => setRating(e.target.value)}>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                    <button className='submitbutton' type="Submit" onClick={() => setShowForm(true)}>Submit</button>
-                </form>
-            </div>
+  <h2>Reviews</h2>
+    {reviews.map(({ id, review, rating, user_id }) => {
+        return (
+        <div key={id}>
+            <p>Review: {review}</p>
+            <p>Rating: {rating}</p>
+            {user_id === userId && (
+            <button
+                className="delete button"
+                onClick={() =>
+                dispatch(deleteReviewThunk(id)).then(() => {
+                    dispatch(readReviewThunk(ID));
+                })
+                }
+            >
+                Delete
+            </button>
+            )}
         </div>
+        );
+    })}
+    <div>
+        {reviews.find(({ user_id }) => user_id === userId) ? null : (
+        <form className="reviewsform" onSubmit={handleSubmit} noValidate>
+            <ul className="ul">
+            {errors.map((error, idx) => (
+                <li key={idx}>{error}</li>
+            ))}
+            </ul>
+            <textarea
+            className="reviewtextbox"
+            type="textbox"
+            defaultValue="Post a review here!"
+            onFocus={(e) => {
+                if (e.target.defaultValue === "Post a review here!") {
+                setReviews("");
+                }
+            }}
+            value={review}
+            maxLength={255}
+            onChange={(e) => {
+                setReviews(e.target.value);
+            }}
+            required
+            ></textarea>
+            <select
+            className="rating"
+            value={rating}
+            onChange={(e) => setRating(e.target.value)}
+            >
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            </select>
+            <button className="submitbutton" type="Submit">
+            Submit
+            </button>
+        </form>
+        )}
+    </div>
+    </div>
 
     )
 }
