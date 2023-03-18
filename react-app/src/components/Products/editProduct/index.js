@@ -15,26 +15,33 @@ const EditProduct = () => {
     const [category, setCategory] = useState(stateProduct.category)
     const [color, setColor] = useState(stateProduct.color)
     const [size, setSize] = useState(stateProduct.size)
+    const [imgUrl ,setImgUrl] = useState('');
     const [errors, setErrors] = useState([]);
 
     const dispatch = useDispatch()
     const history = useHistory()
     const {closeModal} = useModal()
 
-    const price = parseInt(stringPrice)
-    const ProductData = {
-        name,
-        description,
-        price,
-        category,
-        color,
-        size,
-    };
+
 
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        dispatch(editProductThunk(stateProduct.id, ProductData))
+        const price = parseInt(stringPrice)
+        const ProductData = {
+            name,
+            description,
+            price,
+            category,
+            color,
+            size,
+        };
+
+        const updatedImgData = {
+            img_url: imgUrl,
+          };
+
+        dispatch(editProductThunk(stateProduct.id, ProductData, updatedImgData))
         .then(() => closeModal())
         // .history.push(`/products/${stateProduct.id}`)
 
@@ -135,6 +142,19 @@ const EditProduct = () => {
     required
     ></input>
     </label>
+    <label>
+                Image
+            <input className="size-form"
+            type="text"
+            value={imgUrl}
+            placeholder="Image (optional)"
+            maxLength={255}
+            onChange={(e) => {
+                setImgUrl(e.target.value)
+            }}
+
+            ></input>
+            </label>
     <button className="submit-form" type="Submit" >Submit</button>
     </form>
 </div>
