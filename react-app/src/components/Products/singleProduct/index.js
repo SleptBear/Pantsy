@@ -36,13 +36,17 @@ function Product () {
             </div>
 
             <div>
-                <button
-                onClick={() => dispatch(addToCartThunk( user.id,id.id))}
+                {user && user.id ? (
+                    <button
+                    onClick={() => dispatch(addToCartThunk( user.id,id.id))}
 
-                > ADD TO CART </button>
+                    > ADD TO CART </button>
+
+
+                ): null }
             </div>
             <div>
-               
+
             </div>
             <div>
                 <h3>product description: {productDetail.description}</h3>

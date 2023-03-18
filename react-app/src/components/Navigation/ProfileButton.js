@@ -4,6 +4,7 @@ import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import { login } from "../../store/session";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -66,6 +67,7 @@ function ProfileButton({ user }) {
             />
           </>
         )}
+        <button onClick={() => dispatch(login("demo@aa.io", "password"))}>Demo User</button>
       </ul>
     </>
   );
