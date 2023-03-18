@@ -37,15 +37,17 @@ export const Reviews = () => {
                 setShowForm(false)
             })
             .catch(async (res) => {
-                const data = await res.json()
+                const data = await res.json();
                 if (data && data.errors) {
-                    setErrors(data.errors)
-                    setShowForm(true)
-                    setTimeout(() => {
-                        setErrors([])
-                    }, 2000)
+                  setErrors(data.errors);
+                } else if (data && data.message) {
+                  setErrors([data.message]);
                 }
-            })
+                setShowForm(true);
+                setTimeout(() => {
+                  setErrors([]);
+                }, 2000);
+              });
     }
 
 

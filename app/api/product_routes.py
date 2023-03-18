@@ -3,8 +3,7 @@ from app.models import Product, db, Review
 from app.forms import ProductForm
 from app.forms import ReviewForm
 import datetime
-from flask_login import login_required
-# from app.api.auth_routes import authenticate
+from flask_login import login_required, current_user
 
 product_routes = Blueprint('products', __name__)
 
@@ -16,14 +15,9 @@ def allProducts():
     allProducts = []
     for product in products:
         pd = product.to_dict()
-
         pdImages = {'productImages': [productimages.to_dict() for productimages in product.productimages]}
-        print("LIST COMP", pdImages)
         pd.update(pdImages)
-        print("PD", pd)
         allProducts.append(pd)
-    print("ALLPRODUCTS", allProducts)
-    # return {'products': [product.to_dict() for product in products]}
     return {'products': allProducts}
 
 # Gets the product by id
@@ -32,8 +26,6 @@ def singleProduct(id):
     product = Product.query.get(id)
     pd = product.to_dict()
     user = product.users.to_dict()
-    print('SELLER', product.users.to_dict())
-    print('IMAGES', product.productimages[0].to_dict())
     productimages = product.productimages
     pdImages = {'productImages': [productimages.to_dict() for productimages in productimages]}
     pdReviews = {'reviews': [reviews.to_dict() for reviews in product.reviews]}
@@ -72,8 +64,6 @@ def updateProduct(id):
 def createProduct():
     data = request.get_json() # retrieves JSON data that was sent in POST request from client
     form = ProductForm()
-    # print("DATA from request", data)
-    # print("request", request)
     form['csrf_token'].data = request.cookies['csrf_token'] # makes a csrf_token in form object
     if form.validate_on_submit():
         new_product = Product(
@@ -85,7 +75,6 @@ def createProduct():
             color = data["color"],
             size = data["size"]
         )
-        # print(new_product.to_dict()) # for debugging purposes
         db.session.add(new_product) # adds to database session
         db.session.commit() # commits changes to database
 
@@ -116,6 +105,9 @@ def createReview(id):
     form = ReviewForm()
     form['csrf_token'].data = request.cookies['csrf_token'] # makes a csrf_token in form object
     if form.validate_on_submit():
+        old_review = Review.query.filter_by(product_id=data["product_id"], user_id=current_user.id).first()
+        if old_review:
+            return {"message": "You have already reviewed this product. You can't submit another review"}, 400
         new_review = Review(
             review = data["review"],
             rating = data["rating"],

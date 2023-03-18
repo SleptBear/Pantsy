@@ -27,7 +27,7 @@ def createReview():
     if form.validate_on_submit():
         old_review = Review.query.filter_by(product_id=data["product_id"], user_id=current_user.id).first()
         if old_review:
-            return {"message": "You have already reviewed this product. You can't submit another review"}, 400
+            return {"message": "You have reviewed this product. You can't submit another review"}, 400
         new_review = Review(
             review = data["review"],
             rating = data["rating"],
@@ -57,7 +57,7 @@ def editReview(id):
         return "Review not found", 404
 
     if review.user_id != current_user.id:
-        return "You are no allowed to edit this review.", 401
+        return "You can't edit this review", 401
 
     if form.validate_on_submit():
         review.review = data["review"]
