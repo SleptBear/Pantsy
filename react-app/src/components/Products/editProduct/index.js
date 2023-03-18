@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import {useDispatch, useSelector} from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { NavLink, Switch, Route, useHistory } from 'react-router-dom'
 import { editProductThunk } from '../../../store/product'
 import { useModal } from "../../../context/Modal"
@@ -19,7 +19,7 @@ const EditProduct = () => {
 
     const dispatch = useDispatch()
     const history = useHistory()
-    const {closeModal} = useModal()
+    const { closeModal } = useModal()
 
     const price = parseInt(stringPrice)
     const ProductData = {
@@ -33,112 +33,145 @@ const EditProduct = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        setErrors([])
+        if (!user) {
+            setErrors(errors => [...errors, 'User must be signed in to edit a spot'])
+            return
+        }
+        if (name.length === 0 || name.length > 25) {
+            setErrors(errors => [...errors, 'Please enter a valid name (less than 25 characters)'])
+            return
+        }
+        if (description.length === 0 || description.length > 255) {
+            setErrors(errors => [...errors, 'Please enter a valid description (less than 255 characters)'])
+            return
+        }
+        if (price <= 0 || !price || price > 50000) {
+            setErrors(errors => [...errors, 'Please enter a valid price (must be a positive number between 0 and 50000'])
+            return
+        }
+        if (!Number(price)) {
+            setErrors(errors => [...errors, "Price must be a number"])
+            return
+        }
+        if (category.length === 0 || category.length > 30) {
+            setErrors(errors => [...errors, "Please enter a valid category (less than 30 characters)"])
+            return
+        }
+        if (color.length === 0 || color.length > 20) {
+            setErrors(errors => [...errors, "Please enter a valid color (less than 20 characters)"])
+            return
+        }
+        if (size.length === 0 || size.length > 15) {
+            setErrors(errors => [...errors, "Please enter a valid size (less than 15 characters)"])
+            return
+        }
 
         dispatch(editProductThunk(stateProduct.id, ProductData))
-        .then(() => closeModal())
-        // .history.push(`/products/${stateProduct.id}`)
+            .then(() => closeModal())
+            // .history.push(`/products/${stateProduct.id}`)
 
-        // .catch(async (res) => {
-        //     const data = await res.json();
-        //     console.log("data from api", data)
-        //     if (data && data.errors) setErrors(data.errors)
-        //     console.log('ERRORS', errors)
-        //   });
+            .catch(async (res) => {
+                const data = await res.json();
+                if (data && data.errors) setErrors(data.errors)
+            });
         return
     }
 
-    return(
-
+    return (
         <div>
-    <form className="editproductform" onSubmit={handleSubmit}>
-        <h1>Edit Product</h1>
-    <label>
-        Name
-    <input className="name-form"
-    type="text"
-    value={name}
-    placeholder="Name"
-    maxLength={50}
-    onChange={(e) => {
-        setName(e.target.value)
-    }}
-    required
+            <form className="editproductform" onSubmit={handleSubmit}>
+                <h1>Edit Product</h1>
+                <ul className="ul">
+                    {Array.isArray(errors) && errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                </ul>
+                <label>
+                    Name
+                    <input className="name-form"
+                        type="text"
+                        value={name}
+                        placeholder="Name"
+                        maxLength={50}
+                        onChange={(e) => {
+                            setName(e.target.value)
+                        }}
+                        required
 
-    ></input>
-    </label>
-    <label>
-        Description
-    <input className="description-form"
-    type="text"
-    value={description}
-    placeholder="Description"
-    maxLength={50}
-    onChange={(e) => {
-        setDescription(e.target.value)
-    }}
-    required
+                    ></input>
+                </label>
+                <label>
+                    Description
+                    <input className="description-form"
+                        type="text"
+                        value={description}
+                        placeholder="Description"
+                        // maxLength={50}
+                        onChange={(e) => {
+                            setDescription(e.target.value)
+                        }}
+                        required
 
-    ></input>
-    </label>
-    <label>
-        Price
-    <input className="price-form"
-    type="text"
-    value={stringPrice}
-    placeholder="Price"
-    maxLength={50}
-    onChange={(e) => {
-        setStringPrice(e.target.value)
-    }}
-    required
+                    ></input>
+                </label>
+                <label>
+                    Price
+                    <input className="price-form"
+                        type="text"
+                        value={stringPrice}
+                        placeholder="Price"
+                        maxLength={50}
+                        onChange={(e) => {
+                            setStringPrice(e.target.value)
+                        }}
+                        required
 
-    ></input>
-    </label>
-    <label>
-        Category
-    <input className="category-form"
-    type="text"
-    value={category}
-    placeholder="Category"
-    maxLength={50}
-    onChange={(e) => {
-        setCategory(e.target.value)
-    }}
-    required
+                    ></input>
+                </label>
+                <label>
+                    Category
+                    <input className="category-form"
+                        type="text"
+                        value={category}
+                        placeholder="Category"
+                        maxLength={50}
+                        onChange={(e) => {
+                            setCategory(e.target.value)
+                        }}
+                        required
 
-    ></input>
-    </label>
-    <label>
-        Color
-    <input className="color-form"
-    type="text"
-    value={color}
-    placeholder="Color"
-    maxLength={50}
-    onChange={(e) => {
-        setColor(e.target.value)
-    }}
-    required
+                    ></input>
+                </label>
+                <label>
+                    Color
+                    <input className="color-form"
+                        type="text"
+                        value={color}
+                        placeholder="Color"
+                        maxLength={50}
+                        onChange={(e) => {
+                            setColor(e.target.value)
+                        }}
+                        required
 
-    ></input>
-    </label>
-    <label>
-        Size
-    <input className="size-form"
-    type="text"
-    value={size}
-    placeholder="Size"
-    maxLength={50}
-    onChange={(e) => {
-        setSize(e.target.value)
-    }}
-    required
-    ></input>
-    </label>
-    <button className="submit-form" type="Submit" >Submit</button>
-    </form>
-</div>
-)
+                    ></input>
+                </label>
+                <label>
+                    Size
+                    <input className="size-form"
+                        type="text"
+                        value={size}
+                        placeholder="Size"
+                        maxLength={50}
+                        onChange={(e) => {
+                            setSize(e.target.value)
+                        }}
+                        required
+                    ></input>
+                </label>
+                <button className="submit-form" type="Submit" >Submit</button>
+            </form>
+        </div>
+    )
 
 
 
