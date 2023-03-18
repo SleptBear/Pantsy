@@ -67,7 +67,7 @@ function ProfileButton({ user }) {
             />
           </>
         )}
-        <button onClick={() => dispatch(login("demo@aa.io", "password"))}>Demo User</button>
+        
       </ul>
     </>
   );
