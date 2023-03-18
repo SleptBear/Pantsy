@@ -175,6 +175,19 @@ const EditProduct = () => {
     required
     ></input>
     </label>
+    <label>
+                Image
+            <input className="size-form"
+            type="text"
+            value={imgUrl}
+            placeholder="Image (optional)"
+            maxLength={255}
+            onChange={(e) => {
+                setImgUrl(e.target.value)
+            }}
+
+            ></input>
+            </label>
     <button className="submit-form" type="Submit" >Submit</button>
     </form>
 </div>
