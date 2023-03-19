@@ -6,6 +6,8 @@ import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import { login } from "../../store/session";
 import image from "../Navigation/Capture.PNG"
+import { NavLink } from "react-router-dom";
+import './profileButton.css'
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -50,6 +52,12 @@ function ProfileButton({ user }) {
           <>
             <li>{user.username}</li>
             <li>{user.email}</li>
+            <li>
+        		<NavLink className="add-button"exact to='/new'>Add an Item</NavLink>
+      			</li>
+            <li>
+        		<NavLink className="order-button"exact to='/orders'>Orders</NavLink>
+      			</li>
             <li>
               <button onClick={handleLogout}>Log Out</button>
             </li>
