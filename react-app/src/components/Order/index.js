@@ -39,7 +39,7 @@ const Order = () => {
           <div className='Orders-Container'>
             <hr></hr>
             {orders.map((order) => (
-              <div key={order.id}>
+              <div className='order-container' key={order.id}>
               <div>Order Date: {order.date.slice(0, 10)}</div>
               {order.products.map((prod) => (
                 <div key={prod.id}>Item ID: {prod.id} Price: ${Number(prod.price)}</div>
