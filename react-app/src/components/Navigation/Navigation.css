@@ -106,3 +106,27 @@ color: #fff;
 border: none;
 cursor: pointer;
 }
+
+.search-bar{
+  display: flex;
+  /* border: 1px solid black; */
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  width: 250%;
+  padding-left: 100px;
+}
+
+.input {
+  border-radius: 20px;
+  border: 2px solid black;
+}
+
+.searchbutton {
+  display: flex;
+  padding-left: 10px;
+  border: 1px solid black;
+  background-color: white;
+  font-family: 'Oxygen', sans-serif;
+  font-size: 18px;
+}

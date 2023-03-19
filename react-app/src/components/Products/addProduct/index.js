@@ -107,7 +107,7 @@ const AddProduct = () => {
                 </li>
                 ))}
                 </ul>
-            <label>
+            <label className="namelabel">
                 Name
             <input className="name-form"
             type="text"
@@ -121,7 +121,7 @@ const AddProduct = () => {
 
             ></input>
             </label>
-            <label>
+            <label className="descriptionlabel">
                 Description
             <input className="description-form"
             type="text"
@@ -135,7 +135,7 @@ const AddProduct = () => {
 
             ></input>
             </label>
-            <label>
+            <label className="pricelabel">
                 Price
             <input className="price-form"
             type="text"
@@ -149,7 +149,7 @@ const AddProduct = () => {
 
             ></input>
             </label>
-            <label>
+            <label className="categorylabel">
                 Category
             <input className="category-form"
             type="text"
@@ -163,7 +163,7 @@ const AddProduct = () => {
 
             ></input>
             </label>
-            <label>
+            <label className="colorlabel">
                 Color
             <input className="color-form"
             type="text"
@@ -177,7 +177,7 @@ const AddProduct = () => {
 
             ></input>
             </label>
-            <label>
+            <label className="sizelabel">
                 Size
             <input className="size-form"
             type="text"
@@ -191,7 +191,7 @@ const AddProduct = () => {
 
             ></input>
             </label>
-            <label>
+            <label className="imagelabel">
                 Image
             <input className="size-form"
             type="text"

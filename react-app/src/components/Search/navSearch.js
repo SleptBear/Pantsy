@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { searchThunk } from '../../store/search';
 import { useHistory } from 'react-router-dom';
+import "../Navigation"
 
 const NavSearch = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -15,9 +16,9 @@ const NavSearch = () => {
     };
 
     return (
-      <div>
-        <input type="text" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
-        <button onClick={handleSearch}>Search</button>
+      <div className="search-bar">
+        <input type="inputbar" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+        <button className="searchbutton" onClick={handleSearch}>Search</button>
 
       </div>
     );
