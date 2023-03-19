@@ -5,12 +5,15 @@ import productsReducer from './product';
 import { reviewsReducer } from './reviews';
 import { cartReducer } from './cart';
 import { orderReducer } from './order';
+import { searchReducer } from './search';
+
 const rootReducer = combineReducers({
   session,
   productsReducer,
   reviewsReducer,
   cartReducer,
-  orderReducer
+  orderReducer,
+  searchReducer
 
 });
 
