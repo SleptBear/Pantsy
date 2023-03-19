@@ -1,4 +1,4 @@
-footer {
+/* footer {
     background-color: rgb(132, 229, 242);
     color: #e5eae5;
     padding: 20px;
@@ -6,33 +6,36 @@ footer {
     flex-direction: column;
     align-items: center;
     font-size: 14px;
+    margin-top: auto;
   }
-  
+
+
   .Footer-div {
     display: flex;
+    min-height: 100vh;
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 10px;
   }
-  
+
   .dev {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 10px;
   }
-  
+
   .dev div {
     font-weight: bold;
     margin-bottom: 5px;
   }
-  
+
   .dev a {
     color: rgb(231, 92, 194);
     text-decoration: none;
     margin: 2px;
   }
-  
+
   .dev a:hover {
     text-decoration: underline;
-  }
+  } */

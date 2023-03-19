@@ -3,6 +3,7 @@ html {
 
     margin: 0 15%;
     font-family: 'Oxygen', sans-serif;
+    height: 100%;
 
 }
 
@@ -16,12 +17,71 @@ ul {
 
 a {
     text-decoration: none;
+    color: black;
 }
 
 button {
     cursor: pointer;
 }
 
-a {
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+  }
+
+main {
+    flex: 1;
+  }
+
+footer {
+    background-color: rgb(242, 240, 132);
     color: black;
-}
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 14px;
+    /* margin-top: auto; */
+    width: 140%;
+    margin-left: -22%;
+    
+
+
+  }
+
+
+
+
+
+  .Footer-div {
+    display: flex;
+    /* min-height: 100vh; */
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  .dev {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+  }
+
+  .dev div {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .dev a {
+    color: rgb(231, 92, 194);
+    text-decoration: none;
+    margin: 2px;
+  }
+
+  .dev a:hover {
+    text-decoration: underline;
+  }
