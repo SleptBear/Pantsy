@@ -7,7 +7,6 @@ const Order = () => {
     const dispatch = useDispatch();
     const user = useSelector((state) => state.session.user);
     const orders = useSelector((state) => state.orderReducer.orders);
-    console.log('ORDERs-------------------------', orders)
 
     useEffect(() => {
       if (user && user.id) {
@@ -24,24 +23,37 @@ const Order = () => {
     }
 
 
-    return (
-      <div>
-        <h1>Orders</h1>
-        <div className='Orders-Container'>
-          {console.log("orders", orders)}
-          {orders.map((order) => (
-            <div key={order.id}>
-            <div>Order Date: {order.date}</div>
-            {order.products.map((prod) => (
-              <div key={prod.id}>Order Price: {Number(prod.price)}</div>
-              ))}
+    const totalPrice = (order) => {
+      console.log("order", order)
+      let total = 0.00
+      order.products.forEach(product => {
+        console.log(product.price)
+        total += Number(product.price)
+      });
+      return total
+    }
+
+      return (
+        <div>
+          <h1>Orders</h1>
+          <div className='Orders-Container'>
+            <hr></hr>
+            {orders.map((order) => (
+              <div key={order.id}>
+              <div>Order Date: {order.date.slice(0, 10)}</div>
+              {order.products.map((prod) => (
+                <div key={prod.id}>Item ID: {prod.id} Price: ${Number(prod.price)}</div>
+                ))}
+                <div>Total: {totalPrice(order)}</div>
+                <hr></hr>
+
+            </div>
+          ))}
+
           </div>
-        ))}
-
         </div>
-      </div>
-    );
-  };
+      );
+    };
 
 
-  export default Order;
+    export default Order;
