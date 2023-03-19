@@ -50,11 +50,11 @@ CORS(app)
 @app.route('/api/search/<string:search>')
 def get_search(search):
     search_result = Product.query.filter(
-        (Product.name.ilike(f'%{search}%')) |
-        (Product.size.ilike(f'%{search}%')) |
-        (Product.color.ilike(f'%{search}%')) |
-        (Product.category.ilike(f'%{search}%')) |
-        (Product.price.ilike(f'%{search}%'))
+        (Product.name.ilike(f'%%{search}%%')) |
+        (Product.size.ilike(f'%%{search}%%')) |
+        (Product.color.ilike(f'%%{search}%%')) |
+        (Product.category.ilike(f'%%{search}%%')) |
+        (Product.price.ilike(f'%%{search}%%'))
     ).all()
     query_dict = [q.to_dict() for q in search_result]
     return query_dict, 200
