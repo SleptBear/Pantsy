@@ -1,32 +1,53 @@
+.Navbar {
+  display: flex;
+  align-items: center;
+  height: 100px;
+  width: 100%;
+  margin-top: -0.05%;
+  position: relative; /* Add this line */
+  z-index: 1;
+}
+
 .profile-dropdown {
-  position: absolute;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  padding: 10px;
+  border: 1px solid #ccc;
+  box-shadow: 0px 0px 10px #ccc;
+  z-index: 2;
+  margin-top: 1px;
+  width: 150px;
+  height: auto;
+  font-weight: lighter;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  border-radius: 5%;
+  position: absolute; /* Add this line */
 }
 
 .hidden {
   display: none;
 }
 
-.Navbar {
-
-  display: flex;
-  /* justify-content: flex-start; */
-  align-items: center;
-  /* border: 1px solid black; */
-  height: 100px;
-  width: 100%;
-  margin-top: -0.05%;
-
-}
 
 .add-button {
 
 
-  display: flex;
+  /* display: flex; */
   margin-right: auto;
-  display: flex;
+  border-radius: 2px red solid;
+  /* display: flex; */
   justify-content: flex-end;
   /* width: 700%; */
 
+}
+
+.add-button:hover {
+  background-color: #b6b6b6;
+}
+
+.order-button:hover {
+  background-color: #b6b6b6;
 }
 
 .home-button {
@@ -70,4 +91,18 @@
 .profilebutton:hover .profilebuttonimage {
   border-radius: 10px;
   box-shadow: 0px 0px 10px 5px #b6b6b6;
+}
+
+
+.profile-dropdown li {
+  margin-bottom: 10px;
+  word-break: break-word;
+}
+
+.profile-dropdown button {
+padding: 5px;
+background-color: #ccc;
+color: #fff;
+border: none;
+cursor: pointer;
 }
