@@ -7,10 +7,10 @@ import './Products.css'
 
 function AllProducts() {
     const dispatch = useDispatch()
-
+    const user = useSelector(state => state.session.user)
     const products = useSelector(state => state.productsReducer.allProducts)
     const productsArr = Object.values(products || [])
-
+    console.log("USER", user)
     // console.log("productsArr", products)
 
     useEffect(() => {
@@ -22,38 +22,36 @@ function AllProducts() {
     }
 
     return (
+        <div>
+            {user && (
+                <h1 className="welcomebanner">Welcome to Pantsy, {user?.username}</h1>
+
+            )}
+
         <div className="products-container">
-            {/* <h1>TEST RENDER ALL LISTINGS</h1> */}
-            {productsArr?.map(({id, name, size, price, category, productImages}) => {
+            {productsArr?.map(({ id, name, size, price, category, productImages }) => {
                 return (
                     <div key={id}>
-                        <NavLink to={`/products/${id}`}>
-
-                        <div className="productDetails">
-
-                        {productImages?.map(pic => {
-                            return <div>
-
-                                <img className='preview-image'src={pic?.image} alt="image not found"></img>
-                                <p className="productDetails">{name},{size}, {price}, {category}</p>
-                            </div>
-
-
-                        })}
-                        </div>
-                        </NavLink>
-
+                    <NavLink to={`/products/${id}`}>
+                     <div className="productDetails">
+                    {productImages?.map(pic => {
+                        return (
+                            <div>
+                    <img className='preview-image' src={pic?.image} alt="image not found"></img>
+                        <p className="nameprice">{name}, {price}</p>
+                        </div>)})}
                     </div>
+                    </NavLink>
+                </div>
                 )
             })}
-
-            <Switch>
+                <Switch>
                 <Route path="/products/:id">
-                    <Product products={productsArr}/>
+                    <Product products={productsArr} />
                 </Route>
             </Switch>
         </div>
+            </div>
     )
 }
-
 export default AllProducts;

@@ -8,7 +8,7 @@
     display: flex;
     justify-content: center;
     width: 100%;
-    background-color:aliceblue;
+    /* background-color:aliceblue; */
     /* border: 1px solid black; */
     /* margin-top: 15px; */
 
@@ -18,4 +18,19 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     /* border: 1px solid black; */
+}
+
+.preview-image:hover {
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 5px #b6b6b6;
+}
+
+.preview-image:hover {
+    visibility: visible;
+}
+
+.welcomebanner {
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }

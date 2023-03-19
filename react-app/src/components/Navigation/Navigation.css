@@ -9,7 +9,7 @@
 .Navbar {
 
   display: flex;
-  justify-content: space-between;
+  /* justify-content: flex-start; */
   align-items: center;
   /* border: 1px solid black; */
   height: 100px;
@@ -20,11 +20,12 @@
 
 .add-button {
 
-  /* border: 1px solid black; */
 
   display: flex;
+  margin-right: auto;
+  display: flex;
   justify-content: flex-end;
-  width: 700%;
+  /* width: 700%; */
 
 }
 
@@ -35,4 +36,38 @@
   height: 100px;
   width: 100px;
 
+}
+
+.cart-button {
+  display: flex;
+
+  margin-left: auto;
+}
+
+.order-button {
+  display: flex;
+
+  margin-left: auto;
+}
+
+.leftsidebuttons {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  margin: 25px;
+  gap: 25px;
+}
+
+/* .profilebuttonimage {
+  border-radius: 10px;
+} */
+.profilebutton {
+ border: hidden;
+ padding: 0;
+ padding-bottom: white;
+}
+
+.profilebutton:hover .profilebuttonimage {
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 5px #b6b6b6;
 }

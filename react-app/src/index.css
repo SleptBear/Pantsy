@@ -2,6 +2,8 @@
 html {
 
     margin: 0 15%;
+    font-family: 'Oxygen', sans-serif;
+
 }
 
 li {
@@ -12,6 +14,14 @@ ul {
     padding-inline-start: 0;
 }
 
-.Orders-Containers {
-    display: flex;
+a {
+    text-decoration: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    color: black;
 }
