@@ -37,8 +37,8 @@ const addImages = (product) => ({
 // Thunks
 
 export const createProductThunk = (product) => async (dispatch) => {
-    console.log("THUNK", product)
-    console.log("imgData", product.imgData)
+    // console.log("THUNK", product)
+    // console.log("imgData", product.imgData)
     const response = await fetch(`/api/products/`, {
         method: 'POST',
         headers: {
@@ -66,7 +66,7 @@ export const createProductThunk = (product) => async (dispatch) => {
         if(res.ok){
             const resData = await res.json()
             ProductData.productImages = [resData]
-            console.log("PRODUCTDATA", ProductData)
+            // console.log("PRODUCTDATA", ProductData)
 
             dispatch(createProduct(ProductData))
             return
@@ -91,9 +91,9 @@ export const singleProductThunk = (id) => async (dispatch) => {
 }
 
 
-export const editProductThunk = (currentProductID, editedProduct) => async (dispatch) => {
-    console.log('CURRENT PRODUCT ID', currentProductID)
-    console.log("EDIT PRODUCT", editedProduct)
+export const editProductThunk = (currentProductID, editedProduct, imgData) => async (dispatch) => {
+    // console.log('CURRENT PRODUCT ID', currentProductID)
+    // console.log("EDIT PRODUCT", editedProduct)
     const response = await fetch(`/api/products/${currentProductID}`, {
         method:'PUT',
         headers: {
@@ -101,13 +101,30 @@ export const editProductThunk = (currentProductID, editedProduct) => async (disp
         },
         body: JSON.stringify(editedProduct)
     })
-    console.log("RESOK", response)
-    if (response.ok){
-        const data = await response.json()
-        console.log("DATA", data)
-        dispatch(editProduct(data))
-        return data
+    // console.log("RESOK", response)
+    let data = await response.json()
+    let data2;
+    // console.log("IMAGE DATA========", imgData)
+    if (response.ok && imgData.img_url.length > 5 ) {
+        const response2 = await fetch(`/api/productImages/${currentProductID}`, {
+            method: 'PUT',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(imgData)
+        })
+        data2 = await response2.json()
     }
+
+    if (response.ok){
+
+        // console.log("DATA==================", data)
+        // console.log("DATA2===================", data2)
+        if(data2) data.productImages = [data2]
+        dispatch(editProduct(data))
+    }
+    return data
+
 }
 
 export const deleteProductThunk = (id) => async (dispatch) => {

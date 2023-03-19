@@ -11,11 +11,15 @@ def seed_cart():
     cart1 = Cart(user_id=1, products=[choice(products)])
     cart2 = Cart(user_id=2, products=[choice(products)])
     cart3 = Cart(user_id=3, products=[choice(products)])
+    cart4 = Cart(user_id=4, products=[choice(products)])
+    cart5 = Cart(user_id=5, products=[choice(products)])
 
     # add the cart items to the database
     db.session.add(cart1)
     db.session.add(cart2)
     db.session.add(cart3)
+    db.session.add(cart4)
+    db.session.add(cart5)
     db.session.commit()
 
     print("Cart items seeded successfully!")

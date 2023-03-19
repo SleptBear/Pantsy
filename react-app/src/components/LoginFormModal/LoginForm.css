@@ -33,7 +33,7 @@ form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #4CAF50;
+    background-color: #FF5A5F;
     color: white;
     padding: 12px 20px;
     border: none;
@@ -45,7 +45,7 @@ form {
 }
 
 .submit-button:hover {
-    background-color: #3e8e41;
+    background-color: #E3585A;
 }
 
 .DemoUserButton {

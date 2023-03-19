@@ -35,8 +35,6 @@ def usersOrders(id):
 @login_required
 @order_routes.route('/', methods=['POST'])
 def create_order():
-    # body_data = request.get_json()
-    
     query_cart = db.session.query(Cart).filter(Cart.user_id == current_user.id).options(joinedload(Cart.products))
     carts = query_cart.all()
     if not carts:

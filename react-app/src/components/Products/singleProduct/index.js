@@ -16,7 +16,8 @@ function Product () {
     const productDetail = useSelector(state => state.productsReducer.singleProduct)
     const user = useSelector(state => state.session.user)
     const history = useHistory()
-
+    // console.log('SELLER', productDetail.seller.id)
+    // console.log('USER', user)
     useEffect(() => {
         dispatch(singleProductThunk(id.id))
     }, [dispatch])
@@ -29,50 +30,52 @@ function Product () {
     return (
         <div className="mainProductDetail">
             <div>
-            <p>product name: {productDetail.name}, product price:{productDetail.price}, Seller Name:</p>
+            <p>{productDetail.name} </p>
+            <p>Price:{productDetail.price}</p>
             </div>
 
             <div>
             </div>
 
             <div>
-                <button
-                onClick={() => dispatch(addToCartThunk( user.id,id.id))}
+                {user && user.id ? (
+                    <button className="add-to-cart"
+                    onClick={() => dispatch(addToCartThunk( user.id,id.id)).then(() => history.push('/cart'))}
+                    > ADD TO CART </button>
+                ): null }
+            </div>
+            <div>
 
-                > ADD TO CART </button>
             </div>
             <div>
-                <button
-                onClick={() => dispatch(createCartThunk(user.id))}
-
-                > Cart Create Test </button>
-            </div>
-            <div>
-                <h3>product description: {productDetail.description}</h3>
-            </div>
-
-            <div>
-                <h1> TOTAL REVIEWS PLACEHOLDER</h1>
-            </div>
-            <div>
-                <h1> USER REVIEWS PLACEHOLDER</h1>
+                <h3> Description:</h3>
+                    <p>{productDetail.description}</p>
+                        
             </div>
             <div className="product-images">
                 {productDetail.productImages.map(image => {
                  return <img src={image.image} alt="image not found"></img>
                 })}
-                <p> dropdown for size and color,  SIZE: {productDetail.size}  COLOR: {productDetail.color}</p>
+                <p> SIZE: {productDetail.size}  COLOR: {productDetail.color}</p>
             </div>
+            {/* {console.log("USER", user?.id)}
+            {console.log("SELLER", productDetail?.seller?.id)} */}
+            {user && productDetail.seller?.id === user?.id ? (
             <div>
-            <button className="deletebutton"
-                        onClick={() => dispatch(deleteProductThunk(id.id)).then(() => history.push("/"))}>
-                            Delete Item
-                        </button>
+                <button
+                className="deletebutton"
+                onClick={() =>
+                    dispatch(deleteProductThunk(id.id)).then(() => history.push("/"))
+                }
+                >
+                Delete Item
+                </button>
+                <OpenModalButton
+                modalComponent={<EditProduct />}
+                buttonText={"Edit Product"}
+                />
             </div>
-            <OpenModalButton
-            modalComponent={<EditProduct/>}
-            buttonText={"Edit Product"}
-            />
+            ) : null}
             <div>
                 <Reviews />
             </div>

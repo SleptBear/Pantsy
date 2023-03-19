@@ -4,6 +4,10 @@ import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import { login } from "../../store/session";
+import image from "../Navigation/Capture.PNG"
+import { NavLink } from "react-router-dom";
+import './profileButton.css'
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -39,14 +43,21 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
+      <button className="profilebutton" onClick={openMenu}>
+
+        <img className="profilebuttonimage"src={image} alt="User Icon"></img>
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
             <li>{user.username}</li>
             <li>{user.email}</li>
+            <li>
+        		<NavLink className="add-button"exact to='/new'>Add an Item</NavLink>
+      			</li>
+            <li>
+        		<NavLink className="order-button"exact to='/orders'>Orders</NavLink>
+      			</li>
             <li>
               <button onClick={handleLogout}>Log Out</button>
             </li>
@@ -66,6 +77,7 @@ function ProfileButton({ user }) {
             />
           </>
         )}
+
       </ul>
     </>
   );

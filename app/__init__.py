@@ -4,7 +4,7 @@ from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
-from .models import db, User
+from .models import db, User, Product, Review
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.product_routes import product_routes
@@ -12,6 +12,7 @@ from .api.productImages_routes import productImages_routes
 from .api.review_routes import review_routes
 from .api.cart_routes import cart_routes
 from .api.order_routes import order_routes
+# from .api.search import search
 from .seeds import seed_commands
 from .config import Config
 
@@ -38,12 +39,25 @@ app.register_blueprint(productImages_routes, url_prefix='/api/productImages')
 app.register_blueprint(review_routes, url_prefix='/api/reviews')
 app.register_blueprint(cart_routes, url_prefix='/api/cart')
 app.register_blueprint(order_routes, url_prefix='/api/orders')
+# app.register_blueprint(search, url_prefix='/api/search')
 db.init_app(app)
 Migrate(app, db)
 
 # Application Security
 CORS(app)
 
+# SEARCH DB FOR ITEM NAME,SIZE, COLOR, CATEGORY, PRICE
+@app.route('/api/search/<string:search>')
+def get_search(search):
+    search_result = Product.query.filter(
+        (Product.name.ilike(f'%{search}%')) |
+        (Product.size.ilike(f'%{search}%')) |
+        (Product.color.ilike(f'%{search}%')) |
+        (Product.category.ilike(f'%{search}%')) |
+        (Product.price.ilike(f'%{search}%'))
+    ).all()
+    query_dict = [q.to_dict() for q in search_result]
+    return query_dict, 200
 
 # Since we are deploying with Docker and Flask,
 # we won't be using a buildpack when we deploy to Heroku.
