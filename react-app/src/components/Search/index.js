@@ -15,8 +15,8 @@ const Search = () => {
 
   return (
     <div>
-      <input type="text" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
-      <button onClick={handleSearch}>Search</button>
+      {/* <input type="text" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+      <button onClick={handleSearch}>Search</button> */}
       {searchResult && Object.keys(searchResult).length > 0 ? (
         Object.values(searchResult).map((product) => (
           <div key={product.id}>

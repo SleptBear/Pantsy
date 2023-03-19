@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import CartIcon from '../Icons/cart';
 import Search from '../Search';
+import NavSearch from '../Search/navSearch';
 import './Navigation.css';
 import AddProduct from '../Products/addProduct';
 
@@ -16,6 +17,9 @@ function Navigation({ isLoaded }){
 			<li>
 				<NavLink className="home-button" exact to="/">Home</NavLink>
 				</li>
+				<li>
+					<NavSearch></NavSearch>
+				</li>
 				{/* <li>
 				<NavLink className="add-button"exact to='/new'>Add an Item</NavLink>
 			</li> */}
@@ -25,7 +29,7 @@ function Navigation({ isLoaded }){
 			{/* <li>
 				<NavLink className="order-button"exact to='/orders'>Orders</NavLink>
 			</li> */}
-			
+
 			<li>
 			</li>
 			{isLoaded && (
