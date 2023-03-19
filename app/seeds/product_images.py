@@ -7,10 +7,26 @@ def seed_productImages():
         if product.id == 1:
             image_url = 'https://www.canyon.com/dw/image/v2/BCML_PRD/on/demandware.static/-/Sites-canyon-master/default/dw77bf8fbb/images/alternate/9101334_Ca/2020/9101334_Canyon_MTB_Pant_Alternate1.jpg?sw=750&sh=750&sm=fit&sfrm=jpg&q=80&bgcolor=F2F2F2'
         elif product.id == 2:
-            image_url = 'https://www.oprah.com/g/image-resizer?width=670&link=https://static.oprah.com/images/beauty/fashion/fashion_pants_201_284x426.jpg'
+            image_url = 'https://www.canyon.com/dw/image/v2/BCML_PRD/on/demandware.static/-/Sites-canyon-master/default/dw77bf8fbb/images/alternate/9101334_Ca/2020/9101334_Canyon_MTB_Pant_Alternate1.jpg?sw=750&sh=750&sm=fit&sfrm=jpg&q=80&bgcolor=F2F2F2'
         elif product.id == 3:
-            image_url = 'https://m.media-amazon.com/images/I/61gSPPfg0QL._AC_UY1000_.jpg'
+            image_url = 'https://www.canyon.com/dw/image/v2/BCML_PRD/on/demandware.static/-/Sites-canyon-master/default/dw77bf8fbb/images/alternate/9101334_Ca/2020/9101334_Canyon_MTB_Pant_Alternate1.jpg?sw=750&sh=750&sm=fit&sfrm=jpg&q=80&bgcolor=F2F2F2'
         elif product.id == 4:
+            image_url = 'https://www.oprah.com/g/image-resizer?width=670&link=https://static.oprah.com/images/beauty/fashion/fashion_pants_201_284x426.jpg'
+        elif product.id == 5:
+            image_url = 'https://www.oprah.com/g/image-resizer?width=670&link=https://static.oprah.com/images/beauty/fashion/fashion_pants_201_284x426.jpg'
+        elif product.id == 6:
+            image_url = 'https://www.oprah.com/g/image-resizer?width=670&link=https://static.oprah.com/images/beauty/fashion/fashion_pants_201_284x426.jpg'
+        elif product.id == 7:
+            image_url = 'https://m.media-amazon.com/images/I/61gSPPfg0QL._AC_UY1000_.jpg'
+        elif product.id == 8:
+            image_url = 'https://m.media-amazon.com/images/I/61gSPPfg0QL._AC_UY1000_.jpg'
+        elif product.id == 9:
+            image_url = 'https://m.media-amazon.com/images/I/61gSPPfg0QL._AC_UY1000_.jpg'
+        elif product.id == 10:
+            image_url = 'https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/fbdfeb72-5999-4e84-8fa7-a1e7af07b6ce/life-mens-double-panel-pants-HQZXNF.png'
+        elif product.id == 11:
+            image_url = 'https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/fbdfeb72-5999-4e84-8fa7-a1e7af07b6ce/life-mens-double-panel-pants-HQZXNF.png'
+        elif product.id == 12:
             image_url = 'https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/fbdfeb72-5999-4e84-8fa7-a1e7af07b6ce/life-mens-double-panel-pants-HQZXNF.png'
         else:
             # If I want to add more, add more condition seeders here

@@ -46,15 +46,18 @@ Migrate(app, db)
 # Application Security
 CORS(app)
 
-# SEARCH DB FOR ITEM NAME
+# SEARCH DB FOR ITEM NAME,SIZE, COLOR, CATEGORY, PRICE
 @app.route('/api/search/<string:search>')
 def get_search(search):
-    # print("ARG_-------------", search)
-    search_result = Product.query.filter(Product.name.ilike(f'%{search}')).all()
-    # print("SEARCH -----------", search_result)
+    search_result = Product.query.filter(
+        (Product.name.ilike(f'%{search}%')) |
+        (Product.size.ilike(f'%{search}%')) |
+        (Product.color.ilike(f'%{search}%')) |
+        (Product.category.ilike(f'%{search}%')) |
+        (Product.price.ilike(f'%{search}%'))
+    ).all()
     query_dict = [q.to_dict() for q in search_result]
     return query_dict, 200
-
 
 # Since we are deploying with Docker and Flask,
 # we won't be using a buildpack when we deploy to Heroku.

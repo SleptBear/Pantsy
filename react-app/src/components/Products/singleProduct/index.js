@@ -30,7 +30,8 @@ function Product () {
     return (
         <div className="mainProductDetail">
             <div>
-            <p>product name: {productDetail.name}, product price:{productDetail.price}, Seller Name:</p>
+            <p>{productDetail.name} </p>
+            <p>Price:{productDetail.price}</p>
             </div>
 
             <div>
@@ -47,20 +48,15 @@ function Product () {
 
             </div>
             <div>
-                <h3>product description: {productDetail.description}</h3>
-            </div>
-
-            <div>
-                <h1> TOTAL REVIEWS PLACEHOLDER</h1>
-            </div>
-            <div>
-                <h1> USER REVIEWS PLACEHOLDER</h1>
+                <h3> Description:</h3>
+                    <p>{productDetail.description}</p>
+                        
             </div>
             <div className="product-images">
                 {productDetail.productImages.map(image => {
                  return <img src={image.image} alt="image not found"></img>
                 })}
-                <p> dropdown for size and color,  SIZE: {productDetail.size}  COLOR: {productDetail.color}</p>
+                <p> SIZE: {productDetail.size}  COLOR: {productDetail.color}</p>
             </div>
             {/* {console.log("USER", user?.id)}
             {console.log("SELLER", productDetail?.seller?.id)} */}
