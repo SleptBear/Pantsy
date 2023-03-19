@@ -11,6 +11,7 @@ import AddProduct from "../src/components/Products/addProduct";
 import Cart from "./components/Cart"
 import Order from "./components/Order";
 import Footer from "./components/Footer";
+import Search from "./components/Search";
 // import CreateOrder from "./components/CreateOrder"
 
 function App() {
@@ -50,6 +51,9 @@ function App() {
           {/* <Route exact path='/orders/:id'>
             <CreateOrder />
           </Route> */}
+          <Route exact path='/search'>
+            <Search />
+          </Route>
 
         </Switch>
       )}
