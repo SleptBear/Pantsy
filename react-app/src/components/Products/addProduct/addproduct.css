@@ -20,3 +20,20 @@ border-radius: 4px;
 box-sizing: border-box;
 margin-top: 5px;
 }
+
+.submit-form {
+    background-color: #FF5A5F;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-right: 8px; /* add some spacing between the buttons */
+}
+
+.submit-form:hover {
+    background-color: #FF5A5F;
+}
