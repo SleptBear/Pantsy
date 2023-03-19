@@ -38,13 +38,16 @@ const Order = () => {
           <h1>Orders</h1>
           <div className='Orders-Container'>
             <hr></hr>
+            <br></br>
             {orders.map((order) => (
               <div className='order-container' key={order.id}>
-              <div>Order Date: {order.date.slice(0, 10)}</div>
+                <div>Order # {order.id}</div>
+              <div>Date: {order.date.slice(0, 10)}</div>
               {order.products.map((prod) => (
-                <div key={prod.id}>Item ID: {prod.id} Price: ${Number(prod.price)}</div>
+                <div key={prod.id}>Item: {prod.name} Price: ${Number(prod.price).toFixed(2)}</div>
                 ))}
-                <div>Total: {totalPrice(order)}</div>
+                <div>Total: ${totalPrice(order).toFixed(2)}</div>
+                <br></br>
                 <hr></hr>
 
             </div>

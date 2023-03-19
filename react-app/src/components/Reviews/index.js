@@ -10,6 +10,7 @@ export const Reviews = () => {
     const [review, setReviews] = useState()
     const [rating, setRating] = useState(5)
     const reviewsObj = useSelector(state => state.reviewsReducer.ProductReviews)
+    const sellerObj = useSelector(state => state.productsReducer.singleProduct.seller)
     const user = useSelector(state => state.session.user)
     const userId = user?.id
     const reviews = Object.values(reviewsObj)
@@ -76,7 +77,9 @@ export const Reviews = () => {
         );
     })}
     <div>
-        {user && reviewsObj.seller?.id !== userId ? (
+        {console.log("USER", user?.id)}
+        {console.log("SELLER", sellerObj.id)}
+        {user && sellerObj?.id !== userId ? (
 
         <form className="reviewsform" onSubmit={handleSubmit} noValidate>
             <ul className="ul">
