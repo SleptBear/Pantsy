@@ -11,24 +11,24 @@ function Navigation({ isLoaded }){
 
 	return (
 		<div>
-  			<ul class="Navbar">
+  			<ul className="Navbar">
     			<li>
-      				<NavLink class="home-button" exact to="/">Home</NavLink>
+      				<NavLink className="home-button" exact to="/">Home</NavLink>
     			</li>
-   			 <div class="leftsidebuttons">
+   			 <div className="leftsidebuttons">
       			<li>
-        		<NavLink class="add-button"exact to='/new'>Add an Item</NavLink>
+        		<NavLink className="add-button"exact to='/new'>Add an Item</NavLink>
       			</li>
       			<li>
-        		<NavLink class="cart-button"exact to='/cart'><CartIcon/></NavLink>
+        		<NavLink className="cart-button"exact to='/cart'><CartIcon/></NavLink>
       			</li>
       			<li>
-        		<NavLink class="order-button"exact to='/orders'>Orders</NavLink>
+        		<NavLink className="order-button"exact to='/orders'>Orders</NavLink>
       			</li>
     			</div>
     			{isLoaded && (
       			<li>
-        		<ProfileButton class="profile-button" user={sessionUser} />
+        		<ProfileButton className="profile-button" user={sessionUser} />
       			</li>
    			 )}
  		 </ul>
