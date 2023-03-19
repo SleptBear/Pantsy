@@ -66,9 +66,23 @@ export const Reviews = () => {
             return null;
         }
     }
+
+    const avgReview = () => {
+      console.log("REVIEWOBJ==========>", Object.values(reviewsObj))
+      let reviewsArray = Object.values(reviewsObj)
+      let ratingsArray = []
+      reviewsArray.forEach(review => {
+        ratingsArray.push(review.rating)
+      })
+      let initialValue = 0
+      let avgRating = ratingsArray.reduce((a, b) => a + b, initialValue);
+
+      return(avgRating/ratingsArray.length).toFixed(2)
+    }
     return (
         <div>
-          <h2>Reviews</h2>
+          {/* <h2>Reviews</h2> */}
+          <h2>{Object.values(reviewsObj).length} Shop Reviews <i className="fa-solid fa-star"></i>{avgReview()} </h2>
           {reviews.map(({ id, review, rating, user_id }) => {
             return (
               <div key={id}>
