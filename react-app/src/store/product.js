@@ -122,8 +122,8 @@ export const editProductThunk = (currentProductID, editedProduct, imgData) => as
         console.log("DATA2===================", data2)
         if(data2) data.productImages = [data2]
         dispatch(editProduct(data))
-        return data
     }
+    return data
 
 }
 
