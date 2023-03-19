@@ -74,15 +74,15 @@ const EditProduct = () => {
             return
         }
 
-        dispatch(editProductThunk(stateProduct.id, ProductData))
+        dispatch(editProductThunk(stateProduct.id, ProductData, updatedImgData))
         .then(() => closeModal())
         // .history.push(`/products/${stateProduct.id}`)
 
         .catch(async (res) => {
             const data = await res.json();
-            console.log("data from api", data)
+            // console.log("data from api", data)
             if (data && data.errors) setErrors(data.errors)
-            console.log('ERRORS', errors)
+            // console.log('ERRORS', errors)
           });
         return
     }
