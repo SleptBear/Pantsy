@@ -78,10 +78,12 @@ const EditProduct = () => {
         .then(() => closeModal())
         // .history.push(`/products/${stateProduct.id}`)
 
-            .catch(async (res) => {
-                const data = await res.json();
-                if (data && data.errors) setErrors(data.errors)
-            });
+        .catch(async (res) => {
+            const data = await res.json();
+            console.log("data from api", data)
+            if (data && data.errors) setErrors(data.errors)
+            console.log('ERRORS', errors)
+          });
         return
     }
 
