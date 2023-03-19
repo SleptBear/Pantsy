@@ -1,3 +1,22 @@
+# About Pantsy:
+-
+
+
+# Technologies used:
+   - Javascript
+   - Python
+   - React
+   - Redux
+   - Flask
+   - NodeJS
+   - CSS
+   - Database: PostgreSQL
+   - Hosting: Render
+
+## Demor User:
+   - A demo user is available in login dropdown menu without need to sign up. Simply click on the "Demo User" button and it will log you in the Demo User.
+
+
 # Flask React Project
 
 This is the starter for the Flask React project.

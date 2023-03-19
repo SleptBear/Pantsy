@@ -16,7 +16,8 @@ function Product () {
     const productDetail = useSelector(state => state.productsReducer.singleProduct)
     const user = useSelector(state => state.session.user)
     const history = useHistory()
-
+    // console.log('SELLER', productDetail.seller.id)
+    // console.log('USER', user)
     useEffect(() => {
         dispatch(singleProductThunk(id.id))
     }, [dispatch])
@@ -64,16 +65,22 @@ function Product () {
                 })}
                 <p> dropdown for size and color,  SIZE: {productDetail.size}  COLOR: {productDetail.color}</p>
             </div>
+            {user && productDetail.seller?.id === user?.id ? (
             <div>
-            <button className="deletebutton"
-                        onClick={() => dispatch(deleteProductThunk(id.id)).then(() => history.push("/"))}>
-                            Delete Item
-                        </button>
+                <button
+                className="deletebutton"
+                onClick={() =>
+                    dispatch(deleteProductThunk(id.id)).then(() => history.push("/"))
+                }
+                >
+                Delete Item
+                </button>
+                <OpenModalButton
+                modalComponent={<EditProduct />}
+                buttonText={"Edit Product"}
+                />
             </div>
-            <OpenModalButton
-            modalComponent={<EditProduct/>}
-            buttonText={"Edit Product"}
-            />
+            ) : null}
             <div>
                 <Reviews />
             </div>

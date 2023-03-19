@@ -75,7 +75,8 @@ export const Reviews = () => {
         );
     })}
     <div>
-        {reviews.find(({ user_id }) => user_id === userId) ? null : (
+        {user && reviewsObj.seller?.id !== userId ? (
+
         <form className="reviewsform" onSubmit={handleSubmit} noValidate>
             <ul className="ul">
             {errors.map((error, idx) => (
@@ -113,6 +114,8 @@ export const Reviews = () => {
             Submit
             </button>
         </form>
+        ): (
+            <div>Please log in to post a review.</div>
         )}
     </div>
     </div>
