@@ -51,78 +51,104 @@ export const Reviews = () => {
                 }, 2000);
               });
     }
-
-
+    const userHasReview = reviews.some(({user_id}) => user_id === userId)
+    const loggedIn = () => {
+        if(!user) {
+           return <p>Please log in to post a review.</p>
+        } else {
+            return null;
+        }
+    }
+    const reviewCheck = () => {
+        if(Object.keys(reviewsObj).length === 0) {
+            return <p>There are no reviews for this product yet!</p>
+        } else {
+            return null;
+        }
+    }
     return (
         <div>
-  <h2>Reviews</h2>
-    {reviews.map(({ id, review, rating, user_id }) => {
-        return (
-        <div key={id}>
-            <p>Review: {review}</p>
-            <p>Rating: {rating}</p>
-            {user_id === userId && (
-            <button
-                className="delete button"
-                onClick={() =>
-                dispatch(deleteReviewThunk(id)).then(() => {
-                    dispatch(readReviewThunk(ID));
-                })
-                }
-            >
-                Delete
-            </button>
+          <h2>Reviews</h2>
+          {reviews.map(({ id, review, rating, user_id }) => {
+            return (
+              <div key={id}>
+                <p>Review: {review}</p>
+                <p>Rating: {rating}</p>
+                {user_id === userId && (
+                  <button
+                    className="delete button"
+                    onClick={() =>
+                      dispatch(deleteReviewThunk(id)).then(() => {
+                        dispatch(readReviewThunk(ID));
+                      })
+                    }
+                  >
+                    Delete
+                  </button>
+                )}
+              </div>
+            );
+          })}
+          <div>
+            {console.log("REVIEWSOBJ", reviewsObj)}
+            {user && sellerObj?.id !== userId ? (
+              userHasReview ? null : (
+                showForm ? (
+                  <div>
+                    <form className="reviewsform" onSubmit={handleSubmit} noValidate>
+                      <ul className="ul">
+                        {errors.map((error, idx) => (
+                          <li key={idx}>{error}</li>
+                        ))}
+                      </ul>
+                      <textarea
+                        className="reviewtextbox"
+                        type="textbox"
+                        defaultValue="Post a review here!"
+                        onFocus={(e) => {
+                          if (e.target.defaultValue === "Post a review here!") {
+                            setReviews("");
+                          }
+                        }}
+                        value={review}
+                        maxLength={255}
+                        onChange={(e) => {
+                          setReviews(e.target.value);
+                        }}
+                        required
+                      ></textarea>
+                      <select
+                        className="rating"
+                        value={rating}
+                        onChange={(e) => setRating(e.target.value)}
+                      >
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                      </select>
+                      <button className="submitbutton" type="submit">
+                        Submit
+                      </button>
+                    </form>
+                    <button onClick={() => setShowForm(false)}>Cancel</button>
+                  </div>
+                ) : (
+                  <button onClick={() => setShowForm(true)}>Add a Review</button>
+                )
+              )
+            ) : (
+              null
             )}
+           <p>{loggedIn()}</p>
+           <p>{reviewCheck()}</p>
+          </div>
+
+
         </div>
-        );
-    })}
-    <div>
-        {console.log("USER", user?.id)}
-        {console.log("SELLER", sellerObj.id)}
-        {user && sellerObj?.id !== userId ? (
+      );
 
-        <form className="reviewsform" onSubmit={handleSubmit} noValidate>
-            <ul className="ul">
-            {errors.map((error, idx) => (
-                <li key={idx}>{error}</li>
-            ))}
-            </ul>
-            <textarea
-            className="reviewtextbox"
-            type="textbox"
-            defaultValue="Post a review here!"
-            onFocus={(e) => {
-                if (e.target.defaultValue === "Post a review here!") {
-                setReviews("");
-                }
-            }}
-            value={review}
-            maxLength={255}
-            onChange={(e) => {
-                setReviews(e.target.value);
-            }}
-            required
-            ></textarea>
-            <select
-            className="rating"
-            value={rating}
-            onChange={(e) => setRating(e.target.value)}
-            >
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            </select>
-            <button className="submitbutton" type="Submit">
-            Submit
-            </button>
-        </form>
-        ): (
-            <div>Please log in to post a review.</div>
-        )}
-    </div>
-    </div>
 
-    )
+
 }
