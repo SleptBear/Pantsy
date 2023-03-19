@@ -1,10 +1,11 @@
 .Navbar {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   height: 100px;
   width: 100%;
   margin-top: -0.05%;
-  position: relative; /* Add this line */
+  /* position: relative; Add this line */
   z-index: 1;
 }
 
@@ -50,6 +51,7 @@
   background-color: #b6b6b6;
 }
 
+
 .home-button {
   display: flex;
   color: transparent;
@@ -60,9 +62,12 @@
 }
 
 .cart-button {
-  display: flex;
 
-  margin-left: auto;
+  display: flex;
+  justify-content: center;
+  /* margin-left: auto; */
+  width: 500%;
+  font-size: 22px;
 }
 
 .order-button {
@@ -71,13 +76,7 @@
   margin-left: auto;
 }
 
-.leftsidebuttons {
-  display: flex;
-  width: 100%;
-  justify-content: flex-end;
-  margin: 25px;
-  gap: 25px;
-}
+
 
 /* .profilebuttonimage {
   border-radius: 10px;
@@ -99,7 +98,7 @@
   word-break: break-word;
 }
 
-.profile-dropdown button {
+.profile-dropdown .button {
 padding: 5px;
 background-color: #ccc;
 color: #fff;
@@ -107,26 +106,41 @@ border: none;
 cursor: pointer;
 }
 
-.search-bar{
+.nav-search {
+  border: 2px solid black;
+  border-radius: 20px;
+  gap: 10px;
   display: flex;
-  /* border: 1px solid black; */
-  justify-content: center;
   align-items: center;
-  border-radius: 10px;
-  width: 250%;
-  padding-left: 100px;
+  height: 40px;
+  width: 60%;
+}
+.search-bar{
+
+  display: flex;
+  justify-content: center;
+  width: 97%;
+  margin-left: 5px;
+  padding-left: 5px;
+
 }
 
-.input {
-  border-radius: 20px;
-  border: 2px solid black;
+.inputbar {
+  border: none;
+  width: 95%;
+  height: 20px;
+  outline: none;
+  /* border-radius: 20px; */
+  font-family: 'Oxygen', sans-serif;
+  font-size: 17px;
 }
 
 .searchbutton {
   display: flex;
-  padding-left: 10px;
-  border: 1px solid black;
+  justify-content: center;
   background-color: white;
-  font-family: 'Oxygen', sans-serif;
-  font-size: 18px;
+  align-items: center;
+
+ border: none;
+ font-size: 22px;
 }
