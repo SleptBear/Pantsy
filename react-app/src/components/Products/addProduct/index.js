@@ -159,10 +159,14 @@ const AddProduct = () => {
             </label>
             <button className="submit-form" type="Submit" >Submit</button>
             </form>
-
-
-
-
+            {/* <button className="demo-add-item"
+            onClick={() => dispatch(createProductThunk(({name: "Demo Pants",description: "This is a description",price: 19.99, category: "pants" , color: "Demo Color", size: "Demo Size", seller: user?.id},
+            {
+                image: "https://target.scene7.com/is/image/Target/GUEST_b42925ba-d115-4575-b10d-c354a55bfaca?wid=1000&hei=1000&qlt=80&fmt=webp",
+                preview: true
+            }
+            )))}
+            >Demo Add Item</button> */}
 
         </div>
     )

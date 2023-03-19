@@ -35,6 +35,7 @@ export const Reviews = () => {
             .then(() => {
                 dispatch(readReviewThunk(id.id))
                 setShowForm(false)
+                setReviews("")
             })
             .catch(async (res) => {
                 const data = await res.json();

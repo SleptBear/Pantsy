@@ -2,6 +2,8 @@
 html {
 
     margin: 0 15%;
+    font-family: 'Oxygen', sans-serif;
+
 }
 
 li {
@@ -10,4 +12,8 @@ li {
 
 ul {
     padding-inline-start: 0;
+}
+
+a {
+    text-decoration: none;
 }

@@ -25,13 +25,13 @@ const Order = () => {
         <h1>Orders</h1>
           {orders.map((order) => (
           <tr key={order.id}>
-            <td>Order Date: {order.date}</td>
+            <td>Order Date: {order.date} </td>
             {order.products.map((prod) => (
-              <td key={prod.id}>Order Price: {Number(prod.price)}</td>
+              <td key={prod.id}> Order Price: {Number(prod.price)}</td>
             ))}
           </tr>
         ))}
-          <td>Total Spent so far:</td>
+
       </div>
     );
   };
