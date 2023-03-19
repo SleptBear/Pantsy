@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import {useDispatch, useSelector} from "react-redux"
 import { NavLink, Switch, Route, useHistory } from 'react-router-dom'
 import { createProductThunk } from '../../../store/product'
-
+import "./addproduct.css"
 const AddProduct = () => {
     const user = useSelector(state => state.session.user)
     // console.log("USERSELECTOR", user)

@@ -63,6 +63,8 @@
 } */
 .profilebutton {
  border: hidden;
+ padding: 0;
+ padding-bottom: white;
 }
 
 .profilebutton:hover .profilebuttonimage {
