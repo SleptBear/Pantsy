@@ -105,7 +105,7 @@ export const editProductThunk = (currentProductID, editedProduct, imgData) => as
     let data = await response.json()
     let data2;
     console.log("IMAGE DATA========", imgData)
-    if (response.ok && imgData.url.length > 5 ) {
+    if (response.ok && imgData.img_url.length > 5 ) {
         const response2 = await fetch(`/api/productImages/${currentProductID}`, {
             method: 'PUT',
             headers: {
@@ -122,8 +122,8 @@ export const editProductThunk = (currentProductID, editedProduct, imgData) => as
         console.log("DATA2===================", data2)
         if(data2) data.productImages = [data2]
         dispatch(editProduct(data))
-        return data
     }
+    return data
 
 }
 
