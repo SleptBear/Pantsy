@@ -62,6 +62,8 @@ function Product () {
                 })}
                 <p> dropdown for size and color,  SIZE: {productDetail.size}  COLOR: {productDetail.color}</p>
             </div>
+            {console.log("USER", user?.id)}
+            {console.log("SELLER", productDetail?.seller?.id)}
             {user && productDetail.seller?.id === user?.id ? (
             <div>
                 <button

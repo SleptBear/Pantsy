@@ -37,8 +37,8 @@ const addImages = (product) => ({
 // Thunks
 
 export const createProductThunk = (product) => async (dispatch) => {
-    console.log("THUNK", product)
-    console.log("imgData", product.imgData)
+    // console.log("THUNK", product)
+    // console.log("imgData", product.imgData)
     const response = await fetch(`/api/products/`, {
         method: 'POST',
         headers: {
@@ -66,7 +66,7 @@ export const createProductThunk = (product) => async (dispatch) => {
         if(res.ok){
             const resData = await res.json()
             ProductData.productImages = [resData]
-            console.log("PRODUCTDATA", ProductData)
+            // console.log("PRODUCTDATA", ProductData)
 
             dispatch(createProduct(ProductData))
             return
@@ -101,10 +101,10 @@ export const editProductThunk = (currentProductID, editedProduct, imgData) => as
         },
         body: JSON.stringify(editedProduct)
     })
-    console.log("RESOK", response)
+    // console.log("RESOK", response)
     let data = await response.json()
     let data2;
-    console.log("IMAGE DATA========", imgData)
+    // console.log("IMAGE DATA========", imgData)
     if (response.ok && imgData.img_url.length > 5 ) {
         const response2 = await fetch(`/api/productImages/${currentProductID}`, {
             method: 'PUT',
@@ -118,8 +118,8 @@ export const editProductThunk = (currentProductID, editedProduct, imgData) => as
 
     if (response.ok){
 
-        console.log("DATA==================", data)
-        console.log("DATA2===================", data2)
+        // console.log("DATA==================", data)
+        // console.log("DATA2===================", data2)
         if(data2) data.productImages = [data2]
         dispatch(editProduct(data))
     }

@@ -40,11 +40,14 @@ def singleProduct(id):
 # should be able to take product id from params OR request body
 # discuss if we need form validations here or not
 @product_routes.route('/<int:id>', methods=['PUT'])
-# @login_required
+@login_required
 def updateProduct(id):
     product = Product.query.get(id)
     data = request.get_json()
     # print("DATA", data)
+    # seller:{email: 'demo@aa.io', id: 1, username: 'Demo'}
+    # print("PRODUCT============>", product.users.to_dict())
+    seller = product.users.to_dict()
     if product:
             product.name = data["name"]
             product.description = data["description"]
@@ -53,7 +56,11 @@ def updateProduct(id):
             product.color = data["color"]
             product.size = data["size"]
             db.session.commit()
-            return product.to_dict()
+            product_obj = product.to_dict()
+            product_obj['seller'] = seller
+            # print("RETURN===========>", product_obj)
+
+            return product_obj
     else:
         return {"error: Product Does not Exist"}
 
