@@ -47,7 +47,7 @@ footer {
     /* margin-top: auto; */
     width: 140%;
     margin-left: -22%;
-    
+
 
 
   }
@@ -84,4 +84,23 @@ footer {
 
   .dev a:hover {
     text-decoration: underline;
+  }
+
+  .mainproductDetail {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .main-left {
+    display: flex;
+    flex-direction: column;
+  }
+  .main-right {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .product-images img {
+    max-height: 350px;
+    max-width: 350px;
   }

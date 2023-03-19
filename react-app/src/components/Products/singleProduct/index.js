@@ -29,29 +29,8 @@ function Product () {
 
     return (
         <div className="mainProductDetail">
-            <div>
-            <p>{productDetail.name} </p>
-            <p>Price:{productDetail.price}</p>
-            </div>
+            <div className="main-left">
 
-            <div>
-            </div>
-
-            <div>
-                {user && user.id ? (
-                    <button className="add-to-cart"
-                    onClick={() => dispatch(addToCartThunk( user.id,id.id)).then(() => history.push('/cart'))}
-                    > ADD TO CART </button>
-                ): null }
-            </div>
-            <div>
-
-            </div>
-            <div>
-                <h3> Description:</h3>
-                    <p>{productDetail.description}</p>
-                        
-            </div>
             <div className="product-images">
                 {productDetail.productImages.map(image => {
                  return <img src={image.image} alt="image not found"></img>
@@ -61,7 +40,7 @@ function Product () {
             {/* {console.log("USER", user?.id)}
             {console.log("SELLER", productDetail?.seller?.id)} */}
             {user && productDetail.seller?.id === user?.id ? (
-            <div>
+                <div>
                 <button
                 className="deletebutton"
                 onClick={() =>
@@ -80,6 +59,33 @@ function Product () {
                 <Reviews />
             </div>
         </div>
+            <div className="main-right">
+
+            <div>
+            <p>{productDetail.name} </p>
+            <p>Price:{productDetail.price}</p>
+            </div>
+
+            <div>
+            </div>
+
+            <div>
+                {user && user.id ? (
+                    <button className="add-to-cart"
+                    onClick={() => dispatch(addToCartThunk( user.id,id.id)).then(() => history.push('/cart'))}
+                    > ADD TO CART </button>
+                    ): null }
+            </div>
+            <div>
+
+            </div>
+            <div>
+                <h3> Description:</h3>
+                    <p>{productDetail.description}</p>
+
+            </div>
+                    </div>
+                    </div>
     )
 }
 
