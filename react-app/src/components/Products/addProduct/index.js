@@ -76,17 +76,17 @@ const AddProduct = () => {
             setErrors(errors => [...errors, 'Please include a image url'])
             return
         }
-        try {
-            const response = await fetch(image, { method: 'HEAD' });
-            const contentType = response.headers.get('content-type');
-            if (!contentType || !contentType.startsWith('image/')) {
-                setErrors(errors => [...errors, 'Please enter a valid image link']);
-                return;
-            }
-          } catch (error) {
-            setErrors(errors => [...errors, 'Please enter a valid image link']);
-            return;
-        }
+        // try {
+        //     const response = await fetch(image, { method: 'HEAD' });
+        //     const contentType = response.headers.get('content-type');
+        //     if (!contentType || !contentType.startsWith('image/')) {
+        //         setErrors(errors => [...errors, 'Please enter a valid image link']);
+        //         return;
+        //     }
+        //   } catch (error) {
+        //     setErrors(errors => [...errors, 'Please enter a valid image link']);
+        //     return;
+        // }
         dispatch(createProductThunk({ProductData, imgData}))
         .then(() => history.push("/"))
         .catch(async (res) => {
@@ -194,14 +194,13 @@ const AddProduct = () => {
             <label>
                 Image
             <input className="size-form"
-            type="text"
+            type="url"
             value={image}
             placeholder="Image"
-            maxLength={255}
+            required
             onChange={(e) => {
                 setImage(e.target.value)
             }}
-            required
 
             ></input>
             </label>

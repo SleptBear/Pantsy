@@ -38,7 +38,7 @@ function AllProducts() {
                         return (
                             <div>
                     <img className='preview-image' src={pic?.image} alt="image not found"></img>
-                        <p className="nameprice">{name}, {price}</p>
+                        <p className="nameprice"> $ {price}</p>
                         </div>)})}
                     </div>
                     </NavLink>
