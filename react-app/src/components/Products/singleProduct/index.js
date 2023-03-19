@@ -38,7 +38,7 @@ function Product () {
 
             <div>
                 {user && user.id ? (
-                    <button
+                    <button className="add-to-cart"
                     onClick={() => dispatch(addToCartThunk( user.id,id.id)).then(() => history.push('/cart'))}
                     > ADD TO CART </button>
                 ): null }
