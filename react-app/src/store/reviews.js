@@ -29,8 +29,8 @@ const deleteReview = (reviewId) => ({
 //THUNKS
 export const addReviewThunk = (id, review) => async (dispatch) => {
 
-    console.log("REVIEW", review)
-    console.log("ID", id)
+    // console.log("REVIEW", review)
+    // console.log("ID", id)
     const response = await fetch(`/api/products/${id}/reviews` , {
         method: 'POST',
         headers: {
@@ -43,7 +43,7 @@ export const addReviewThunk = (id, review) => async (dispatch) => {
             rating: review.rating
         })
     })
-    console.log("RESPONSE", response)
+    // console.log("RESPONSE", response)
     if (response.ok) {
         const review = await response.json();
         dispatch(addReview(review))

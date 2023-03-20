@@ -10,7 +10,7 @@ function AllProducts() {
     const user = useSelector(state => state.session.user)
     const products = useSelector(state => state.productsReducer.allProducts)
     const productsArr = Object.values(products || [])
-    console.log("USER", user)
+    // console.log("USER", user)
     // console.log("productsArr", products)
 
     useEffect(() => {

@@ -39,10 +39,10 @@ export const createCartThunk = (userId) => async (dispatch) => {
         },
         body: JSON.stringify(userId)
     })
-    console.log("RESPONSE ======>", response)
+    // console.log("RESPONSE ======>", response)
     if (response.ok) {
         const data = await response.json()
-        console.log("DATA=======>", data)
+        // console.log("DATA=======>", data)
         dispatch(createCart(data))
     }
 
@@ -90,7 +90,7 @@ export const deleteCartThunk = (userId,productid) => async (dispatch) => {
         },
         body: JSON.stringify(productid)
     })
-    console.log("RESPONSE", response)
+    // console.log("RESPONSE", response)
     if (response.ok) {
         const data = await response.json()
         dispatch(deleteCart(data))

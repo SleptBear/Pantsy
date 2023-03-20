@@ -18,7 +18,7 @@ export const Reviews = () => {
     const reviews = Object.values(reviewsObj)
     const [errors, setErrors] = useState([])
     const [showForm, setShowForm] = useState(false)
-    console.log("REVIEW", reviewsObj)
+    // console.log("REVIEW", reviewsObj)
     useEffect(() => {
         dispatch(readReviewThunk(ID))
     }, [dispatch])
