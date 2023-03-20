@@ -23,7 +23,7 @@
   font-weight: lighter;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   border-radius: 5%;
-  position: absolute; /* Add this line */
+  position: absolute;
 }
 
 .hidden {
