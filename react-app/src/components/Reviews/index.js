@@ -27,8 +27,8 @@ export const Reviews = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         setErrors([])
-        if (!review) {
-            setErrors(["Please enter a review"])
+        if (!review || review.length < 3) {
+            setErrors(["Please enter a valid review with at least 3 charachters"])
             setTimeout(() => {
                 setErrors([])
             }, 2000)
@@ -85,7 +85,7 @@ export const Reviews = () => {
     return (
         <div>
           <div className='reviewmaincontainer'>
-
+          <h2>{Object.values(reviewsObj).length} Product Reviews <i className="fa-solid fa-star"></i>{avgReview()} </h2>
           {reviews.reverse().map(({ id, review, rating, user_id }) => {
             return (
               <div key={id} className="review-card">
