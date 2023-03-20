@@ -182,7 +182,7 @@ You can test some features without logging in, but to test all of them please lo
 ![image](https://user-images.githubusercontent.com/107887726/226251520-a7715bb8-ea8d-488f-bec3-9149b089b73e.png)
 
 ## Create a pants listing:
-![image](https://user-images.githubusercontent.com/107887726/226251688-fa3a9b3e-c78c-40dc-8e3c-64d360fafecd.png)
+![image](https://user-images.githubusercontent.com/107887726/226253197-0ad89985-ae2d-417e-aa23-e557a8e51b51.png)
 
 
 ## Read details of pants:
