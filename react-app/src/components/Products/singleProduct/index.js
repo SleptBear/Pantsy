@@ -29,39 +29,40 @@ function Product () {
 
     return (
         <div className="mainProductDetail">
-            <div>
-            <p>{productDetail.name} </p>
-            <p>Price:{productDetail.price}</p>
+            <div className="product-detail">
+
+            <div className="text">
+            <h2>{productDetail.name} </h2>
+            <h2>Price: $ {productDetail.price}</h2>
+            <h2> SIZE: {productDetail.size}  </h2>
+            <h2>COLOR: {productDetail.color}</h2>
             </div>
 
             <div>
             </div>
-
-            <div>
+                    <div className="description-detail">
+                        <h3> Description:</h3>
+                        <p>{productDetail.description}</p>
+                    </div>
+            <div className="addtocart">
                 {user && user.id ? (
                     <button className="add-to-cart"
                     onClick={() => dispatch(addToCartThunk( user.id,id.id)).then(() => history.push('/cart'))}
-                    > ADD TO CART </button>
-                ): null }
+                    > Add To Cart </button>
+                    ): null }
             </div>
-            <div>
+                </div>
+                <div className="imageandreviews">
 
-            </div>
-            <div>
-                <h3> Description:</h3>
-                    <p>{productDetail.description}</p>
-                        
-            </div>
             <div className="product-images">
                 {productDetail.productImages.map(image => {
-                 return <img src={image.image} alt="image not found"></img>
+                    return <img src={image.image} alt="image not found"></img>
                 })}
-                <p> SIZE: {productDetail.size}  COLOR: {productDetail.color}</p>
             </div>
             {/* {console.log("USER", user?.id)}
             {console.log("SELLER", productDetail?.seller?.id)} */}
             {user && productDetail.seller?.id === user?.id ? (
-            <div>
+                <div className="product-button">
                 <button
                 className="deletebutton"
                 onClick={() =>
@@ -78,6 +79,7 @@ function Product () {
             ) : null}
             <div>
                 <Reviews />
+            </div>
             </div>
         </div>
     )

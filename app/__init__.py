@@ -53,8 +53,8 @@ def get_search(search):
         (Product.name.ilike(f'%%{search}%%')) |
         (Product.size.ilike(f'%%{search}%%')) |
         (Product.color.ilike(f'%%{search}%%')) |
-        (Product.category.ilike(f'%%{search}%%')) |
-        (Product.price.like(f'%%{search}%%'))
+        (Product.category.ilike(f'%%{search}%%'))
+        # (Product.price.like(f'%%{search}%%'))
     ).all()
     query_dict = [q.to_dict() for q in search_result]
     return query_dict, 200

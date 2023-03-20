@@ -128,7 +128,7 @@ export const editProductThunk = (currentProductID, editedProduct, imgData) => as
 }
 
 export const deleteProductThunk = (id) => async (dispatch) => {
-    console.log("ID", id)
+    // console.log("ID", id)
     const response = await fetch(`/api/products/${id}`, {
         method: 'DELETE'
     })
@@ -151,7 +151,7 @@ export const productsReducer = (state = initialState, action) => {
                 allProductsCopy[product.id] = product
             })
             newState.allProducts = allProductsCopy
-            console.log("allproductscopy", allProductsCopy)
+            // console.log("allproductscopy", allProductsCopy)
             return newState
         case NEW_PRODUCT:
             newState = {...state}
@@ -161,7 +161,7 @@ export const productsReducer = (state = initialState, action) => {
             return newState
         case LOAD_ONE_PRODUCT:
             newState = {...state}
-            console.log("Action", action)
+            // console.log("Action", action)
             newState.singleProduct = action.payload
             return newState
         case EDIT_PRODUCT:

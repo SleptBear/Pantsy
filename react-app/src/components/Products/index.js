@@ -10,7 +10,7 @@ function AllProducts() {
     const user = useSelector(state => state.session.user)
     const products = useSelector(state => state.productsReducer.allProducts)
     const productsArr = Object.values(products || [])
-    console.log("USER", user)
+    // console.log("USER", user)
     // console.log("productsArr", products)
 
     useEffect(() => {
@@ -24,7 +24,7 @@ function AllProducts() {
     return (
         <div>
             {user && (
-                <h1 className="welcomebanner">Welcome to Pantsy, {user?.username}</h1>
+                <h1 className="welcomebanner">Welcome to Pantsy, <span className="username">{user?.username}</span></h1>
 
             )}
 
@@ -38,7 +38,7 @@ function AllProducts() {
                         return (
                             <div>
                     <img className='preview-image' src={pic?.image} alt="image not found"></img>
-                        <p className="nameprice">{name}, {price}</p>
+                        <p className="nameprice"> $ {price}</p>
                         </div>)})}
                     </div>
                     </NavLink>

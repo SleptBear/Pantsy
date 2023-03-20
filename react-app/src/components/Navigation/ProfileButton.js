@@ -50,8 +50,8 @@ function ProfileButton({ user }) {
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li>{user.username}</li>
-            <li>{user.email}</li>
+            <li className="li">{user.username}</li>
+            <li className="li">{user.email}</li>
             <li>
         		<NavLink className="add-button"exact to='/new'>Add an Item</NavLink>
       			</li>
@@ -59,12 +59,13 @@ function ProfileButton({ user }) {
         		<NavLink className="order-button"exact to='/orders'>Orders</NavLink>
       			</li>
             <li>
-              <button onClick={handleLogout}>Log Out</button>
+              <button className="logoutbutton" onClick={handleLogout}>Log Out</button>
             </li>
           </>
         ) : (
           <>
             <OpenModalButton
+              
               buttonText="Log In"
               onItemClick={closeMenu}
               modalComponent={<LoginFormModal />}

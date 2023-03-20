@@ -2,3 +2,36 @@
     height: 250px;
     width: 250px;
 }
+
+.checkoutbutton {
+    background-color: #35cc07;
+    border-radius: 4px;
+    border: none;
+    color: #FFFFFF;
+    font-size: 18px;
+    padding: 8px 18px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+.cartdeletebutton {
+    background-color: #fc3239;
+    border-radius: 4px;
+    border: none;
+    color: #FFFFFF;
+    font-size: 12px;
+    padding: 6px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.checkoutbutton:hover {
+    background-color: #099b09;
+    cursor: pointer;
+}
+
+.cartdeletebutton:hover {
+    background-color: #9b2609;
+    cursor: pointer;
+}
