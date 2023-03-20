@@ -1,10 +1,11 @@
 .addproductform {
     display: flex;
+    justify-content: center;
     flex-direction: column;
     padding:15px;
 }
 
-label {
+.namelabel .descriptionlabel .pricelabel .categorylabel .colorlabel .sizelabel .imagelabel{
 display: flex;
 flex-direction: column;
 align-items: flex-start;
@@ -12,7 +13,9 @@ margin-bottom: 10px;
 width: 100%;
 }
 
-input {
+.name-form .description-form .price-form .category-form .color-form .size-form{
+display: flex;
+flex-direction: column;
 width: 100%;
 padding: 8px;
 border: 1px solid #ccc;
