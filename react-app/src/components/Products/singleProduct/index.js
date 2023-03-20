@@ -41,7 +41,7 @@ function Product () {
                 {user && user.id ? (
                     <button className="add-to-cart"
                     onClick={() => dispatch(addToCartThunk( user.id,id.id)).then(() => history.push('/cart'))}
-                    > ADD TO CART </button>
+                    > Add To Cart </button>
                 ): null }
             </div>
             <div>
@@ -50,7 +50,7 @@ function Product () {
             <div>
                 <h3> Description:</h3>
                     <p>{productDetail.description}</p>
-                        
+
             </div>
             <div className="product-images">
                 {productDetail.productImages.map(image => {

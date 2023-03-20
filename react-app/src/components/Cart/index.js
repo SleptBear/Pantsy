@@ -68,7 +68,7 @@ const Cart = () => {
             {productimages?.map(image => (
               <img className="cart-image" src={image.image} alt="no image" key={image.id} />
             ))}
-            <button onClick={() => handleDeleteItem(id, price)}>Delete</button>
+            <button className="cartdeletebutton"onClick={() => handleDeleteItem(id, price)}>Delete</button>
           </div>
         )
       })}
@@ -77,7 +77,7 @@ const Cart = () => {
       </div>
       <div>
       <div>
-      <button onClick={handleCheckout}>CheckOut</button>
+      <button className="checkoutbutton"onClick={handleCheckout}>CheckOut</button>
     </div>
       </div>
     </div>
