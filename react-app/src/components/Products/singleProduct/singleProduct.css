@@ -3,18 +3,19 @@
     justify-content: space-between;
     flex-direction: row-reverse;
   }
-  
+
   .imageandreviews .img{
     width: 50%;
     float: left;
-   
+
   }
   .product-detail {
     width: 40%;
     float: right;
   }
   .description-detail {
-
+    overflow-wrap: normal;
+    height: 200px;
   }
 
   .product-images img{

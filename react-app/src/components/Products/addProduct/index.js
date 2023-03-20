@@ -134,7 +134,7 @@ const AddProduct = () => {
             type="text"
             value={description}
             placeholder="Description"
-            maxLength={50}
+            maxLength={255}
             onChange={(e) => {
                 setDescription(e.target.value)
             }}
