@@ -3,17 +3,19 @@
     justify-content: center;
     flex-direction: column;
     padding:15px;
+    max-width: 500px;
+    width: 350px;
 }
 
-.namelabel .descriptionlabel .pricelabel .categorylabel .colorlabel .sizelabel .imagelabel{
+/* .namelabel .descriptionlabel .pricelabel .categorylabel .colorlabel .sizelabel .imagelabel{
 display: flex;
 flex-direction: column;
 align-items: flex-start;
 margin-bottom: 10px;
 width: 100%;
-}
+} */
 
-.name-form .description-form .price-form .category-form .color-form .size-form{
+/* .name-form .description-form .price-form .category-form .color-form .size-form{
 display: flex;
 flex-direction: column;
 width: 100%;
@@ -22,7 +24,7 @@ border: 1px solid #ccc;
 border-radius: 4px;
 box-sizing: border-box;
 margin-top: 5px;
-}
+} */
 
 .submit-form {
     background-color: #FF5A5F;
@@ -34,9 +36,126 @@ margin-top: 5px;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin-right: 8px; /* add some spacing between the buttons */
+    margin-right: 8px;
+
 }
 
+
 .submit-form:hover {
-    background-color: #FF5A5F;
+    background-color: #aa0f14;
+}
+
+.addproductmain {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.namelabel  {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.descriptionlabel {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    height: fit-content;
+
+}
+
+.pricelabel {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.categorylabel {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.colorlabel {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.sizelabel {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.imagelabel {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.name-form {
+    border-radius: 10px;
+    width: 100%;
+    padding: 10px;
+}
+
+.description-form {
+    border-radius: 10px;
+    width: 100%;
+    padding: 10px;
+    border: 2px solid black;
+
+    max-width: 450px;
+    max-height: 200px;
+}
+
+.price-form {
+    border-radius: 10px;
+    width: 100%;
+    padding: 10px;
+}
+
+.category-form {
+    border-radius: 10px;
+    width: 100%;
+    padding: 10px;
+}
+
+.color-form {
+    border-radius: 10px;
+    width: 100%;
+    padding: 10px;
+}
+
+.size-form {
+    border-radius: 10px;
+    width: 100%;
+    padding: 10px;
 }
