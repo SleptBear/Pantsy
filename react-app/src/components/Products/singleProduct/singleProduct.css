@@ -14,3 +14,15 @@
     background-color: #099b09;
     cursor: pointer;
 }
+
+.product-button button {
+    background-color: #f7f7f7;
+    border: 1px solid #d3d3d3;
+    color: #666;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 10px 15px;
+    border-radius: 4px;
+    transition: all 0.2s ease-in-out;
+    outline: none;
+}

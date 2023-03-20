@@ -61,7 +61,7 @@ function Product () {
             {/* {console.log("USER", user?.id)}
             {console.log("SELLER", productDetail?.seller?.id)} */}
             {user && productDetail.seller?.id === user?.id ? (
-            <div>
+            <div className="product-button">
                 <button
                 className="deletebutton"
                 onClick={() =>
