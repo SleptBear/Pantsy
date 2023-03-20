@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from 'react-router-dom'
 import { readReviewThunk, addReviewThunk, deleteReviewThunk } from '../../store/reviews'
+import './review.css'
 
 export const Reviews = () => {
     const dispatch = useDispatch()
@@ -81,16 +82,15 @@ export const Reviews = () => {
     }
     return (
         <div>
-          {/* <h2>Reviews</h2> */}
-          <h2>{Object.values(reviewsObj).length} Shop Reviews <i className="fa-solid fa-star"></i>{avgReview()} </h2>
-          {reviews.map(({ id, review, rating, user_id }) => {
+          <h2>Reviews</h2>
+          {reviews.reverse().map(({ id, review, rating, user_id }) => {
             return (
-              <div key={id}>
-                <p>Review: {review}</p>
-                <p>Rating: {rating}</p>
+              <div key={id} className="review-card">
+                <p className='review-text'>{review}</p>
+                <p className='review-rating'>{rating}</p>
                 {user_id === userId && (
                   <button
-                    className="delete button"
+                    className="delete-review-button"
                     onClick={() =>
                       dispatch(deleteReviewThunk(id)).then(() => {
                         dispatch(readReviewThunk(ID));
@@ -104,7 +104,7 @@ export const Reviews = () => {
             );
           })}
           <div>
-            {console.log("REVIEWSOBJ", reviewsObj)}
+            {/* {console.log("REVIEWSOBJ", reviewsObj)} */}
             {user && sellerObj?.id !== userId ? (
               userHasReview ? null : (
                 showForm ? (
@@ -146,10 +146,10 @@ export const Reviews = () => {
                         Submit
                       </button>
                     </form>
-                    <button onClick={() => setShowForm(false)}>Cancel</button>
+                    <button className="cancelbutton" onClick={() => setShowForm(false)}>Cancel</button>
                   </div>
                 ) : (
-                  <button onClick={() => setShowForm(true)}>Add a Review</button>
+                  <button className="add-review-btn" onClick={() => setShowForm(true)}>Add a Review</button>
                 )
               )
             ) : (

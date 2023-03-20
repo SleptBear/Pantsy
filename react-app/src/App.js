@@ -54,11 +54,22 @@ function App() {
           <Route exact path='/search'>
             <Search />
           </Route>
-
+          <Route path="*">
+            <NotFound />
+          </Route>
         </Switch>
       )}
       <Footer/>
     </>
+  );
+}
+
+function NotFound() {
+  return (
+    <div>
+      <h1>404 Incorrect</h1>
+      <p>Sorry, the page you are looking for doesn't exist.</p>
+    </div>
   );
 }
 

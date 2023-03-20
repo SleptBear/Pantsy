@@ -1,0 +1,121 @@
+.review-card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: #f9f9f9;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    height: 140px;
+    max-height: fit-content;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+  .review-rating {
+    align-items: center;
+    display: flex;
+    margin-bottom: 10px;
+  }
+
+  .review-rating::before {
+    color: #f5a623;
+    content: "★";
+    font-size: 20px;
+    margin-right: 5px;
+  }
+
+  .review-text {
+    font-size: 14px;
+    max-height: 100px; /* Set a maximum height that's slightly larger than the expected height of the text */
+    line-height: 1.5;
+    overflow: auto;
+    padding: 10px;
+    word-break: break-word;
+  }
+
+
+  .reviewsform {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    max-width: 400px;
+    padding: 20px;
+  }
+
+  .reviewtextbox {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    height: 100px;
+    margin-bottom: 10px;
+    padding: 10px;
+    resize: none;
+  }
+
+  .rating {
+    appearance: none;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    height: 40px;
+    margin-bottom: 10px;
+    padding: 10px;
+  }
+
+  .submitbutton {
+    background-color: #f5a623;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    height: 40px;
+    margin-bottom: 10px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  .submitbutton:hover {
+    background-color: #ff9800;
+  }
+
+  .add-review-btn {
+    background-color: #f7f7f7;
+    border: 1px solid #d3d3d3;
+    color: #666;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 10px 15px;
+    border-radius: 4px;
+    transition: all 0.2s ease-in-out;
+    outline: none;
+  }
+
+  .delete-review-button {
+    /* border: 2px red solid; */
+    text-decoration: underline;
+    background-color: transparent;
+    border: none;
+  }
+
+  .delete-review-button:hover {
+    color: #f44336;
+  }
+
+
+  .cancelbutton {
+    background-color: #f7f7f7;
+    border: 1px solid #d3d3d3;
+    color: #666;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 10px 15px;
+    border-radius: 4px;
+    transition: all 0.2s ease-in-out;
+    outline: none;
+  }
