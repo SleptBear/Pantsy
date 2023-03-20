@@ -37,8 +37,6 @@ function Product () {
                 })}
                 <p> SIZE: {productDetail.size}  COLOR: {productDetail.color}</p>
             </div>
-            {/* {console.log("USER", user?.id)}
-            {console.log("SELLER", productDetail?.seller?.id)} */}
             {user && productDetail.seller?.id === user?.id ? (
                 <div>
                 <button
@@ -58,7 +56,6 @@ function Product () {
             <div>
                 <Reviews />
             </div>
-        </div>
             <div className="main-right">
 
             <div>
@@ -84,6 +81,7 @@ function Product () {
                     <p>{productDetail.description}</p>
 
             </div>
+                    </div>
                     </div>
                     </div>
     )

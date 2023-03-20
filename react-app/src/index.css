@@ -93,7 +93,7 @@ footer {
 
   .main-left {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
   }
   .main-right {
     display: flex;
