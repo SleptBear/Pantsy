@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from 'react-router-dom'
 import { readReviewThunk, addReviewThunk, deleteReviewThunk } from '../../store/reviews'
+import TrashIcon from '../Icons/trashcan'
+import './review.css'
 
 export const Reviews = () => {
     const dispatch = useDispatch()
@@ -16,7 +18,7 @@ export const Reviews = () => {
     const reviews = Object.values(reviewsObj)
     const [errors, setErrors] = useState([])
     const [showForm, setShowForm] = useState(false)
-
+    // console.log("REVIEW", reviewsObj)
     useEffect(() => {
         dispatch(readReviewThunk(ID))
     }, [dispatch])
@@ -25,8 +27,8 @@ export const Reviews = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         setErrors([])
-        if (!review) {
-            setErrors(["Please enter a review"])
+        if (!review || review.length < 3) {
+            setErrors(["Please enter a valid review with at least 3 charachters"])
             setTimeout(() => {
                 setErrors([])
             }, 2000)
@@ -66,31 +68,50 @@ export const Reviews = () => {
             return null;
         }
     }
+
+    const avgReview = () => {
+      console.log("REVIEWOBJ==========>", Object.values(reviewsObj))
+      let reviewsArray = Object.values(reviewsObj)
+      if (reviewsArray.length === 0 ) return null
+      let ratingsArray = []
+      reviewsArray.forEach(review => {
+        ratingsArray.push(review.rating)
+      })
+      let initialValue = 0
+      let avgRating = ratingsArray.reduce((a, b) => a + b, initialValue);
+
+      return(avgRating/ratingsArray.length).toFixed(2)
+    }
     return (
         <div>
-          <h2>Reviews</h2>
-          {reviews.map(({ id, review, rating, user_id }) => {
+          <div className='reviewmaincontainer'>
+          <h2>{Object.values(reviewsObj).length} Product Reviews <i className="fa-solid fa-star"></i>{avgReview()} </h2>
+          {reviews.reverse().map(({ id, review, rating, user_id }) => {
             return (
-              <div key={id}>
-                <p>Review: {review}</p>
-                <p>Rating: {rating}</p>
+              <div key={id} className="review-card">
+                <div className="bottom-review">
+
+                <p className='review-rating'>{rating}</p>
                 {user_id === userId && (
                   <button
-                    className="delete button"
-                    onClick={() =>
-                      dispatch(deleteReviewThunk(id)).then(() => {
-                        dispatch(readReviewThunk(ID));
-                      })
-                    }
+                  className="delete-review-button"
+                  onClick={() =>
+                    dispatch(deleteReviewThunk(id)).then(() => {
+                      dispatch(readReviewThunk(ID));
+                    })
+                  }
                   >
-                    Delete
+                    <TrashIcon />
                   </button>
                 )}
+                </div>
+                <p className='review-text'>{review}</p>
               </div>
             );
           })}
+          </div>
           <div>
-            {console.log("REVIEWSOBJ", reviewsObj)}
+            {/* {console.log("REVIEWSOBJ", reviewsObj)} */}
             {user && sellerObj?.id !== userId ? (
               userHasReview ? null : (
                 showForm ? (
@@ -132,10 +153,10 @@ export const Reviews = () => {
                         Submit
                       </button>
                     </form>
-                    <button onClick={() => setShowForm(false)}>Cancel</button>
+                    <button className="cancelbutton" onClick={() => setShowForm(false)}>Cancel</button>
                   </div>
                 ) : (
-                  <button onClick={() => setShowForm(true)}>Add a Review</button>
+                  <button className="add-review-btn" onClick={() => setShowForm(true)}>Add a Review</button>
                 )
               )
             ) : (

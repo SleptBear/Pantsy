@@ -77,16 +77,23 @@ const AddProduct = () => {
             return
         }
         try {
-            const response = await fetch(image, { method: 'HEAD' });
-            const contentType = response.headers.get('content-type');
-            if (!contentType || !contentType.startsWith('image/')) {
-                setErrors(errors => [...errors, 'Please enter a valid image link']);
-                return;
-            }
-          } catch (error) {
-            setErrors(errors => [...errors, 'Please enter a valid image link']);
+        const imageUrl = new URL(image)
+          if (imageUrl.protocol !== 'http:' && imageUrl.protocol !== 'https:') {
+            setErrors(errors => [...errors, 'Please enter a valid image link (http/https protocol)']);
             return;
-        }
+          }
+            } catch (error) {
+                  setErrors(errors => [...errors, 'Please enter a valid image link']);
+                  return;
+              }
+
+              //     const response = await fetch(image, { method: 'HEAD' });
+              //     const contentType = response.headers.get('content-type');
+              //     if (!contentType || !contentType.startsWith('image/')) {
+              //         setErrors(errors => [...errors, 'Please enter a valid image link']);
+              //         return;
+              //     }
+
         dispatch(createProductThunk({ProductData, imgData}))
         .then(() => history.push("/"))
         .catch(async (res) => {
@@ -107,7 +114,7 @@ const AddProduct = () => {
                 </li>
                 ))}
                 </ul>
-            <label>
+            <label className="namelabel">
                 Name
             <input className="name-form"
             type="text"
@@ -121,13 +128,13 @@ const AddProduct = () => {
 
             ></input>
             </label>
-            <label>
+            <label className="descriptionlabel">
                 Description
             <input className="description-form"
             type="text"
             value={description}
             placeholder="Description"
-            maxLength={50}
+            maxLength={255}
             onChange={(e) => {
                 setDescription(e.target.value)
             }}
@@ -135,7 +142,7 @@ const AddProduct = () => {
 
             ></input>
             </label>
-            <label>
+            <label className="pricelabel">
                 Price
             <input className="price-form"
             type="text"
@@ -149,7 +156,7 @@ const AddProduct = () => {
 
             ></input>
             </label>
-            <label>
+            <label className="categorylabel">
                 Category
             <input className="category-form"
             type="text"
@@ -163,7 +170,7 @@ const AddProduct = () => {
 
             ></input>
             </label>
-            <label>
+            <label className="colorlabel">
                 Color
             <input className="color-form"
             type="text"
@@ -177,7 +184,7 @@ const AddProduct = () => {
 
             ></input>
             </label>
-            <label>
+            <label className="sizelabel">
                 Size
             <input className="size-form"
             type="text"
@@ -191,17 +198,16 @@ const AddProduct = () => {
 
             ></input>
             </label>
-            <label>
+            <label className="imagelabel">
                 Image
             <input className="size-form"
-            type="text"
+            type="url"
             value={image}
             placeholder="Image"
-            maxLength={255}
+            required
             onChange={(e) => {
                 setImage(e.target.value)
             }}
-            required
 
             ></input>
             </label>

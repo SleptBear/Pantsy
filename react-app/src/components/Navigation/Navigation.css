@@ -1,10 +1,11 @@
 .Navbar {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   height: 100px;
   width: 100%;
   margin-top: -0.05%;
-  position: relative; /* Add this line */
+  /* position: relative; Add this line */
   z-index: 1;
 }
 
@@ -22,7 +23,7 @@
   font-weight: lighter;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   border-radius: 5%;
-  position: absolute; /* Add this line */
+  position: absolute;
 }
 
 .hidden {
@@ -31,15 +32,9 @@
 
 
 .add-button {
+  display: flex;
 
-
-  /* display: flex; */
-  margin-right: auto;
-  border-radius: 2px red solid;
-  /* display: flex; */
-  justify-content: flex-end;
-  /* width: 700%; */
-
+  margin-left: auto;
 }
 
 .add-button:hover {
@@ -49,6 +44,7 @@
 .order-button:hover {
   background-color: #b6b6b6;
 }
+
 
 .home-button {
   display: flex;
@@ -60,9 +56,12 @@
 }
 
 .cart-button {
-  display: flex;
 
-  margin-left: auto;
+  display: flex;
+  justify-content: center;
+  /* margin-left: auto; */
+  width: 500%;
+  font-size: 22px;
 }
 
 .order-button {
@@ -71,13 +70,7 @@
   margin-left: auto;
 }
 
-.leftsidebuttons {
-  display: flex;
-  width: 100%;
-  justify-content: flex-end;
-  margin: 25px;
-  gap: 25px;
-}
+
 
 /* .profilebuttonimage {
   border-radius: 10px;
@@ -100,9 +93,68 @@
 }
 
 .profile-dropdown button {
-padding: 5px;
+padding: 10px;
+margin: 5px;
 background-color: #ccc;
 color: #fff;
 border: none;
 cursor: pointer;
+}
+
+.profile-dropdown button:hover {
+  background-color: rgb(242, 240, 132);
+}
+.nav-search {
+  border: 2px solid black;
+  border-radius: 20px;
+  gap: 10px;
+  display: flex;
+  align-items: center;
+  height: 40px;
+  width: 60%;
+}
+.search-bar{
+
+  display: flex;
+  justify-content: center;
+  width: 97%;
+  margin-left: 5px;
+  padding-left: 5px;
+
+}
+
+.inputbar {
+  border: none;
+  width: 95%;
+  height: 20px;
+  outline: none;
+
+  font-family: 'Oxygen', sans-serif;
+  font-size: 17px;
+}
+
+.searchbutton {
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  align-items: center;
+
+ border: none;
+ font-size: 22px;
+}
+
+.logoutbutton {
+  background-color: #fc3239 !important;
+  border-radius: 4px !important;
+  border: none !important;
+  color: #FFFFFF !important;
+  font-size: 12px !important;
+  padding: 6px 16px !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+}
+
+.logoutbutton:hover {
+  background-color: #aa0006 !important;
 }
