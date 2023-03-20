@@ -72,6 +72,7 @@ export const Reviews = () => {
     const avgReview = () => {
       console.log("REVIEWOBJ==========>", Object.values(reviewsObj))
       let reviewsArray = Object.values(reviewsObj)
+      if (reviewsArray.length === 0 ) return null
       let ratingsArray = []
       reviewsArray.forEach(review => {
         ratingsArray.push(review.rating)
