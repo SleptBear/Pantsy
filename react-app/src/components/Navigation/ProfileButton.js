@@ -59,7 +59,7 @@ function ProfileButton({ user }) {
         		<NavLink className="order-button"exact to='/orders'>Orders</NavLink>
       			</li>
             <li>
-              <button onClick={handleLogout}>Log Out</button>
+              <button className="logoutbutton" onClick={handleLogout}>Log Out</button>
             </li>
           </>
         ) : (
