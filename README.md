@@ -54,17 +54,8 @@ This is the starter for the Flask React project.
 
    ```
    pipenv shell
-   ```
-
-   ```
    flask db upgrade
-   ```
-
-   ```
    flask seed all
-   ```
-
-   ```
    flask run
    ```
 
