@@ -48,8 +48,8 @@ def seed_productImages():
             image_url = 'https://metro.co.uk/wp-content/uploads/2015/01/image1xxl.jpg?quality=90&strip=all'
         elif product.id == 22:
             image_url = 'https://metro.co.uk/wp-content/uploads/2015/01/image1xxl.jpg?quality=90&strip=all'
-        elif product.id == 00:
-            image_url = ''
+        # elif product.id == 00:
+        #     image_url = ''
         else:
             # If I want to add more, add more condition seeders here
             continue
