@@ -14,18 +14,26 @@ function Product () {
     const { closeModal } = useModal()
     const id = useParams()
     const productDetail = useSelector(state => state.productsReducer.singleProduct)
+    console.log("PRODUCTDETAIL", productDetail)
     const user = useSelector(state => state.session.user)
     const history = useHistory()
     // console.log('SELLER', productDetail.seller.id)
     // console.log('USER', user)
+    console.log('USER', Object.values(productDetail))
     useEffect(() => {
         dispatch(singleProductThunk(id.id))
     }, [dispatch])
 
+    if(Object.values(productDetail).length === 0) {
+        return <div>
+            <h1>404 Not Found</h1>
+            <p>Sorry, the page you are looking for doesn't exist.</p>
+        </div>
+    }
+
     if(!productDetail.productImages) {
         return null
     }
-
 
     return (
         <div className="mainProductDetail">

@@ -48,6 +48,10 @@ const Cart = () => {
     setTotalPrice(prevPrice => prevPrice - itemPrice)
   }
 
+  if(cartItemCount === 0) {
+    return <p>You have no items in your cart</p>
+  }
+  
   const handleCheckout = async () => {
     try {
       await dispatch(addOrderThunk(user.id));

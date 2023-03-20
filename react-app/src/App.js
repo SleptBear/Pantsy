@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
@@ -65,9 +65,10 @@ function App() {
 }
 
 function NotFound() {
+
   return (
     <div>
-      <h1>404 Incorrect</h1>
+      <h1>404 Not Found</h1>
       <p>Sorry, the page you are looking for doesn't exist.</p>
     </div>
   );
