@@ -19,7 +19,9 @@ To check out the live version of our website, simply follow this link: https://p
 
 ### This repo is being build and updated by:
 https://github.com/SleptBear
-
+https://github.com/dro14848
+https://github.com/sfazli96
+https://github.com/Vian-K
 
 ## Demo User:
    - A demo user is available in login dropdown menu without need to sign up. Simply click on the "Demo User" button and it will log you in the Demo User.
@@ -30,43 +32,46 @@ https://github.com/SleptBear
 This is the starter for the Flask React project.
 
 ## Getting started
-1. Clone this repository (only this branch)
+1. Clone this repository (only main branch)
 
 2. Install dependencies
 
-      ```bash
+      ```
       pipenv install -r requirements.txt
       ```
 
 3. Create a **.env** file based on the example with proper settings for your
    development environment
+   ```
+   SECRET_KEY=<your secret key>
+   DATABASE_URL=sqlite:///dev.db
+   SCHEMA=flask_schema
+   ```
 
-4. Make sure the SQLite3 database connection URL is in the **.env** file
-
-5. This starter organizes all tables inside the `flask_schema` schema, defined
+6. This starter organizes all tables inside the `flask_schema` schema, defined
    by the `SCHEMA` environment variable.  Replace the value for
    `SCHEMA` with a unique name, **making sure you use the snake_case
    convention**.
 
-6. Get into your pipenv, migrate your database, seed your database, and run your Flask app
+7. Get into your pipenv, migrate your database, seed your database, and run your Flask app
 
-   ```bash
+   ```
    pipenv shell
    ```
 
-   ```bash
+   ```
    flask db upgrade
    ```
 
-   ```bash
+   ```
    flask seed all
    ```
 
-   ```bash
+   ```
    flask run
    ```
 
-7. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+8. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
 
 
 ## Deployment through Render.com
