@@ -18,10 +18,10 @@ To check out the live version of our website, simply follow this link: https://p
    - Hosting: Render
 
 ### This repo is being build and updated by:
-https://github.com/SleptBear
-https://github.com/dro14848
-https://github.com/sfazli96
-https://github.com/Vian-K
+- https://github.com/SleptBear
+- https://github.com/dro14848
+- https://github.com/sfazli96
+- https://github.com/Vian-K
 
 ## Demo User:
    - A demo user is available in login dropdown menu without need to sign up. Simply click on the "Demo User" button and it will log you in the Demo User.
