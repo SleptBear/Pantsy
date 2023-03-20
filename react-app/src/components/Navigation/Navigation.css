@@ -32,15 +32,9 @@
 
 
 .add-button {
+  display: flex;
 
-
-  /* display: flex; */
-  margin-right: auto;
-  border-radius: 2px red solid;
-  /* display: flex; */
-  justify-content: flex-end;
-  /* width: 700%; */
-
+  margin-left: auto;
 }
 
 .add-button:hover {
@@ -98,14 +92,18 @@
   word-break: break-word;
 }
 
-.profile-dropdown .button {
-padding: 5px;
+.profile-dropdown button {
+padding: 10px;
+margin: 5px;
 background-color: #ccc;
 color: #fff;
 border: none;
 cursor: pointer;
 }
 
+.profile-dropdown button:hover {
+  background-color: rgb(242, 240, 132);
+}
 .nav-search {
   border: 2px solid black;
   border-radius: 20px;
@@ -146,17 +144,17 @@ cursor: pointer;
 }
 
 .logoutbutton {
-  background-color: #fc3239;
-  border-radius: 4px;
-  border: none;
-  color: #FFFFFF;
-  font-size: 12px;
-  padding: 6px 16px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
+  background-color: #fc3239 !important;
+  border-radius: 4px !important;
+  border: none !important;
+  color: #FFFFFF !important;
+  font-size: 12px !important;
+  padding: 6px 16px !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  display: inline-block !important;
 }
 
 .logoutbutton:hover {
-  background-color: #aa0006;
+  background-color: #aa0006 !important;
 }
