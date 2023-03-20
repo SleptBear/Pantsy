@@ -98,6 +98,9 @@
     outline: none;
   }
 
+  .add-review-btn:hover {
+    background-color: #b6b6b6;
+  }
   .delete-review-button {
     /* border: 2px red solid; */
     display: flex;
