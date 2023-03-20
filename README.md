@@ -179,5 +179,57 @@ your site just below the name of the Web Service at the top of the page.
 [Render.com]: https://render.com/
 [Dashboard]: https://dashboard.render.com/
 
+#Features Directions:
+
+### Checkout the images below before examples of how to use the implemented features from this project! All features follow basic (full or partial) CRUD format.
+
+##Demo User/Log in
+You can test some features without logging in, but to test all of them please log in or utilize our demo user.
+![image](https://user-images.githubusercontent.com/107887726/226251345-d0a4b8c6-e4f6-4404-a512-996d17734b1b.png)
+
+##Sign up:
+![image](https://user-images.githubusercontent.com/107887726/226251439-82ef0822-0c37-46e9-8efa-7f7accf90e5c.png)
+
+## Search for pants:
+![image](https://user-images.githubusercontent.com/107887726/226251520-a7715bb8-ea8d-488f-bec3-9149b089b73e.png)
+
+## Create a pants listing:
+![image](https://user-images.githubusercontent.com/107887726/226251688-fa3a9b3e-c78c-40dc-8e3c-64d360fafecd.png)
+
+
+## Read details of pants:
+![image](https://user-images.githubusercontent.com/107887726/226251614-101172bd-839c-4180-8af8-50bac418a17e.png)
+
+## Edit/Delete a pant listing:
+![image](https://user-images.githubusercontent.com/107887726/226251887-15b414ae-6f8e-4402-a5b8-2e7ca39ae47f.png)
+
+## Read/Edit/Delete Shopping Cart:
+![image](https://user-images.githubusercontent.com/107887726/226252225-72115dcf-bba6-461c-acfd-e26e3c7e5a03.png)
+
+## Create Shopping Cart Item:
+![image](https://user-images.githubusercontent.com/107887726/226252342-0a8867b6-9191-4582-9d8a-bfb485714f1e.png)
+
+
+
+## Read/Create/Delete reviews:
+![image](https://user-images.githubusercontent.com/107887726/226252054-292e8ddf-4973-4414-bc49-c68580d5caf1.png)
+
+
+
+## Bonus Feature (404 page):
+![image](https://user-images.githubusercontent.com/107887726/226252363-da44fe3d-269b-403c-9e08-397b522c5002.png)
+
+Bonus Feature (Orders) Create/Read:
+![image](https://user-images.githubusercontent.com/107887726/226252486-8f3f3a58-838e-456e-bf13-3945f7a72ac1.png)
+![image](https://user-images.githubusercontent.com/107887726/226252501-2e33e670-b977-45aa-b7f9-e2de7aab9ccd.png)
+
+
+
+
+
+
+
+
+
 
 
