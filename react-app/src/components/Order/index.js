@@ -24,10 +24,10 @@ const Order = () => {
 
 
     const totalPrice = (order) => {
-      console.log("order", order)
+      // console.log("order", order)
       let total = 0.00
       order.products.forEach(product => {
-        console.log(product.price)
+        // console.log(product.price)
         total += Number(product.price)
       });
       return total
