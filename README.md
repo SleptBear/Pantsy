@@ -23,9 +23,6 @@ To check out the live version of our website, simply follow this link: https://p
 - https://github.com/sfazli96
 - https://github.com/Vian-K
 
-## Demo User:
-   - A demo user is available in login dropdown menu without need to sign up. Simply click on the "Demo User" button and it will log you in the Demo User.
-
 
 # Flask React Project
 
