@@ -4,6 +4,8 @@ import { NavLink, Switch, Route, useHistory } from 'react-router-dom'
 import { clearCartThunk, deleteCartThunk, loadCartThunk } from '../../store/cart'
 import { addOrderThunk } from '../../store/order'
 import "./cart.css"
+import "../Icons/trashcan"
+import TrashIcon from '../Icons/trashcan'
 
 const Cart = () => {
   const dispatch = useDispatch()
@@ -68,7 +70,11 @@ const Cart = () => {
             {productimages?.map(image => (
               <img className="cart-image" src={image.image} alt="no image" key={image.id} />
             ))}
-            <button className="cartdeletebutton"onClick={() => handleDeleteItem(id, price)}>Delete</button>
+            <div>
+            <button className="cartdeletebutton"onClick={() => handleDeleteItem(id, price)}><TrashIcon /></button>
+            </div>
+
+
           </div>
         )
       })}

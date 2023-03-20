@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from 'react-router-dom'
 import { readReviewThunk, addReviewThunk, deleteReviewThunk } from '../../store/reviews'
+import TrashIcon from '../Icons/trashcan'
 import './review.css'
 
 export const Reviews = () => {
@@ -17,7 +18,7 @@ export const Reviews = () => {
     const reviews = Object.values(reviewsObj)
     const [errors, setErrors] = useState([])
     const [showForm, setShowForm] = useState(false)
-
+    console.log("REVIEW", reviewsObj)
     useEffect(() => {
         dispatch(readReviewThunk(ID))
     }, [dispatch])
@@ -82,27 +83,32 @@ export const Reviews = () => {
     }
     return (
         <div>
-          <h2>Reviews</h2>
+          <div className='reviewmaincontainer'>
+
           {reviews.reverse().map(({ id, review, rating, user_id }) => {
             return (
               <div key={id} className="review-card">
-                <p className='review-text'>{review}</p>
+                <div className="bottom-review">
+
                 <p className='review-rating'>{rating}</p>
                 {user_id === userId && (
                   <button
-                    className="delete-review-button"
-                    onClick={() =>
-                      dispatch(deleteReviewThunk(id)).then(() => {
-                        dispatch(readReviewThunk(ID));
-                      })
-                    }
+                  className="delete-review-button"
+                  onClick={() =>
+                    dispatch(deleteReviewThunk(id)).then(() => {
+                      dispatch(readReviewThunk(ID));
+                    })
+                  }
                   >
-                    Delete
+                    <TrashIcon />
                   </button>
                 )}
+                </div>
+                <p className='review-text'>{review}</p>
               </div>
             );
           })}
+          </div>
           <div>
             {/* {console.log("REVIEWSOBJ", reviewsObj)} */}
             {user && sellerObj?.id !== userId ? (

@@ -7,10 +7,10 @@
     align-items: flex-start;
     background-color: #f9f9f9;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-    height: 140px;
-    max-height: fit-content;
-    overflow: hidden;
+    max-width: 500px;
+    height: 180px;
+    /* max-height: fit-content; */
+    /* overflow: hidden; */
     border-radius: 10px;
 }
 
@@ -28,10 +28,12 @@
   }
 
   .review-text {
-    font-size: 14px;
-    max-height: 100px; /* Set a maximum height that's slightly larger than the expected height of the text */
-    line-height: 1.5;
+    min-width: fit-content;
+    font-size: 16px;
+    height: 350px;
+    /* line-height: 1.5; */
     overflow: auto;
+
     padding: 10px;
     word-break: break-word;
   }
@@ -98,6 +100,9 @@
 
   .delete-review-button {
     /* border: 2px red solid; */
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
     text-decoration: underline;
     background-color: transparent;
     border: none;
@@ -118,4 +123,11 @@
     border-radius: 4px;
     transition: all 0.2s ease-in-out;
     outline: none;
+  }
+
+  .bottom-review {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
   }
