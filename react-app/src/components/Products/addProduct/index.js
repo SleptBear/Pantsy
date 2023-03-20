@@ -103,7 +103,7 @@ const AddProduct = () => {
     }
 
     return(
-        <div>
+        <div className= "addproductmain">
 
             <form className="addproductform" onSubmit={handleSubmit} noValidate>
                 <h1>Add a Product</h1>
@@ -130,17 +130,18 @@ const AddProduct = () => {
             </label>
             <label className="descriptionlabel">
                 Description
-            <input className="description-form"
-            type="text"
+            <textarea className="description-form"
+
             value={description}
-            placeholder="Description"
+
+            placeholder="Describe your product here"
             maxLength={255}
             onChange={(e) => {
                 setDescription(e.target.value)
             }}
             required
 
-            ></input>
+            ></textarea>
             </label>
             <label className="pricelabel">
                 Price
