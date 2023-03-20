@@ -37,16 +37,18 @@ def seed_productImages():
         elif product.id == 16:
             image_url = 'https://img.ltwebstatic.com/images3_pi/2021/11/11/1636607288630425494be09e3a9b3c3ff34040a01d_thumbnail_600x.webp'
         elif product.id == 17:
-            image_url = 'https://assets.ajio.com/medias/sys_master/root/h22/hb3/11845767397406/-473Wx593H-440872996-yellow-MODEL.jpg'
+            image_url = 'https://img.ltwebstatic.com/images3_pi/2021/11/11/1636607288630425494be09e3a9b3c3ff34040a01d_thumbnail_600x.webp'
         elif product.id == 18:
             image_url = 'https://assets.ajio.com/medias/sys_master/root/h22/hb3/11845767397406/-473Wx593H-440872996-yellow-MODEL.jpg'
         elif product.id == 19:
             image_url = 'https://assets.ajio.com/medias/sys_master/root/h22/hb3/11845767397406/-473Wx593H-440872996-yellow-MODEL.jpg'
         elif product.id == 20:
-            image_url = 'https://metro.co.uk/wp-content/uploads/2015/01/image1xxl.jpg?quality=90&strip=all'
+            image_url = 'https://assets.ajio.com/medias/sys_master/root/h22/hb3/11845767397406/-473Wx593H-440872996-yellow-MODEL.jpg'
         elif product.id == 21:
             image_url = 'https://metro.co.uk/wp-content/uploads/2015/01/image1xxl.jpg?quality=90&strip=all'
         elif product.id == 22:
+            image_url = 'https://metro.co.uk/wp-content/uploads/2015/01/image1xxl.jpg?quality=90&strip=all'
+        elif product.id == 23:
             image_url = 'https://metro.co.uk/wp-content/uploads/2015/01/image1xxl.jpg?quality=90&strip=all'
         # elif product.id == 00:
         #     image_url = ''
