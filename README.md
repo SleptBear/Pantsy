@@ -169,7 +169,7 @@ your site just below the name of the Web Service at the top of the page.
 
 #Features Directions:
 
-### Checkout the images below before examples of how to use the implemented features from this project! All features follow basic (full or partial) CRUD format.
+## Checkout the images below before examples of how to use the implemented features from this project! All features follow basic (full or partial) CRUD format.
 
 ##Demo User/Log in
 You can test some features without logging in, but to test all of them please log in or utilize our demo user.
