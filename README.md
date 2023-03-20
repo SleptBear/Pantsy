@@ -1,7 +1,9 @@
 # About Pantsy:
+![image](https://user-images.githubusercontent.com/107887726/226249916-3a4d27cf-5358-4a70-963e-95832edc630b.png)
+
 - Pantsy is an online e-commerce marketplace that focuses solely on pants, taking inspiration from the ecommerce website Etsy. Our platform provides users with the ability to easily sign up, log in, and create, edit, or delete their own product listings. Additionally, users can add items to their shopping cart and checkout, which will bring them to an orders page.
 
-To check out the live version of our website, simply follow this link: . Thank you for considering Pantsy for your pants-shopping needs!
+To check out the live version of our website, simply follow this link: https://pantsy.onrender.com/ . Thank you for considering Pantsy for your pants-shopping needs!
 
 
 ## Technologies used:
@@ -14,6 +16,10 @@ To check out the live version of our website, simply follow this link: . Thank y
    - CSS
    - Database: PostgreSQL
    - Hosting: Render
+
+### This repo is being build and updated by:
+https://github.com/SleptBear
+
 
 ## Demo User:
    - A demo user is available in login dropdown menu without need to sign up. Simply click on the "Demo User" button and it will log you in the Demo User.
