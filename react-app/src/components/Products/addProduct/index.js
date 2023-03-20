@@ -76,17 +76,24 @@ const AddProduct = () => {
             setErrors(errors => [...errors, 'Please include a image url'])
             return
         }
-        // try {
-        //     const response = await fetch(image, { method: 'HEAD' });
-        //     const contentType = response.headers.get('content-type');
-        //     if (!contentType || !contentType.startsWith('image/')) {
-        //         setErrors(errors => [...errors, 'Please enter a valid image link']);
-        //         return;
-        //     }
-        //   } catch (error) {
-        //     setErrors(errors => [...errors, 'Please enter a valid image link']);
-        //     return;
-        // }
+        try {
+        const imageUrl = new URL(image)
+          if (imageUrl.protocol !== 'http:' && imageUrl.protocol !== 'https:') {
+            setErrors(errors => [...errors, 'Please enter a valid image link (http/https protocol)']);
+            return;
+          }
+            } catch (error) {
+                  setErrors(errors => [...errors, 'Please enter a valid image link']);
+                  return;
+              }
+
+              //     const response = await fetch(image, { method: 'HEAD' });
+              //     const contentType = response.headers.get('content-type');
+              //     if (!contentType || !contentType.startsWith('image/')) {
+              //         setErrors(errors => [...errors, 'Please enter a valid image link']);
+              //         return;
+              //     }
+
         dispatch(createProductThunk({ProductData, imgData}))
         .then(() => history.push("/"))
         .catch(async (res) => {
