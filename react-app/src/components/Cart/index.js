@@ -48,10 +48,15 @@ const Cart = () => {
     setTotalPrice(prevPrice => prevPrice - itemPrice)
   }
 
-  if(cartItemCount === 0) {
-    return <p>You have no items in your cart</p>
+  if (cartItemCount === 0) {
+    return (
+      <div className="empty-cart">
+        <img className="image-gif" src="https://cdn.dribbble.com/users/5107895/screenshots/14532312/media/a7e6c2e9333d0989e3a54c95dd8321d7.gif" alt="Empty cart" />
+        <p className="empty-cart-message">Oops, your cart is empty! Time to go shopping.</p>
+      </div>
+    );
   }
-  
+
   const handleCheckout = async () => {
     try {
       await dispatch(addOrderThunk(user.id));
