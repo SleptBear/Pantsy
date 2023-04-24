@@ -47,7 +47,7 @@ footer {
     /* margin-top: auto; */
     width: 140%;
     margin-left: -22%;
-    
+
 
 
   }
@@ -84,4 +84,24 @@ footer {
 
   .dev a:hover {
     text-decoration: underline;
+  }
+
+  :root {
+    --background: #fff;
+    --primary: #000;
+  }
+
+  [data-theme='light'] {
+    --background: #fff;
+    --primary: #000;
+  }
+
+  [data-theme='dark'] {
+    --background: #282c34;
+    /* --primary: #fff; */
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--primary);
   }

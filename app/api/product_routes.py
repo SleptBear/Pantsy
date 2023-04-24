@@ -107,7 +107,7 @@ def removeProduct(id):
 @login_required
 def createReview(id):
     date = datetime.datetime.now()
-    print("DATE", date)
+    # print("DATE", date)
     data = request.get_json()
     form = ReviewForm()
     form['csrf_token'].data = request.cookies['csrf_token'] # makes a csrf_token in form object

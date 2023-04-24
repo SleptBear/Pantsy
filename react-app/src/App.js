@@ -10,9 +10,12 @@ import Product from "./components/Products/singleProduct";
 import AddProduct from "../src/components/Products/addProduct";
 import Cart from "./components/Cart"
 import Order from "./components/Order";
+import { ThemeProvider } from 'react-hook-theme';
+
 import Footer from "./components/Footer";
 import Search from "./components/Search";
 // import CreateOrder from "./components/CreateOrder"
+
 
 function App() {
   const dispatch = useDispatch();
@@ -23,6 +26,12 @@ function App() {
 
   return (
     <>
+    <ThemeProvider
+    options={{
+        theme: 'dark',
+        save: true,
+    }}
+    >
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
@@ -59,6 +68,7 @@ function App() {
           </Route>
         </Switch>
       )}
+      </ThemeProvider>
       <Footer/>
     </>
   );

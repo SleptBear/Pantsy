@@ -59,7 +59,7 @@
 
   display: flex;
   justify-content: center;
-  /* margin-left: auto; */
+  /* margin-left: auto;  */
   width: 500%;
   font-size: 22px;
 }
@@ -158,3 +158,32 @@ cursor: pointer;
 .logoutbutton:hover {
   background-color: #aa0006 !important;
 }
+
+
+[data-theme='dark'] {
+  --background: #212121;
+  --primary: #fff;
+}
+
+
+body {
+  background-color: var(--background);
+  color: var(--primary);
+}
+
+[data-theme='dark'] .NavBar {
+  background-color: #282c34;
+  color: #fff;
+}
+
+[data-theme='dark'] .profile-dropdown {
+  background-color: #282c34;
+  color: white;
+}
+
+[data-theme='dark'] .nav-search.dark-mode {
+  background-color: #282c34;
+  color: white;
+  border: none;
+}
+
