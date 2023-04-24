@@ -33,3 +33,12 @@
     width:90%;
   }
 }
+body {
+  background-color: var(--background);
+  color: var(--primary);
+}
+
+[data-theme='dark'] #modal-content{
+  background-color: #282c34;
+  color: white;
+}

@@ -1,0 +1,45 @@
+.form-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.form-label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.form-input {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  margin-top: 0.5rem;
+}
+
+.form-button {
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+
+.error-list {
+  color: red;
+  margin-bottom: 1rem;
+  list-style: none;
+  padding: 0;
+}
