@@ -187,3 +187,14 @@ body {
   border: none;
 }
 
+[data-theme='dark'] .nav-search {
+  background-color: #282c34;
+  color: white;
+  border: none;
+}
+
+[data-theme='dark'] .inputbar {
+  /* background-color: transparent; */
+  /* color: white; */
+  border: 1px solid;
+}
