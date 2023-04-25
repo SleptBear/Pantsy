@@ -208,7 +208,7 @@ const AddProduct = () => {
 
             ></input>
             </label>
-            <label className="sizelabel">
+            {/* <label className="sizelabel">
                 Size
             <input className="size-form"
             type="text"
@@ -221,7 +221,23 @@ const AddProduct = () => {
             required
 
             ></input>
+            </label> */}
+            <label className="sizelabel">
+                Size
+            <select className="size-form"
+                value={size}
+                onChange={(e) => {
+                setSize(e.target.value)
+                }}
+                required
+            >
+                <option value="">Select Size</option>
+                <option value="Small">Small</option>
+                <option value="Medium">Medium</option>
+                <option value="Large">Large</option>
+            </select>
             </label>
+
             {/* <label className="imagelabel">
                 Image
             <input className="size-form"
