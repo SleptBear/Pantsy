@@ -61,24 +61,30 @@ def  editProductImage(id):
 @productImages_routes.route("/", methods=["POST"])
 @login_required
 def upload_image():
-    if "image" not in request.files:
-        return jsonify({"errors": "image required"}), 400
+    form = ProductImagesForm()
 
-    image = request.files["image"]
+    if form.validate_on_submit():
 
-    if not allowed_file(image.filename):
-        return jsonify({"errors": "file type not permitted"}), 400
+        image = form.data["image"]
+        image.filename = get_unique_filename(image.filename)
+        upload = upload_file_to_s3(image)
 
-    image.filename = get_unique_filename(image.filename)
+        if "url" not in upload:
+        # if the dictionary doesn't have a url key
+        # it means that there was an error when we tried to upload
+        # so we send back that error message
+            return {"message": "there is a problem uploading photo, try again"}
 
-    upload = upload_file_to_s3(image)
+        url = upload["url"]
+        new_image = ProductImages(image= url)
+        db.session.add(new_image)
+        db.session.commit()
+        return {
+            'product_image': new_image.to_dict()
+        }
 
-    if "url" not in upload:
-        return jsonify(upload), 400
+    if form.errors:
+        print(form.errors)
+        return render_template("post_form.html", form=form, errors=form.errors)
 
-    url = upload["url"]
-    new_image = ProductImages(user=current_user, url=url)
-    db.session.add(new_image)
-    db.session.commit()
-
-    return jsonify({"url": url})
+    return render_template("post_form.html", form=form, errors=None)
