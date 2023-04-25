@@ -4,6 +4,7 @@ from app.forms import ProductImagesForm
 from flask_login import login_required, current_user
 from .awshelpers_routes import (
     upload_file_to_s3, allowed_file, get_unique_filename)
+from flask import jsonify
 
 productImages_routes = Blueprint('productImages', __name__)
 
@@ -62,29 +63,22 @@ def  editProductImage(id):
 @login_required
 def upload_image():
     form = ProductImagesForm()
-
+    form['csrf_token'].data = request.cookies['csrf_token']
+    print('form----', form)
     if form.validate_on_submit():
-
-        image = form.data["image"]
+        image = form.image.data
         image.filename = get_unique_filename(image.filename)
         upload = upload_file_to_s3(image)
 
         if "url" not in upload:
-        # if the dictionary doesn't have a url key
-        # it means that there was an error when we tried to upload
-        # so we send back that error message
-            return {"message": "there is a problem uploading photo, try again"}
+            return jsonify({"message": "There was a problem uploading the image file."}), 500
 
         url = upload["url"]
-        new_image = ProductImages(image= url)
+        new_image = ProductImages(image=url, product_id=form.product_id.data, previewImage=form.previewImage.data)
         db.session.add(new_image)
         db.session.commit()
-        return {
-            'product_image': new_image.to_dict()
-        }
 
-    if form.errors:
-        print(form.errors)
-        return render_template("post_form.html", form=form, errors=form.errors)
+        return jsonify({"product_image": new_image.to_dict()}), 201
 
-    return render_template("post_form.html", form=form, errors=None)
+    errors = {field.name: field.errors for field in form if field.errors}
+    return jsonify({"errors": errors}), 400

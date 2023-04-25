@@ -88,23 +88,23 @@ const AddProduct = () => {
         //           return;
         //       }
 
-        const formData = new FormData();
-        formData.append("image", image);
+        // const formData = new FormData();
+        // formData.append("image", image);
 
-        setImageLoading(true);
+        // setImageLoading(true);
 
-        const res = await fetch("/api/products/", {
-            method: "POST",
-            body: formData,
-        });
-        if (res.ok) {
-            await res.json();
-            setImageLoading(false);
-            history.push("/images");
-        } else {
-            setImageLoading(false);
-            console.log("error");
-        }
+        // const res = await fetch("/api/productImages/", {
+        //     method: "POST",
+        //     body: formData,
+        // });
+        // if (res.ok) {
+        //     await res.json();
+        //     setImageLoading(false);
+        //     history.push("/productImages");
+        // } else {
+        //     setImageLoading(false);
+        //     console.log("error");
+        // }
 
               //     const response = await fetch(image, { method: 'HEAD' });
               //     const contentType = response.headers.get('content-type');
@@ -244,7 +244,7 @@ const AddProduct = () => {
             />
             </label>
             <button className="submit-form" type="Submit" >Submit</button>
-            {imageLoading && <p>Loading...</p>}
+            {/* {imageLoading && <p>Loading...</p>} */}
             </form>
             {/* <button className="demo-add-item"
             onClick={() => dispatch(createProductThunk(({name: "Demo Pants",description: "This is a description",price: 19.99, category: "pants" , color: "Demo Color", size: "Demo Size", seller: user?.id},
