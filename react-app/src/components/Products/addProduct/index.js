@@ -61,12 +61,20 @@ const AddProduct = () => {
             setErrors(errors => [...errors, "Price must be a number"])
             return
         }
+        // if (category.length === 0 || category.length > 30) {
+        //     setErrors(errors => [...errors, "Please enter a valid category (less than 30 characters)"])
+        //     return
+        // }
         if (category.length === 0 || category.length > 30) {
-            setErrors(errors => [...errors, "Please enter a valid category (less than 30 characters)"])
+            setErrors(errors => [...errors, "Please select a category"])
             return
         }
+        // if (color.length === 0 || color.length > 20) {
+        //     setErrors(errors => [...errors, "Please enter a valid color (less than 20 characters)"])
+        //     return
+        // }
         if (color.length === 0 || color.length > 20) {
-            setErrors(errors => [...errors, "Please enter a valid color (less than 20 characters)"])
+            setErrors(errors => [...errors, "Please Select a color"])
             return
         }
         if (size.length === 0 || size.length > 15) {
@@ -180,7 +188,7 @@ const AddProduct = () => {
 
             ></input>
             </label>
-            <label className="categorylabel">
+            {/* <label className="categorylabel">
                 Category
             <input className="category-form"
             type="text"
@@ -193,8 +201,29 @@ const AddProduct = () => {
             required
 
             ></input>
+            </label> */}
+            <label className="categorylabel">
+                Category
+                <select
+                    className="category-form"
+                    value={category}
+                    onChange={(e) => {
+                        setCategory(e.target.value)
+                    }}
+                    required
+                >
+                    <option value="">Select a category</option>
+                    <option value="slacks">Slacks</option>
+                    <option value="jeans">Jeans</option>
+                    <option value="trousers">Trousers</option>
+                    <option value="leggings">Leggings</option>
+                    <option value="shorts">Shorts</option>
+                    <option value="cargo pants">Cargo Pants</option>
+                    <option value="khakis">Khakis</option>
+                </select>
             </label>
-            <label className="colorlabel">
+
+            {/* <label className="colorlabel">
                 Color
             <input className="color-form"
             type="text"
@@ -207,6 +236,23 @@ const AddProduct = () => {
             required
 
             ></input>
+            </label> */}
+            <label className="colorlabel">
+                Color
+                <select className="color-form" value={color} onChange={(e) => setColor(e.target.value)}>
+                    <option value="">Select a color</option>
+                    <option value="red">Red</option>
+                    <option value="blue">Blue</option>
+                    <option value="green">Green</option>
+                    <option value="yellow">Yellow</option>
+                    <option value="orange">Orange</option>
+                    <option value="purple">Purple</option>
+                    <option value="pink">Pink</option>
+                    <option value="brown">Brown</option>
+                    <option value="gray">Gray</option>
+                    <option value="black">Black</option>
+                    <option value="white">White</option>
+                </select>
             </label>
             {/* <label className="sizelabel">
                 Size
