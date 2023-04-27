@@ -75,13 +75,13 @@ function App() {
 }
 
 function NotFound() {
-
   return (
-    <div>
-      <h1>404 Not Found</h1>
-      <p>Sorry, the page you are looking for doesn't exist.</p>
+    <div className="root-404-page" style={{textAlign: "center", padding: "100px" }}>
+      <h1 className="404-title-notFound">404 Not Found</h1>
+      <p className="404-paragraph">Sorry, the page you are looking for doesn't exist.</p>
+      <img src="https://media1.giphy.com/media/14uQ3cOFteDaU/giphy.gif"></img>
     </div>
-  );
+  )
 }
 
 export default App;
