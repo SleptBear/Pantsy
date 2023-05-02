@@ -3,7 +3,7 @@
 
 - Pantsy is an online e-commerce marketplace that focuses solely on pants, taking inspiration from the ecommerce website Etsy. Our platform provides users with the ability to easily sign up, log in, and create, edit, or delete their own product listings. Additionally, users can add items to their shopping cart and checkout, which will bring them to an orders page.
 
-To check out the live version of our website, simply follow this link: https://pantsy.onrender.com/ . Thank you for considering Pantsy for your pants-shopping needs!
+To check out the live version of our website, simply follow this link: https://sam-pantsy.onrender.com . Thank you for considering Pantsy for your pants-shopping needs!
 
 
 ## Technologies used:

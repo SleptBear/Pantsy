@@ -35,3 +35,32 @@
     background-color: #9b2609;
     cursor: pointer;
 }
+
+.empty-cart {
+    display: flex;
+    align-items: center;
+    /* padding-top: 10px; */
+    flex-direction: column;
+    padding-top: 120px;
+  }
+
+  .image-gif {
+    display: flex;
+    align-items: center;
+  }
+
+
+
+  [data-theme='dark'] {
+    --background: #282c34;
+    --primary: white;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--primary);
+  }
+  
+  [data-theme='dark'] .empty-cart-message {
+    color: red;
+  }

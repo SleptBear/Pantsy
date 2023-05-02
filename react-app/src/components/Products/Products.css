@@ -38,3 +38,26 @@
     text-decoration: underline;
     text-decoration-thickness: 1.5px;
 }
+
+[data-theme='dark'] {
+    --background: #212121;
+    --primary: #fff;
+  }
+
+
+  body {
+    background-color: var(--background);
+    color: var(--primary);
+  }
+
+  [data-theme='dark'] .nameprice {
+    background-color: #282c34;
+    color: #fff;
+  }
+
+
+@media (max-width: 767px) {
+    .products-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
