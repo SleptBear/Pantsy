@@ -299,7 +299,7 @@ const AddProduct = () => {
             </label> */}
                 <label className="imagelabel">
                     Image
-                    <input
+                    <input className='fileuploadbutton'
                         type="file"
                         accept="image/*"
                         onChange={updateImage}

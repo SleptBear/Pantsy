@@ -51,8 +51,8 @@ const Cart = () => {
   if (cartItemCount === 0) {
     return (
       <div className="empty-cart">
-        <img className="image-gif" src="https://cdn.dribbble.com/users/5107895/screenshots/14532312/media/a7e6c2e9333d0989e3a54c95dd8321d7.gif" alt="Empty cart" />
         <p className="empty-cart-message">Oops, your cart is empty! Time to go shopping.</p>
+        <img className="image-gif" src="https://cdn.dribbble.com/users/5107895/screenshots/14532312/media/a7e6c2e9333d0989e3a54c95dd8321d7.gif" alt="Empty cart" />
       </div>
     );
   }
@@ -72,13 +72,14 @@ const Cart = () => {
       <h1>Cart ({cartItemCount})</h1>
       {products.products?.map(({ id, name, price, size, color, productimages }) => {
         return (
-          <div key={id}>
-            <h2>{name}</h2>
-            <p>{size}, {color}</p>
-            <p>${price.toFixed(2)}</p>
+          <div className='cart-item' key={id}>
             {productimages?.map(image => (
               <img className="cart-image" src={image.image} alt="no image" key={image.id} />
             ))}
+            <h3>{name}</h3>
+            <p>{size}</p>
+            <p>{color}</p>
+            <p>${price.toFixed(2)}</p>
             <div>
             <button className="cartdeletebutton"onClick={() => handleDeleteItem(id, price)}><TrashIcon /></button>
             </div>

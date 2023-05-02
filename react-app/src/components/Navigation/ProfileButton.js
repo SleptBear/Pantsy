@@ -45,7 +45,8 @@ function ProfileButton({ user }) {
     <>
       <button className="profilebutton" onClick={openMenu}>
 
-        <img className="profilebuttonimage"src={image} alt="User Icon"></img>
+        {/* <img className="profilebuttonimage"src={image} alt="User Icon"></img> */}
+        <i className="fa-solid fa-circle-user fa-2xl" id='prof-user'></i>
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
@@ -65,7 +66,7 @@ function ProfileButton({ user }) {
         ) : (
           <>
             <OpenModalButton
-              
+
               buttonText="Log In"
               onItemClick={closeMenu}
               modalComponent={<LoginFormModal />}
