@@ -24,7 +24,7 @@ function AllProducts() {
     return (
         <div>
             {user && (
-                <h1 className="welcomebanner">Welcome to Pantsy, <span className="username">{user?.username}</span></h1>
+                <h1 className="welcomebanner">Welcome to Pantsy, <span className="username">  {user?.username}</span></h1>
 
             )}
 

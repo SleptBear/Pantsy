@@ -107,13 +107,13 @@ cursor: pointer;
   background-color: rgb(242, 240, 132);
 }
 .nav-search {
-  border: 2px solid black;
+  border: 2px solid var(--primary);
+  background-color: white;
   border-radius: 20px;
   gap: 10px;
   display: flex;
   align-items: center;
   height: 40px;
-  /* width: 60%; */
   width: 45%;
 }
 .search-bar{
@@ -128,9 +128,11 @@ cursor: pointer;
 
 .inputbar {
   border: none;
+  border-radius: 5px;
   width: 95%;
   height: 20px;
   outline: none;
+  background-color: white;
 
   font-family: 'Oxygen', sans-serif;
   font-size: 17px;
@@ -139,8 +141,9 @@ cursor: pointer;
 .searchbutton {
   display: flex;
   justify-content: center;
-  background-color: white;
+  background-color: transparent;
   align-items: center;
+
 
  border: none;
  font-size: 22px;
@@ -187,20 +190,14 @@ body {
 [data-theme='dark'] .nav-search.dark-mode {
   background-color: #282c34;
   color: white;
-  border: none;
+
 }
 
 [data-theme='dark'] .nav-search {
-  background-color: #282c34;
   color: white;
-  border: none;
 }
 
-[data-theme='dark'] .inputbar {
-  /* background-color: transparent; */
-  /* color: white; */
-  border: 1px solid;
-}
+
 
 @media screen and (max-width: 768px) {
   .Navbar {

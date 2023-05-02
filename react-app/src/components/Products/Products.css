@@ -33,10 +33,12 @@
     display: flex;
     justify-content: center;
     width: 100%;
+    margin-bottom: 50px;
     /* font-weight: 1px; */
 
 }
 .username {
+    margin-left: 5px;
     text-decoration: underline;
     text-decoration-thickness: 1.5px;
 }
