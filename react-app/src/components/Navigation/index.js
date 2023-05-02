@@ -14,7 +14,7 @@ function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
 
 	return (
-		<div>
+		<div className='navStart'>
   			<ul className="Navbar">
     			<li>
       				<NavLink className="home-button" exact to="/">Home</NavLink>

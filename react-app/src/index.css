@@ -3,6 +3,7 @@ html {
 
     margin: 0 14.5%;
     font-family: 'Oxygen', sans-serif;
+    overflow-x: hidden;
     /* height: 100%; */
 
 }

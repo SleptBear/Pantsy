@@ -1,3 +1,18 @@
+
+
+.navStart {
+  /* background-color: red; */
+  /* align-content: center; */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  max-width: 120rem;
+  /* max-width: 80vw; */
+  }
+
+
 .Navbar {
   display: flex;
   justify-content: space-between;
@@ -139,7 +154,7 @@ cursor: pointer;
 .searchbutton {
   display: flex;
   justify-content: center;
-  background-color: white;
+  background-color: transparent;
   align-items: center;
 
  border: none;
@@ -202,7 +217,14 @@ body {
   border: 1px solid;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1275px) {
+
+  .navStart {
+    max-width: 80vw;
+    min-width: 20rem;
+
+  }
+
   .Navbar {
     height: 80px;
   }
@@ -236,6 +258,12 @@ body {
 }
 
 @media screen and (max-width: 576px) {
+
+  .navStart {
+    max-width: 80vw;
+    min-width: 20rem;
+  }
+
   .Navbar {
     height: 70px;
   }
