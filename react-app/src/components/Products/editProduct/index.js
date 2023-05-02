@@ -15,7 +15,7 @@ const EditProduct = () => {
     const [category, setCategory] = useState(stateProduct.category)
     const [color, setColor] = useState(stateProduct.color)
     const [size, setSize] = useState(stateProduct.size)
-    const [imgUrl ,setImgUrl] = useState('');
+    const [imgUrl, setImgUrl] = useState('');
     const [errors, setErrors] = useState([]);
 
     const dispatch = useDispatch()
@@ -39,7 +39,7 @@ const EditProduct = () => {
 
         const updatedImgData = {
             img_url: imgUrl,
-          };
+        };
         setErrors([])
         if (!user) {
             setErrors(errors => [...errors, 'User must be signed in to edit a spot'])
@@ -75,15 +75,15 @@ const EditProduct = () => {
         }
 
         dispatch(editProductThunk(stateProduct.id, ProductData, updatedImgData))
-        .then(() => closeModal())
-        // .history.push(`/products/${stateProduct.id}`)
+            .then(() => closeModal())
+            // .history.push(`/products/${stateProduct.id}`)
 
-        .catch(async (res) => {
-            const data = await res.json();
-            // console.log("data from api", data)
-            if (data && data.errors) setErrors(data.errors)
-            // console.log('ERRORS', errors)
-          });
+            .catch(async (res) => {
+                const data = await res.json();
+                // console.log("data from api", data)
+                if (data && data.errors) setErrors(data.errors)
+                // console.log('ERRORS', errors)
+            });
         return
     }
 
@@ -136,7 +136,7 @@ const EditProduct = () => {
 
                     ></input>
                 </label>
-                <label>
+                {/* <label>
                     Category
                     <input className="category-form"
                         type="text"
@@ -149,8 +149,29 @@ const EditProduct = () => {
                         required
 
                     ></input>
-                </label>
+                </label> */}
                 <label>
+                    Category
+                    <select
+                        className="category-form"
+                        value={category}
+                        onChange={(e) => {
+                            setCategory(e.target.value)
+                        }}
+                        required
+                    >
+                        <option value="">Select a category</option>
+                        <option value="slacks">Slacks</option>
+                        <option value="jeans">Jeans</option>
+                        <option value="trousers">Trousers</option>
+                        <option value="leggings">Leggings</option>
+                        <option value="shorts">Shorts</option>
+                        <option value="cargo pants">Cargo Pants</option>
+                        <option value="khakis">Khakis</option>
+                    </select>
+                </label>
+
+                {/* <label>
                     Color
                     <input className="color-form"
                         type="text"
@@ -162,9 +183,26 @@ const EditProduct = () => {
                         }}
                         required
 
-    ></input>
-    </label>
-    <label>
+                ></input>
+                </label> */}
+                <label>
+                    Color
+                    <select className="color-form" value={color} onChange={(e) => setColor(e.target.value)}>
+                        <option value="">Select a color</option>
+                        <option value="red">Red</option>
+                        <option value="blue">Blue</option>
+                        <option value="green">Green</option>
+                        <option value="yellow">Yellow</option>
+                        <option value="orange">Orange</option>
+                        <option value="purple">Purple</option>
+                        <option value="pink">Pink</option>
+                        <option value="brown">Brown</option>
+                        <option value="gray">Gray</option>
+                        <option value="black">Black</option>
+                        <option value="white">White</option>
+                    </select>
+                </label>
+                {/* <label>
         Size
     <input className="size-form"
     type="text"
@@ -176,24 +214,39 @@ const EditProduct = () => {
     }}
     required
     ></input>
-    </label>
-    <label>
-                Image
-            <input className="size-form"
-            type="text"
-            value={imgUrl}
-            placeholder="Image (optional)"
-            maxLength={255}
-            onChange={(e) => {
-                setImgUrl(e.target.value)
-            }}
+    </label> */}
+                <label>
+                    Size
+                    <select className="size-form"
+                        value={size}
+                        onChange={(e) => {
+                            setSize(e.target.value)
+                        }}
+                        required
+                    >
+                        <option value="">Select Size</option>
+                        <option value="Small">Small</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Large">Large</option>
+                    </select>
+                </label>
+                <label>
+                    Image
+                    <input className="size-form"
+                        type="text"
+                        value={imgUrl}
+                        placeholder="Image (optional)"
+                        maxLength={255}
+                        onChange={(e) => {
+                            setImgUrl(e.target.value)
+                        }}
 
-            ></input>
-            </label>
-    <button className="submit-form" type="Submit" >Submit</button>
-    </form>
-</div>
-)
+                    ></input>
+                </label>
+                <button className="submit-form" type="Submit" >Submit</button>
+            </form>
+        </div>
+    )
 
 
 

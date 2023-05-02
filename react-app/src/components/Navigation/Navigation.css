@@ -1,3 +1,18 @@
+
+
+.navStart {
+  /* background-color: red; */
+  /* align-content: center; */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  max-width: 120rem;
+  /* max-width: 80vw; */
+  }
+
+
 .Navbar {
   display: flex;
   justify-content: space-between;
@@ -17,7 +32,7 @@
   border: 1px solid #ccc;
   box-shadow: 0px 0px 10px #ccc;
   z-index: 2;
-  margin-top: 1px;
+  margin-top: 15px;
   width: 150px;
   height: auto;
   font-weight: lighter;
@@ -33,7 +48,7 @@
 
 .add-button {
   display: flex;
-
+  color: var(--primary);
   margin-left: auto;
 }
 
@@ -59,27 +74,29 @@
 
   display: flex;
   justify-content: center;
-  /* margin-left: auto; */
+  /* margin-left: auto;  */
   width: 500%;
   font-size: 22px;
+  color: var(--primary);
 }
 
 .order-button {
   display: flex;
-
+  color: var(--primary);
   margin-left: auto;
 }
 
 
 
-/* .profilebuttonimage {
-  border-radius: 10px;
-} */
+
 .profilebutton {
  border: hidden;
- padding: 0;
- padding-bottom: white;
+ color: var(--primary);
+ background: none;
+
+
 }
+
 
 .profilebutton:hover .profilebuttonimage {
   border-radius: 10px;
@@ -105,13 +122,14 @@ cursor: pointer;
   background-color: rgb(242, 240, 132);
 }
 .nav-search {
-  border: 2px solid black;
+  border: 2px solid var(--primary);
+  background-color: white;
   border-radius: 20px;
   gap: 10px;
   display: flex;
   align-items: center;
   height: 40px;
-  width: 60%;
+  width: 45%;
 }
 .search-bar{
 
@@ -125,9 +143,11 @@ cursor: pointer;
 
 .inputbar {
   border: none;
+  border-radius: 5px;
   width: 95%;
   height: 20px;
   outline: none;
+  background-color: white;
 
   font-family: 'Oxygen', sans-serif;
   font-size: 17px;
@@ -136,8 +156,9 @@ cursor: pointer;
 .searchbutton {
   display: flex;
   justify-content: center;
-  background-color: white;
+  background-color: transparent;
   align-items: center;
+
 
  border: none;
  font-size: 22px;
@@ -157,4 +178,115 @@ cursor: pointer;
 
 .logoutbutton:hover {
   background-color: #aa0006 !important;
+}
+
+
+[data-theme='dark'] {
+  --background: #212121;
+  --primary: #fff;
+}
+
+
+body {
+  background-color: var(--background);
+  color: var(--primary);
+}
+
+[data-theme='dark'] .NavBar {
+  background-color: #282c34;
+  color: #fff;
+}
+
+[data-theme='dark'] .profile-dropdown {
+  background-color: #282c34;
+  color: white;
+}
+
+[data-theme='dark'] .nav-search.dark-mode {
+  background-color: #282c34;
+  color: white;
+
+}
+
+[data-theme='dark'] .nav-search {
+  color: white;
+}
+
+
+
+@media screen and (max-width: 1275px) {
+
+  .navStart {
+    max-width: 80vw;
+    min-width: 20rem;
+
+  }
+
+  .Navbar {
+    height: 80px;
+  }
+
+  .home-button {
+    height: 80px;
+    width: 80px;
+  }
+
+  .cart-button {
+    width: auto;
+    font-size: 18px;
+  }
+
+  .order-button {
+    margin-left: 0;
+    font-size: 18px;
+  }
+
+  .nav-search {
+    width: 40%;
+  }
+
+  .inputbar {
+    font-size: 14px;
+  }
+
+  .searchbutton {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+
+  .navStart {
+    max-width: 80vw;
+    min-width: 20rem;
+  }
+
+  .Navbar {
+    height: 70px;
+  }
+
+  .home-button {
+    height: 70px;
+    width: 70px;
+  }
+
+  .cart-button {
+    font-size: 16px;
+  }
+
+  .order-button {
+    font-size: 16px;
+  }
+
+  .nav-search {
+    width: 30%;
+  }
+
+  .inputbar {
+    font-size: 12px;
+  }
+
+  .searchbutton {
+    font-size: 16px;
+  }
 }

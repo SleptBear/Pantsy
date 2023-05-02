@@ -7,16 +7,19 @@ import Search from '../Search';
 import NavSearch from '../Search/navSearch';
 import './Navigation.css';
 import AddProduct from '../Products/addProduct';
+import { Toggle } from 'react-hook-theme';
+import 'react-hook-theme/dist/styles/style.css';
 
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
 
 	return (
-		<div>
+		<div className='navStart'>
   			<ul className="Navbar">
     			<li>
       				<NavLink className="home-button" exact to="/">Home</NavLink>
     			</li>
+				  <Toggle />
 				<li className="nav-search">
 					<NavSearch  />
 				</li>
@@ -25,7 +28,7 @@ function Navigation({ isLoaded }){
         		<NavLink className="cart-button"exact to='/cart'><CartIcon/></NavLink>
       			</li>
     			{isLoaded && (
-      			<li>
+					<li className='profile-button-li'>
         		<ProfileButton className="profile-button" user={sessionUser} />
       			</li>
    			 )}

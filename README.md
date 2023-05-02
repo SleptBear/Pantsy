@@ -1,7 +1,9 @@
 # About Pantsy:
+![image](https://user-images.githubusercontent.com/107887726/226249916-3a4d27cf-5358-4a70-963e-95832edc630b.png)
+
 - Pantsy is an online e-commerce marketplace that focuses solely on pants, taking inspiration from the ecommerce website Etsy. Our platform provides users with the ability to easily sign up, log in, and create, edit, or delete their own product listings. Additionally, users can add items to their shopping cart and checkout, which will bring them to an orders page.
 
-To check out the live version of our website, simply follow this link: . Thank you for considering Pantsy for your pants-shopping needs!
+To check out the live version of our website, simply follow this link: https://sam-pantsy.onrender.com . Thank you for considering Pantsy for your pants-shopping needs!
 
 
 ## Technologies used:
@@ -15,8 +17,11 @@ To check out the live version of our website, simply follow this link: . Thank y
    - Database: PostgreSQL
    - Hosting: Render
 
-## Demo User:
-   - A demo user is available in login dropdown menu without need to sign up. Simply click on the "Demo User" button and it will log you in the Demo User.
+### This repo is being build and updated by:
+- https://github.com/SleptBear
+- https://github.com/dro14848
+- https://github.com/sfazli96
+- https://github.com/Vian-K
 
 
 # Flask React Project
@@ -24,43 +29,37 @@ To check out the live version of our website, simply follow this link: . Thank y
 This is the starter for the Flask React project.
 
 ## Getting started
-1. Clone this repository (only this branch)
+1. Clone this repository (only main branch)
 
 2. Install dependencies
 
-      ```bash
+      ```
       pipenv install -r requirements.txt
       ```
 
 3. Create a **.env** file based on the example with proper settings for your
    development environment
+   ```
+   SECRET_KEY=<your secret key>
+   DATABASE_URL=sqlite:///dev.db
+   SCHEMA=flask_schema
+   ```
 
-4. Make sure the SQLite3 database connection URL is in the **.env** file
-
-5. This starter organizes all tables inside the `flask_schema` schema, defined
+6. This starter organizes all tables inside the `flask_schema` schema, defined
    by the `SCHEMA` environment variable.  Replace the value for
    `SCHEMA` with a unique name, **making sure you use the snake_case
    convention**.
 
-6. Get into your pipenv, migrate your database, seed your database, and run your Flask app
+7. Get into your pipenv, migrate your database, seed your database, and run your Flask app
 
-   ```bash
+   ```
    pipenv shell
-   ```
-
-   ```bash
    flask db upgrade
-   ```
-
-   ```bash
    flask seed all
-   ```
-
-   ```bash
    flask run
    ```
 
-7. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+8. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
 
 
 ## Deployment through Render.com
@@ -167,6 +166,58 @@ your site just below the name of the Web Service at the top of the page.
 
 [Render.com]: https://render.com/
 [Dashboard]: https://dashboard.render.com/
+
+#Features Directions:
+
+### Checkout the images below before examples of how to use the implemented features from this project! All features follow basic (full or partial) CRUD format.
+
+## Demo User/Log in
+You can test some features without logging in, but to test all of them please log in or utilize our demo user.
+![image](https://user-images.githubusercontent.com/107887726/226251345-d0a4b8c6-e4f6-4404-a512-996d17734b1b.png)
+
+## Sign up:
+![image](https://user-images.githubusercontent.com/107887726/226251439-82ef0822-0c37-46e9-8efa-7f7accf90e5c.png)
+
+## Search for pants:
+![image](https://user-images.githubusercontent.com/107887726/226251520-a7715bb8-ea8d-488f-bec3-9149b089b73e.png)
+
+## Create a pants listing:
+![image](https://user-images.githubusercontent.com/107887726/226253197-0ad89985-ae2d-417e-aa23-e557a8e51b51.png)
+
+
+## Read details of pants:
+![image](https://user-images.githubusercontent.com/107887726/226251614-101172bd-839c-4180-8af8-50bac418a17e.png)
+
+## Edit/Delete a pant listing:
+![image](https://user-images.githubusercontent.com/107887726/226251887-15b414ae-6f8e-4402-a5b8-2e7ca39ae47f.png)
+
+## Read/Edit/Delete Shopping Cart:
+![image](https://user-images.githubusercontent.com/107887726/226252225-72115dcf-bba6-461c-acfd-e26e3c7e5a03.png)
+
+## Create Shopping Cart Item:
+![image](https://user-images.githubusercontent.com/107887726/226252342-0a8867b6-9191-4582-9d8a-bfb485714f1e.png)
+
+
+
+## Read/Create/Delete reviews:
+![image](https://user-images.githubusercontent.com/107887726/226252054-292e8ddf-4973-4414-bc49-c68580d5caf1.png)
+
+
+
+## Bonus Feature (404 page):
+![image](https://user-images.githubusercontent.com/107887726/226252363-da44fe3d-269b-403c-9e08-397b522c5002.png)
+
+Bonus Feature (Orders) Create/Read:
+![image](https://user-images.githubusercontent.com/107887726/226252486-8f3f3a58-838e-456e-bf13-3945f7a72ac1.png)
+![image](https://user-images.githubusercontent.com/107887726/226252501-2e33e670-b977-45aa-b7f9-e2de7aab9ccd.png)
+
+
+
+
+
+
+
+
 
 
 
