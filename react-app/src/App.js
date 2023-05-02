@@ -69,7 +69,7 @@ function App() {
         </Switch>
       )}
       </ThemeProvider>
-      <Footer/>
+      {/* <Footer/> */}
     </>
   );
 }
