@@ -14,12 +14,12 @@ function Product () {
     const { closeModal } = useModal()
     const id = useParams()
     const productDetail = useSelector(state => state.productsReducer.singleProduct)
-    console.log("PRODUCTDETAIL", productDetail)
+    // console.log("PRODUCTDETAIL", productDetail)
     const user = useSelector(state => state.session.user)
     const history = useHistory()
     // console.log('SELLER', productDetail.seller.id)
     // console.log('USER', user)
-    console.log('USER', Object.values(productDetail))
+    // console.log('USER', Object.values(productDetail))
     useEffect(() => {
         dispatch(singleProductThunk(id.id))
     }, [dispatch])
@@ -40,10 +40,10 @@ function Product () {
             <div className="product-detail">
 
             <div className="text">
-            <h2>{productDetail.name} </h2>
-            <h2>Price: $ {productDetail.price}</h2>
-            <h2> SIZE: {productDetail.size}  </h2>
-            <h2>COLOR: {productDetail.color}</h2>
+            <h1>{productDetail.name} </h1>
+            <h3 className="productdetailprice">$ {productDetail.price}</h3>
+            <h3 className="productdetailsize"> Size: {productDetail.size}  </h3>
+            <h3 className="productdetailcolor"> Color: {productDetail.color}</h3>
             </div>
 
             <div>

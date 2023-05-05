@@ -134,3 +134,25 @@
     align-items: center;
     width: 100%;
   }
+
+
+  [data-theme='dark'] {
+    --background: #212121;
+    --primary: #fff;
+  }
+
+
+  body {
+    background-color: var(--background);
+    color: var(--primary);
+  }
+
+  [data-theme='dark'] .review-text {
+    background-color: #282c34;
+    color: #fff;
+  }
+
+  [data-theme='dark'] .review-card {
+    background-color: #282c34;
+    color: white;
+  }
