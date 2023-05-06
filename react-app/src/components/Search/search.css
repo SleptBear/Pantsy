@@ -1,0 +1,39 @@
+.search-results {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.search-result {
+  width: 30%;
+  margin-bottom: 2rem;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.search-result-image {
+  height: 20rem;
+  background-size: cover;
+  background-position: center;
+}
+
+.search-result-details {
+  padding: 1rem;
+}
+
+.search-result-title {
+  font-size: 1.6rem;
+  margin: 0;
+}
+
+.search-result-description {
+  font-size: 1.4rem;
+  margin: 1rem 0;
+}
+
+.search-result-price {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin: 1rem 0;
+}
