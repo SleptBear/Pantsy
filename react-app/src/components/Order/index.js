@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { loadOrderThunk } from '../../store/order';
+import './Order.css'
 
 const Order = () => {
     const dispatch = useDispatch();
@@ -34,7 +35,7 @@ const Order = () => {
     }
 
       return (
-        <div>
+        <div className='order-root'>
           <h1>Orders</h1>
           <div className='Orders-Container'>
             <hr></hr>
@@ -44,9 +45,9 @@ const Order = () => {
                 <div>Order # {order.id}</div>
               <div>Date: {order.date.slice(0, 10)}</div>
               {order.products.map((prod) => (
-                <div key={prod.id}>Item: {prod.name} Price: ${Number(prod.price).toFixed(2)}</div>
+                <div key={prod.id} className='order-item'>Item: {prod.name} Price: ${Number(prod.price).toFixed(2)}</div>
                 ))}
-                <div>Total: ${totalPrice(order).toFixed(2)}</div>
+                <div className='order-total'>Total: ${totalPrice(order).toFixed(2)}</div>
                 <br></br>
                 <hr></hr>
 
