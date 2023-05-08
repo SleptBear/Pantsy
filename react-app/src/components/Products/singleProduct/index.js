@@ -31,7 +31,7 @@ function Product () {
         </div>
     }
 
-    if(!productDetail.productImages) {
+    if(!productDetail.productImages || id?.id != productDetail.id) {
         return null
     }
 
