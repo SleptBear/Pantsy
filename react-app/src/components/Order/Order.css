@@ -48,3 +48,19 @@
     flex-grow: 1;
     text-align: right;
   }
+
+
+  [data-theme='dark'] {
+    --background: #282c34;
+    --primary: white;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--primary);
+  }
+
+  [data-theme='dark'] .search-result-details {
+    background-color: #282c34;
+    color: #fff;
+  }
