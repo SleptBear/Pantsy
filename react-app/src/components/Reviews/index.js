@@ -18,7 +18,8 @@ export const Reviews = () => {
     const reviews = Object.values(reviewsObj)
     const [errors, setErrors] = useState([])
     const [showForm, setShowForm] = useState(false)
-    // console.log("REVIEW", reviewsObj)
+    console.log("REVIEW", reviewsObj)
+    console.log("REVIEW Array", reviews)
     useEffect(() => {
         dispatch(readReviewThunk(ID))
     }, [dispatch])
@@ -82,6 +83,9 @@ export const Reviews = () => {
 
       return(avgRating/ratingsArray.length).toFixed(2)
     }
+    // if(!review[0]) return null
+    // console.log(review[0])
+    // if(!review[0] || review[0]?.product_id !== id?.id)
     return (
         <div>
           <div className='reviewmaincontainer'>
